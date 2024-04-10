@@ -19,6 +19,9 @@ public class GameMap {
 
         this.upperMapBackground = new Image("assets/Podzemie/abyss background.png", 0, -100);
         this.upperMapBackground.makeVisible();
+
+        this.lowerMapBackground = new Image("assets/Podzemie/Underground background.png", 0, 318);
+        this.lowerMapBackground.makeVisible();
     }
 
     public void createBlocks() {
