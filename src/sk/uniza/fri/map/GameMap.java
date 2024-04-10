@@ -4,15 +4,15 @@ import fri.shapesge.Image;
 
 import java.util.Optional;
 
-public class Map {
-    private static Map instance;
+public class GameMap {
+    private static GameMap instance;
     private int blocksWidth;
     private int blocksHeight;
     private Block[][] blocks;
     private Image upperMapBackground;
     private Image lowerMapBackground;
 
-    private Map() {
+    private GameMap() {
         this.blocksWidth = 21;
         this.blocksHeight = 9;
         this.blocks = new Block[this.blocksHeight][this.blocksWidth];
@@ -22,17 +22,17 @@ public class Map {
     }
 
     public void createBlocks() {
-        int positionYFirstBlock = 270; // (750 - 432) - 48
+        int positionYFirstBlock = 318; // (750 - 432) - 48, 270
 
-        for (int i = 0; i < this.blocksHeight; i++) {
+        for (int i = 1; i < this.blocksHeight - 1; i++) {
             positionYFirstBlock = positionYFirstBlock + 48;
-            int positionXFirstBlock = -48;
-            for (int j = 0; j < this.blocksWidth; j++) {
+            int positionXFirstBlock = 0; // -48
+            for (int j = 1; j < this.blocksWidth - 1; j++) {
                 positionXFirstBlock = positionXFirstBlock + 48;
 
-                if (i == 0 && j == 10) {
-                    continue;
-                }
+//                if (i == 0 && j == 10) {
+//                    continue;
+//                }
                 this.blocks[i][j] = new Block(BlockType.STONE, positionXFirstBlock, positionYFirstBlock);
             }
         }
@@ -68,9 +68,9 @@ public class Map {
         }
     }
 
-    public static Map getInstance() {
+    public static GameMap getInstance() {
         if (instance == null) {
-            instance = new Map();
+            instance = new GameMap();
         }
         return instance;
     }

@@ -4,6 +4,7 @@ import fri.shapesge.Image;
 
 public class Block {
     private Image block;
+    private BlockType blockType;
     private int health;
     private int x;
     private int y;
@@ -11,6 +12,7 @@ public class Block {
     public Block(BlockType block, int x, int y) {
         this.block = new Image(block.getImagePath(), x, y);
         this.block.makeVisible();
+        this.blockType = block;
         this.health = block.getHealth();
         this.x = x;
         this.y = y;
@@ -19,6 +21,10 @@ public class Block {
     public boolean receiveDamage(int damage) {
         this.health -= damage;
         return this.health > 0;
+    }
+
+    public BlockType getType() {
+        return this.blockType;
     }
 
     public int getX() {
