@@ -3,6 +3,7 @@ package sk.uniza.fri.map;
 import fri.shapesge.Image;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class GameMap {
     private static GameMap instance;
@@ -36,6 +37,15 @@ public class GameMap {
 //                if (i == 0 && j == 10) {
 //                    continue;
 //                }
+                Random random = new Random();
+                int randomInt = random.nextInt(12);
+                if (randomInt == 0 || randomInt == 1) {
+                    this.blocks[i][j] = new Block(BlockType.GOLD, positionXFirstBlock, positionYFirstBlock);
+                    continue;
+                } else if (randomInt == 2) {
+                    this.blocks[i][j] = new Block(BlockType.DIAMOND, positionXFirstBlock, positionYFirstBlock);
+                    continue;
+                }
                 this.blocks[i][j] = new Block(BlockType.STONE, positionXFirstBlock, positionYFirstBlock);
             }
         }
