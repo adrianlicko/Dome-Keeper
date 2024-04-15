@@ -1,9 +1,9 @@
 package sk.uniza.fri.map;
 
 public enum BlockType {
-    STONE("assets/Podzemie/Stone block.png", 50, "abc", 2),
-    GOLD("assets/Podzemie/Gold block.png", 100, "abc", 2),
-    DIAMOND("assets/Podzemie/Diamond block.png", 200, "abc", 2);
+    STONE("assets/Podzemie/Stone block.png", 50, "assets/Podzemie/Stone nugget icon.png", 2),
+    GOLD("assets/Podzemie/Gold block.png", 100, "assets/Podzemie/Gold nugget icon.png", 2),
+    DIAMOND("assets/Podzemie/Diamond block.png", 200, "assets/Podzemie/Diamond nugget icon.png", 2);
 
     private String imagePath;
     private int health;

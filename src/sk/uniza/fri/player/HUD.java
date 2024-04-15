@@ -28,11 +28,13 @@ public class HUD {
         this.coinText = new HashMap<>();
         this.coinImages = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
-            this.coinText.put(blockType, new TextBlock("" + Astronaut.getInstance().getInventory().get(blockType), 950 - ( blockType.ordinal() * 50), 742));
+            this.coinText.put(blockType, new TextBlock("" + Astronaut.getInstance().getInventory().get(blockType), 950 - ( blockType.ordinal() * 100), 742));
             this.coinText.get(blockType).changeFont("Arial", FontStyle.BOLD, 30);
             this.coinText.get(blockType).changeColor("white");
             this.coinText.get(blockType).makeVisible();
-            //this.coinImages.put(blockType, new Image(blockType.getImagePath(), 10 + blockType.ordinal() * 50, 720));
+
+            this.coinImages.put(blockType, new Image(blockType.getCoinImagePath(), 920 - ( blockType.ordinal() * 100), 712));
+            this.coinImages.get(blockType).makeVisible();
         }
     }
 
