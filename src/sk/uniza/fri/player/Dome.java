@@ -7,9 +7,13 @@ public class Dome {
     private Image dome;
     private double initialHealth;
     private double health;
+    private int x;
+    private int y;
 
     private Dome() {
-        this.dome = new Image("assets/Nadzemie/Dome small.png", 457, 260);
+        this.x = 457;
+        this.y = 260;
+        this.dome = new Image("assets/Nadzemie/Dome small.png", this.x, this.y);
         this.dome.makeVisible();
     }
 
@@ -36,6 +40,14 @@ public class Dome {
 
     public double getHealth() {
         return this.health;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 
     public static Dome getInstance() {

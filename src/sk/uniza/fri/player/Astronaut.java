@@ -1,7 +1,7 @@
 package sk.uniza.fri.player;
 
 import fri.shapesge.Image;
-import sk.uniza.fri.action.ActionMine;
+import sk.uniza.fri.action.player.ActionMine;
 import sk.uniza.fri.map.Block;
 import sk.uniza.fri.map.BlockType;
 import sk.uniza.fri.map.GameMap;
