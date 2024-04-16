@@ -17,11 +17,11 @@ public class Game {
         Astronaut.getInstance();
         var manager = new Manager();
         manager.manageObject(Astronaut.getInstance());
+        Dome.getInstance().setHealth(20);
         HUD.getInstance();
-        Dome.getInstance().setHealth(21);
 
         var enemies = new ArrayList<Enemy>();
-        enemies.add(new Walker(100, 10, 0, 265));
+        enemies.add(new Walker(100, 5, 0, 265));
         //enemies.add(new Walker(100, 10, 980, 265));
 
         for (var enemy : enemies) {

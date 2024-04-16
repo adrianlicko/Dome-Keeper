@@ -4,13 +4,9 @@ import fri.shapesge.FontStyle;
 import fri.shapesge.Image;
 import fri.shapesge.Rectangle;
 import fri.shapesge.TextBlock;
-import sk.uniza.fri.map.Block;
 import sk.uniza.fri.map.BlockType;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class HUD {
@@ -18,6 +14,9 @@ public class HUD {
     private Rectangle hudBackground;
     private Map<BlockType, Image> coinImages;
     private Map<BlockType, TextBlock> coinText;
+    private Rectangle domeHealthIndicatorBackground;
+    private Rectangle domeHealthIndicator;
+    private TextBlock domeHealthText;
 
     private HUD() {
         this.hudBackground = new Rectangle(0, 715);
@@ -25,24 +24,47 @@ public class HUD {
         this.hudBackground.changeColor("black");
         this.hudBackground.makeVisible();
 
+        // Astronaut inventory
         this.coinText = new HashMap<>();
         this.coinImages = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
-            this.coinText.put(blockType, new TextBlock("" + Astronaut.getInstance().getInventory().get(blockType), 950 - ( blockType.ordinal() * 100), 742));
+            this.coinText.put(blockType, new TextBlock("" + Astronaut.getInstance().getInventory().get(blockType), 950 - (blockType.ordinal() * 100), 742));
             this.coinText.get(blockType).changeFont("Arial", FontStyle.BOLD, 30);
             this.coinText.get(blockType).changeColor("white");
             this.coinText.get(blockType).makeVisible();
 
-            this.coinImages.put(blockType, new Image(blockType.getCoinImagePath(), 920 - ( blockType.ordinal() * 100), 712));
+            this.coinImages.put(blockType, new Image(blockType.getCoinImagePath(), 920 - (blockType.ordinal() * 100), 712));
             this.coinImages.get(blockType).makeVisible();
         }
+
+        // Dome health indicator
+        this.domeHealthIndicatorBackground = new Rectangle(15, 721);
+        this.domeHealthIndicatorBackground.changeSize(100, 22);
+        this.domeHealthIndicatorBackground.changeColor("white");
+        this.domeHealthIndicatorBackground.makeVisible();
+
+        this.domeHealthIndicator = new Rectangle(19, 724);
+        this.domeHealthIndicator.changeSize(92, 16);
+        this.domeHealthIndicator.changeColor("red");
+        this.domeHealthIndicator.makeVisible();
+
+        // Dome health text
+        this.domeHealthText = new TextBlock((int)Dome.getInstance().getHealth() + "/" + (int)Dome.getInstance().getInitialHealth(), 40, 739);
+        this.domeHealthText.changeColor("black");
+        this.domeHealthText.changeFont("Arial", FontStyle.BOLD, 20);
+        this.domeHealthText.makeVisible();
     }
 
     public void updateHudOfPlayersCoin(BlockType blockType) {
         this.coinText.get(blockType).changeText("" + (Astronaut.getInstance().getInventory().get(blockType)));
     }
 
-    public static HUD getInstance () {
+    public void updateDomeHealth() {
+        this.domeHealthIndicator.changeSize((int)(92 * (Dome.getInstance().getHealth() / Dome.getInstance().getInitialHealth())), 16);
+        this.domeHealthText.changeText((int)Dome.getInstance().getHealth() + "/" + (int)Dome.getInstance().getInitialHealth());
+    }
+
+    public static HUD getInstance() {
         if (instance == null) {
             instance = new HUD();
         }
