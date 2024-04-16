@@ -15,10 +15,11 @@ public class Astronaut {
     private static Astronaut instance;
     private Image astronaut;
     private HashMap<BlockType, Integer> inventory;
-    private GameMap gameMap;
     private int x;
     private int y;
     private ActionMine mining;
+    private boolean isAbleToEnterDome;
+    private boolean isInDome;
 
     private Astronaut() {
         this.x = 486;
@@ -32,17 +33,31 @@ public class Astronaut {
         }
     }
 
+    public void enterOrExitDome() {
+        if (!this.isInDome && this.isAbleToEnterDome) {
+            this.astronaut.makeInvisible();
+            this.isInDome = true;
+        } else if (this.isInDome) {
+            this.astronaut.makeVisible();
+            this.isInDome = false;
+        }
+    }
+
     public void moveUp() {
+        if (this.isInDome) {
+            return;
+        }
+        this.isAbleToEnterDome = false;
         // this.x < 480 || this.x > 494, this is for upper part of the map excluding the middle part
         // this.y <= 369, if this would not be there, the astronaut would never move up
         // this.y <= 321, this is for upper part of the map in the middle block
         if ((this.x < 480 || this.x > 494) && this.y <= 369) { // for correct dimensions this.x >= 480 && this.x <= 494
             return;
         } else if (this.y <= 321) {
+            this.isAbleToEnterDome = true;
             return;
         }
 
-        System.out.println(this.x + " " + this.y);
         Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.x, this.y);
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
@@ -53,6 +68,10 @@ public class Astronaut {
     }
 
     public void moveDown() {
+        if (this.isInDome) {
+            return;
+        }
+        this.isAbleToEnterDome = false;
         // this.y + 35 >= 702, this is for lower part of the map
         if (this.y + 35 >= 702) {
             return;
@@ -68,6 +87,10 @@ public class Astronaut {
     }
 
     public void moveLeft() {
+        if (this.isInDome) {
+            return;
+        }
+        this.isAbleToEnterDome = false;
         // this.x <= 48, this is for left part of the map
         // this.y < 369 && this.x <= 494, this is for upper part of the map in the middle block
         if (this.x <= 48) {
@@ -86,6 +109,10 @@ public class Astronaut {
     }
 
     public void moveRight() {
+        if (this.isInDome) {
+            return;
+        }
+        this.isAbleToEnterDome = false;
         // this.x + 35 >= 960, this is for right part of the map
         // this.y < 369 && this.x >= 480, this is for upper part of the map in the middle block
         if (this.x + 35 >= 960) {
@@ -110,6 +137,10 @@ public class Astronaut {
 
     public void addToInventory(BlockType blockType) {
         this.inventory.replace(blockType, this.inventory.get(blockType) + blockType.getCoinValue());
+    }
+
+    public boolean isInDome() {
+        return this.isInDome;
     }
 
     public static Astronaut getInstance() {
