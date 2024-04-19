@@ -18,6 +18,7 @@ public class Game {
         var manager = new Manager();
         manager.manageObject(Astronaut.getInstance());
         Dome.getInstance().setHealth(20);
+        manager.manageObject(Dome.getInstance());
         HUD.getInstance();
 
         var enemies = new ArrayList<Enemy>();

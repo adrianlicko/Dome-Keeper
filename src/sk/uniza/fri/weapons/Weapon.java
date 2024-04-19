@@ -21,9 +21,7 @@ public abstract class Weapon {
 
     public abstract void shoot();
 
-    public int getDamage() {
-        return this.damage;
-    }
+    public abstract void moveBullets();
 
     public void changePosition(int x, int y) {
         this.weaponImage.changePosition(x, y);
@@ -47,6 +45,18 @@ public abstract class Weapon {
             }
         }
         this.weaponImage.changeAngle(this.weaponAngle);
+    }
+
+    public int getAngle() {
+        return this.weaponAngle;
+    }
+
+    public boolean isReversed() {
+        return this.isReversed;
+    }
+
+    public int getDamage() {
+        return this.damage;
     }
 
     public int getX() {

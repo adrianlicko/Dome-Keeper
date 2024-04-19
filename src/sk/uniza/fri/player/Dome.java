@@ -1,6 +1,5 @@
 package sk.uniza.fri.player;
 
-import fri.shapesge.Circle;
 import fri.shapesge.Image;
 import sk.uniza.fri.weapons.Weapon;
 import sk.uniza.fri.weapons.player.Shotgun;
@@ -30,7 +29,7 @@ public class Dome {
         this.weaponPosition = new HashMap<>();
         for (int i = 70; i >= 0; i--) {
             this.weaponPosition.put(i, new HashMap<>());
-            int pythagorean = (int)Math.sqrt(Math.pow(35, 2) - Math.pow(35 - i, 2));
+            int pythagorean = (int) Math.sqrt(Math.pow(35, 2) - Math.pow(35 - i, 2));
             this.weaponPosition.get(i).put((70 - i), (35 - pythagorean));
 
             // prints out all co-ordinates of the half circle
@@ -45,6 +44,19 @@ public class Dome {
         this.weapon = new Shotgun(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
     }
 
+    // called by manager
+    public void shoot() {
+        if (Astronaut.getInstance().isInDome()) {
+            this.weapon.shoot();
+        }
+    }
+
+    // managed by Timer
+    public void moveBullets() {
+        this.weapon.moveBullets();
+    }
+
+    // called by manager
     public void moveWeaponRight() {
         if (!Astronaut.getInstance().isInDome()) {
             return;
@@ -56,6 +68,7 @@ public class Dome {
         }
     }
 
+    // called by manager
     public void moveWeaponLeft() {
         if (!Astronaut.getInstance().isInDome()) {
             return;
