@@ -1,7 +1,12 @@
 package sk.uniza.fri.weapons;
 
 import fri.shapesge.Image;
+import sk.uniza.fri.action.player.ActionAttackEnemy;
 import sk.uniza.fri.weapons.player.WeaponType;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class Weapon {
     private Image weaponImage;
@@ -10,6 +15,7 @@ public abstract class Weapon {
     private boolean isReversed;
     private int x;
     private int y;
+    private List<Bullet> bullets;
 
     public Weapon(WeaponType weaponType, int damage, int x, int y) {
         this.weaponImage = new Image(weaponType.getImagePath(), x, y);
@@ -17,11 +23,21 @@ public abstract class Weapon {
         this.damage = damage;
         this.x = x;
         this.y = y;
+        this.bullets = new ArrayList<>();
     }
 
     public abstract void shoot();
 
-    public abstract void moveBullets();
+    public void moveBullets() {
+        for (int i = 0; i < this.bullets.size(); i++) {
+            this.bullets.get(i).move();
+            if (this.bullets.get(i).getX() < -50 || this.bullets.get(i).getX() > 1024 || this.bullets.get(i).getY() < 0) {
+                this.removeBullet(this.bullets.get(i));
+                continue;
+            }
+            ActionAttackEnemy.shoot(this, this.bullets.get(i));
+        }
+    }
 
     public void changePosition(int x, int y) {
         this.weaponImage.changePosition(x, y);
@@ -65,5 +81,14 @@ public abstract class Weapon {
 
     public int getY() {
         return this.y;
+    }
+
+    protected void addBullet(Bullet bullet) {
+        this.bullets.add(bullet);
+    }
+
+    public void removeBullet(Bullet bullet) {
+        bullet.makeInvisible();
+        this.bullets.remove(bullet);
     }
 }

@@ -19,4 +19,10 @@ public class Walker extends Enemy implements MeleeEnemy {
             super.attack(2);
         }
     }
+
+    @Override
+    public boolean receiveDamage(int damage) {
+        this.decreaseHealth(damage);
+        return this.getHealth() > 0;
+    }
 }

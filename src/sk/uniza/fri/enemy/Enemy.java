@@ -25,6 +25,8 @@ public abstract class Enemy {
         this.timer = new Timer();
     }
 
+    public abstract boolean receiveDamage(int damage);
+
     public void attack(int speedInSeconds) {
         if (!this.isAttacking) {
             System.out.println("Walker is attacking the dome");
@@ -39,13 +41,16 @@ public abstract class Enemy {
         }
     }
 
-    public boolean receiveDamage(int damage) {
-        this.health -= damage;
-        return this.health > 0;
-    }
-
     public int getDamage() {
         return this.damage;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void decreaseHealth(int health) {
+        this.health -= health;
     }
 
     public void changePosition(int x, int y) {
@@ -60,5 +65,9 @@ public abstract class Enemy {
 
     public int getY() {
         return this.y;
+    }
+
+    public void makeInvisible() {
+        this.enemyImage.makeInvisible();
     }
 }

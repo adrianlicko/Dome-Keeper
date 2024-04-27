@@ -29,4 +29,20 @@ public class Bullet {
         this.y += this.speed * Math.sin(this.angle);
         this.bulletImage.changePosition((int)this.x, (int)this.y);
     }
+
+    public int getDamage() {
+        return this.weapon.getDamage();
+    }
+
+    public double getX() {
+        return this.x;
+    }
+
+    public double getY() {
+        return this.y;
+    }
+
+    public void makeInvisible() {
+        this.bulletImage.makeInvisible();
+    }
 }
