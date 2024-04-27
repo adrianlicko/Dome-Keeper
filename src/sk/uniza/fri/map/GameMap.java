@@ -25,18 +25,18 @@ public class GameMap {
         this.lowerMapBackground.makeVisible();
     }
 
+    /**
+     * Create blocks for the game map.
+     */
     public void createBlocks() {
-        int positionYFirstBlock = 318; // (750 - 432) - 48, 270
+        int positionYFirstBlock = 318; // (height of the map) - ((size of block) * (number of blocks in height)), 750 - 432
 
         for (int i = 1; i < this.blocksHeight - 1; i++) {
             positionYFirstBlock = positionYFirstBlock + 48;
-            int positionXFirstBlock = 0; // -48
+            int positionXFirstBlock = 0;
             for (int j = 1; j < this.blocksWidth - 1; j++) {
                 positionXFirstBlock = positionXFirstBlock + 48;
 
-//                if (i == 0 && j == 10) {
-//                    continue;
-//                }
                 Random random = new Random();
                 int randomInt = random.nextInt(12);
                 if (randomInt == 0 || randomInt == 1) {
@@ -51,6 +51,9 @@ public class GameMap {
         }
     }
 
+    /**
+     * Checks if the player (given position) is in the block.
+     */
     public Optional<Block> isInBlock(int x, int y) {
         for (int i = 0; i < this.blocksHeight; i++) {
             for (int j = 0; j < this.blocksWidth; j++) {

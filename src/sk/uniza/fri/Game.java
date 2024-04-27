@@ -19,15 +19,12 @@ public class Game {
     public static void startGame() {
         GameMap.getInstance().createBlocks();
 
-        Astronaut.getInstance();
-        //var manager = new Manager();
         manager.manageObject(Astronaut.getInstance());
         Dome.getInstance().setHealth(20);
         manager.manageObject(Dome.getInstance());
         HUD.getInstance();
 
-        //var enemies = new ArrayList<Enemy>();
-//        enemies.add(new Walker(100, 5, 0, 265));
+        enemies.add(new Walker(40, 5, 0, 265));
         //enemies.add(new Walker(100, 10, 980, 265));
 
         for (var enemy : enemies) {

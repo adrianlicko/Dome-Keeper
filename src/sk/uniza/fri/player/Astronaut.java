@@ -33,6 +33,10 @@ public class Astronaut {
         }
     }
 
+    /**
+     * Method for entering or exiting the dome.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void enterOrExitDome() {
         if (!this.isInDome && this.isAbleToEnterDome) {
             this.astronaut.makeInvisible();
@@ -43,6 +47,10 @@ public class Astronaut {
         }
     }
 
+    /**
+     * Method for moving the astronaut up.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void moveUp() {
         if (this.isInDome) {
             return;
@@ -67,6 +75,10 @@ public class Astronaut {
         }
     }
 
+    /**
+     * Method for moving the astronaut down.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void moveDown() {
         if (this.isInDome) {
             return;
@@ -86,6 +98,10 @@ public class Astronaut {
         }
     }
 
+    /**
+     * Method for moving the astronaut left.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void moveLeft() {
         if (this.isInDome) {
             return;
@@ -108,6 +124,10 @@ public class Astronaut {
         }
     }
 
+    /**
+     * Method for moving the astronaut right.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void moveRight() {
         if (this.isInDome) {
             return;

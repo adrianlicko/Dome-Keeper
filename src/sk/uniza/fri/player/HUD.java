@@ -55,10 +55,16 @@ public class HUD {
         this.domeHealthText.makeVisible();
     }
 
+    /**
+     * This method updates the HUD of the player with the amount of coins he has.
+     */
     public void updateHudOfPlayersCoin(BlockType blockType) {
         this.coinText.get(blockType).changeText("" + (Astronaut.getInstance().getInventory().get(blockType)));
     }
 
+    /**
+     * This method updates the dome health indicator.
+     */
     public void updateDomeHealth() {
         this.domeHealthIndicator.changeSize((int)(92 * (Dome.getInstance().getHealth() / Dome.getInstance().getInitialHealth())), 16);
         this.domeHealthText.changeText((int)Dome.getInstance().getHealth() + "/" + (int)Dome.getInstance().getInitialHealth());

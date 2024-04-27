@@ -7,11 +7,11 @@ public class Bullet {
     private Weapon weapon;
     private double x;
     private double y;
-    private double speed;
+    private int speed;
     private double angle;
 
-    public Bullet(Weapon weapon, double x, double y, double speed) {
-        this.bulletImage = new Image("assets/weapons/Pistol bullet small.png", (int)x, (int)y);
+    public Bullet(Weapon weapon, int x, int y, int speed) {
+        this.bulletImage = new Image("assets/weapons/Pistol bullet small.png", x, y);
         this.bulletImage.makeVisible();
         this.weapon = weapon;
         this.x = x;
@@ -24,6 +24,9 @@ public class Bullet {
         }
     }
 
+    /**
+     * Moves the bullet in the direction of the angle.
+     */
     public void move() {
         this.x += this.speed * Math.cos(this.angle);
         this.y += this.speed * Math.sin(this.angle);

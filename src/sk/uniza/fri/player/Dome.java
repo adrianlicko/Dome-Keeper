@@ -15,8 +15,9 @@ public class Dome {
     private int y;
     private int weaponSliderX;
     private Weapon weapon;
-    // first integer in slider is from 0 to 70
-    // second hashmap has key of surX and value of surY
+    // 70 is the length of the circle diameter
+    // this 70 integer numbers are all possible positions that weapon can be in
+    // second hashmap has the key of position x and value of position y
     private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
     private Dome() {
@@ -25,11 +26,13 @@ public class Dome {
         this.dome = new Image("assets/Nadzemie/Dome small.png", this.x, this.y);
         this.dome.makeVisible();
 
-        // 70 is the length of the circle diameter
         this.weaponPosition = new HashMap<>();
+        // 70 is the length of the circle diameter
         for (int i = 70; i >= 0; i--) {
             this.weaponPosition.put(i, new HashMap<>());
-            int pythagorean = (int) Math.sqrt(Math.pow(35, 2) - Math.pow(35 - i, 2));
+            // pythagorean theorem, calculates the y position of the weapon
+            int pythagorean = (int)Math.sqrt(Math.pow(35, 2) - Math.pow(35 - i, 2));
+            // puts the x and y position of the weapon in the hashmap
             this.weaponPosition.get(i).put((70 - i), (35 - pythagorean));
 
             // prints out all co-ordinates of the half circle
@@ -41,22 +44,33 @@ public class Dome {
 //            circle.changeSize(5);
 //            circle.makeVisible();
         }
+
+        // position of the weapon on spawn
         this.weapon = new Shotgun(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
     }
 
-    // called by manager
+    /**
+     * Method for shooting the weapon.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void shoot() {
         if (Astronaut.getInstance().isInDome()) {
             this.weapon.shoot();
         }
     }
 
-    // managed by Timer
+    /**
+     * Method for moving the bullets.
+     * This method is managed by the manager and is constantly called.
+     */
     public void moveBullets() {
         this.weapon.moveBullets();
     }
 
-    // called by manager
+    /**
+     * Method for moving the weapon right.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void moveWeaponRight() {
         if (!Astronaut.getInstance().isInDome()) {
             return;
@@ -68,7 +82,10 @@ public class Dome {
         }
     }
 
-    // called by manager
+    /**
+     * Method for moving the weapon left.
+     * This method is managed by the manager and can be called by a specific key.
+     */
     public void moveWeaponLeft() {
         if (!Astronaut.getInstance().isInDome()) {
             return;

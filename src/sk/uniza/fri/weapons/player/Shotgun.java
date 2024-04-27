@@ -1,12 +1,7 @@
-// Upravená trieda Shotgun
 package sk.uniza.fri.weapons.player;
 
-import sk.uniza.fri.action.player.ActionAttackEnemy;
 import sk.uniza.fri.weapons.Bullet;
 import sk.uniza.fri.weapons.Weapon;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Shotgun extends Weapon {
 
