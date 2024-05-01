@@ -1,18 +1,16 @@
 package sk.uniza.fri.player;
 
 import fri.shapesge.Image;
+import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.weapons.Weapon;
 import sk.uniza.fri.weapons.player.Shotgun;
 
 import java.util.HashMap;
 
-public class Dome {
+public class Dome extends ImageObject {
     private static Dome instance;
-    private Image dome;
     private double initialHealth;
     private double health;
-    private int x;
-    private int y;
     private int weaponSliderX;
     private Weapon weapon;
     // 70 is the length of the circle diameter
@@ -21,10 +19,8 @@ public class Dome {
     private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
     private Dome() {
-        this.x = 457;
-        this.y = 260;
-        this.dome = new Image("assets/Nadzemie/Dome small.png", this.x, this.y);
-        this.dome.makeVisible();
+        super("assets/Nadzemie/Dome small.png", 457, 260);
+        super.makeVisible();
 
         this.weaponPosition = new HashMap<>();
         // 70 is the length of the circle diameter
@@ -120,14 +116,6 @@ public class Dome {
 
     public double getHealth() {
         return this.health;
-    }
-
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
     }
 
     public static Dome getInstance() {

@@ -1,27 +1,23 @@
 package sk.uniza.fri.enemy;
 
 import fri.shapesge.Image;
+import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.action.enemy.ActionAttackDome;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class Enemy {
-    private Image enemyImage;
+public abstract class Enemy extends ImageObject {
     private int health;
     private int damage;
-    private int x;
-    private int y;
     private Timer timer;
     private boolean isAttacking;
 
     public Enemy(int health, int damage, int x, int y, String enemyImagePath) {
-        this.enemyImage = new Image(enemyImagePath, x, y);
-        this.enemyImage.makeVisible();
+        super(enemyImagePath, x, y);
+        super.makeVisible();
         this.health = health;
         this.damage = damage;
-        this.x = x;
-        this.y = y;
         this.timer = new Timer();
     }
 
@@ -51,23 +47,5 @@ public abstract class Enemy {
 
     public void decreaseHealth(int health) {
         this.health -= health;
-    }
-
-    public void changePosition(int x, int y) {
-        this.enemyImage.changePosition(x, y);
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public void makeInvisible() {
-        this.enemyImage.makeInvisible();
     }
 }

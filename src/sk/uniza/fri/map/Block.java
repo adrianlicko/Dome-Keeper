@@ -1,21 +1,17 @@
 package sk.uniza.fri.map;
 
 import fri.shapesge.Image;
+import sk.uniza.fri.ImageObject;
 
-public class Block {
-    private Image block;
+public class Block extends ImageObject {
     private BlockType blockType;
     private int health;
-    private int x;
-    private int y;
 
     public Block(BlockType block, int x, int y) {
-        this.block = new Image(block.getImagePath(), x, y);
-        this.block.makeVisible();
+        super(block.getImagePath(), x, y);
+        super.makeVisible();
         this.blockType = block;
         this.health = block.getHealth();
-        this.x = x;
-        this.y = y;
     }
 
     public boolean receiveDamage(int damage) {
@@ -25,17 +21,5 @@ public class Block {
 
     public BlockType getType() {
         return this.blockType;
-    }
-
-    public int getX() {
-        return this.x;
-    }
-
-    public int getY() {
-        return this.y;
-    }
-
-    public void makeInvisible() {
-        this.block.makeInvisible();
     }
 }

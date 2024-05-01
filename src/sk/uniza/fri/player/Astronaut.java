@@ -1,6 +1,7 @@
 package sk.uniza.fri.player;
 
 import fri.shapesge.Image;
+import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.action.player.ActionMine;
 import sk.uniza.fri.map.Block;
 import sk.uniza.fri.map.BlockType;
@@ -11,21 +12,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class Astronaut {
+public class Astronaut extends ImageObject {
     private static Astronaut instance;
-    private Image astronaut;
     private HashMap<BlockType, Integer> inventory;
-    private int x;
-    private int y;
     private ActionMine mining;
     private boolean isAbleToEnterDome;
     private boolean isInDome;
 
     private Astronaut() {
-        this.x = 486;
-        this.y = 325;
-        this.astronaut = new Image("assets/Astronaut/Astronaut dole 3.png", this.x, this.y);
-        this.astronaut.makeVisible();
+        super("assets/Astronaut/Astronaut dole 3.png", 486, 325);
+        super.makeVisible();
         this.mining = new ActionMine();
         this.inventory = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
@@ -39,10 +35,10 @@ public class Astronaut {
      */
     public void enterOrExitDome() {
         if (!this.isInDome && this.isAbleToEnterDome) {
-            this.astronaut.makeInvisible();
+            this.makeInvisible();
             this.isInDome = true;
         } else if (this.isInDome) {
-            this.astronaut.makeVisible();
+            this.makeVisible();
             this.isInDome = false;
         }
     }
@@ -51,6 +47,7 @@ public class Astronaut {
      * Method for moving the astronaut up.
      * This method is managed by the manager and can be called by a specific key.
      */
+    @Override
     public void moveUp() {
         if (this.isInDome) {
             return;
@@ -59,19 +56,18 @@ public class Astronaut {
         // this.x < 480 || this.x > 494, this is for upper part of the map excluding the middle part
         // this.y <= 369, if this would not be there, the astronaut would never move up
         // this.y <= 321, this is for upper part of the map in the middle block
-        if ((this.x < 480 || this.x > 494) && this.y <= 369) { // for correct dimensions this.x >= 480 && this.x <= 494
+        if ((this.getX() < 480 || this.getX() > 494) && this.getY() <= 369) { // for correct dimensions this.x >= 480 && this.x <= 494
             return;
-        } else if (this.y <= 321) {
+        } else if (this.getY() <= 321) {
             this.isAbleToEnterDome = true;
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.x, this.y);
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX(), this.getY());
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.astronaut.moveVertical(-2);
-            this.y -= 2;
+            this.moveVertical(-2);
         }
     }
 
@@ -79,22 +75,22 @@ public class Astronaut {
      * Method for moving the astronaut down.
      * This method is managed by the manager and can be called by a specific key.
      */
+    @Override
     public void moveDown() {
         if (this.isInDome) {
             return;
         }
         this.isAbleToEnterDome = false;
         // this.y + 35 >= 702, this is for lower part of the map
-        if (this.y + 35 >= 702) {
+        if (this.getY() + 35 >= 702) {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.x, this.y + 35);
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX(), this.getY() + 35);
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.astronaut.moveVertical(2);
-            this.y += 2;
+            this.moveVertical(2);
         }
     }
 
@@ -102,6 +98,7 @@ public class Astronaut {
      * Method for moving the astronaut left.
      * This method is managed by the manager and can be called by a specific key.
      */
+    @Override
     public void moveLeft() {
         if (this.isInDome) {
             return;
@@ -109,18 +106,17 @@ public class Astronaut {
         this.isAbleToEnterDome = false;
         // this.x <= 48, this is for left part of the map
         // this.y < 369 && this.x <= 494, this is for upper part of the map in the middle block
-        if (this.x <= 48) {
+        if (this.getX() <= 48) {
             return;
-        } else if (this.y < 369 && this.x <= 494) {
+        } else if (this.getY() < 369 && this.getX() <= 494) {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.x, this.y);
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX(), this.getY());
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.astronaut.moveHorizontal(-2);
-            this.x -= 2;
+            this.moveHorizontal(-2);
         }
     }
 
@@ -128,6 +124,7 @@ public class Astronaut {
      * Method for moving the astronaut right.
      * This method is managed by the manager and can be called by a specific key.
      */
+    @Override
     public void moveRight() {
         if (this.isInDome) {
             return;
@@ -135,19 +132,18 @@ public class Astronaut {
         this.isAbleToEnterDome = false;
         // this.x + 35 >= 960, this is for right part of the map
         // this.y < 369 && this.x >= 480, this is for upper part of the map in the middle block
-        if (this.x + 35 >= 960) {
+        if (this.getX() + 35 >= 960) {
             return;
-        } else if (this.y < 369 && this.x >= 480) {
+        } else if (this.getY() < 369 && this.getX() >= 480) {
             return;
 
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.x + 35, this.y);
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX() + 35, this.getY());
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.astronaut.moveHorizontal(2);
-            this.x += 2;
+            this.moveHorizontal(2);
         }
     }
 
