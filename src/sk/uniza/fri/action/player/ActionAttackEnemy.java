@@ -10,7 +10,7 @@ public class ActionAttackEnemy {
         Enemy enemyToRemove = null;
         for (Enemy enemy : Game.getEnemies()) {
 
-            if (Math.sqrt(Math.pow(bullet.getX() - enemy.getX(), 2) + Math.pow(bullet.getY() - enemy.getY(), 2)) <= 10) {
+            if (Math.sqrt(Math.pow(bullet.getBulletImage().getX() - enemy.getEnemyImage().getX(), 2) + Math.pow(bullet.getBulletImage().getY() - enemy.getEnemyImage().getY(), 2)) <= 10) {
                 weapon.removeBullet(bullet);
 
                 if (!enemy.receiveDamage(bullet.getDamage())) {

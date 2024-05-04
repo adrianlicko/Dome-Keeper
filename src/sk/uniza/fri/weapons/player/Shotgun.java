@@ -11,7 +11,7 @@ public class Shotgun extends Weapon {
 
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(this, this.getX(), this.getY(), 8);
+        Bullet bullet = new Bullet(this, this.getWeaponImage().getX(), this.getWeaponImage().getY(), 8);
         super.addBullet(bullet);
     }
 }

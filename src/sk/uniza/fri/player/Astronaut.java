@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class Astronaut extends ImageObject {
+public class Astronaut {
+    private ImageObject astronautImage;
     private static Astronaut instance;
     private HashMap<BlockType, Integer> inventory;
     private ActionMine mining;
@@ -20,8 +21,8 @@ public class Astronaut extends ImageObject {
     private boolean isInDome;
 
     private Astronaut() {
-        super("assets/Astronaut/Astronaut dole 3.png", 486, 325);
-        super.makeVisible();
+        this.astronautImage = new ImageObject("assets/Astronaut/Astronaut dole 3.png", 486, 325);
+        this.astronautImage.makeVisible();
         this.mining = new ActionMine();
         this.inventory = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
@@ -35,10 +36,10 @@ public class Astronaut extends ImageObject {
      */
     public void enterOrExitDome() {
         if (!this.isInDome && this.isAbleToEnterDome) {
-            this.makeInvisible();
+            this.astronautImage.makeInvisible();
             this.isInDome = true;
         } else if (this.isInDome) {
-            this.makeVisible();
+            this.astronautImage.makeVisible();
             this.isInDome = false;
         }
     }
@@ -47,7 +48,6 @@ public class Astronaut extends ImageObject {
      * Method for moving the astronaut up.
      * This method is managed by the manager and can be called by a specific key.
      */
-    @Override
     public void moveUp() {
         if (this.isInDome) {
             return;
@@ -56,18 +56,18 @@ public class Astronaut extends ImageObject {
         // this.x < 480 || this.x > 494, this is for upper part of the map excluding the middle part
         // this.y <= 369, if this would not be there, the astronaut would never move up
         // this.y <= 321, this is for upper part of the map in the middle block
-        if ((this.getX() < 480 || this.getX() > 494) && this.getY() <= 369) { // for correct dimensions this.x >= 480 && this.x <= 494
+        if ((this.astronautImage.getX() < 480 || this.astronautImage.getX() > 494) && this.astronautImage.getY() <= 369) { // for correct dimensions this.x >= 480 && this.x <= 494
             return;
-        } else if (this.getY() <= 321) {
+        } else if (this.astronautImage.getY() <= 321) {
             this.isAbleToEnterDome = true;
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX(), this.getY());
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX(), this.astronautImage.getY());
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.moveVertical(-2);
+            this.astronautImage.moveVertical(-2);
         }
     }
 
@@ -75,22 +75,21 @@ public class Astronaut extends ImageObject {
      * Method for moving the astronaut down.
      * This method is managed by the manager and can be called by a specific key.
      */
-    @Override
     public void moveDown() {
         if (this.isInDome) {
             return;
         }
         this.isAbleToEnterDome = false;
         // this.y + 35 >= 702, this is for lower part of the map
-        if (this.getY() + 35 >= 702) {
+        if (this.astronautImage.getY() + 35 >= 702) {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX(), this.getY() + 35);
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX(), this.astronautImage.getY() + 35);
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.moveVertical(2);
+            this.astronautImage.moveVertical(2);
         }
     }
 
@@ -98,7 +97,6 @@ public class Astronaut extends ImageObject {
      * Method for moving the astronaut left.
      * This method is managed by the manager and can be called by a specific key.
      */
-    @Override
     public void moveLeft() {
         if (this.isInDome) {
             return;
@@ -106,17 +104,17 @@ public class Astronaut extends ImageObject {
         this.isAbleToEnterDome = false;
         // this.x <= 48, this is for left part of the map
         // this.y < 369 && this.x <= 494, this is for upper part of the map in the middle block
-        if (this.getX() <= 48) {
+        if (this.astronautImage.getX() <= 48) {
             return;
-        } else if (this.getY() < 369 && this.getX() <= 494) {
+        } else if (this.astronautImage.getY() < 369 && this.astronautImage.getX() <= 494) {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX(), this.getY());
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX(), this.astronautImage.getY());
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.moveHorizontal(-2);
+            this.astronautImage.moveHorizontal(-2);
         }
     }
 
@@ -124,7 +122,6 @@ public class Astronaut extends ImageObject {
      * Method for moving the astronaut right.
      * This method is managed by the manager and can be called by a specific key.
      */
-    @Override
     public void moveRight() {
         if (this.isInDome) {
             return;
@@ -132,18 +129,18 @@ public class Astronaut extends ImageObject {
         this.isAbleToEnterDome = false;
         // this.x + 35 >= 960, this is for right part of the map
         // this.y < 369 && this.x >= 480, this is for upper part of the map in the middle block
-        if (this.getX() + 35 >= 960) {
+        if (this.astronautImage.getX() + 35 >= 960) {
             return;
-        } else if (this.getY() < 369 && this.getX() >= 480) {
+        } else if (this.astronautImage.getY() < 369 && this.astronautImage.getX() >= 480) {
             return;
 
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.getX() + 35, this.getY());
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX() + 35, this.astronautImage.getY());
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
-            this.moveHorizontal(2);
+            this.astronautImage.moveHorizontal(2);
         }
     }
 

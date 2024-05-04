@@ -11,10 +11,10 @@ public class Walker extends Enemy implements MeleeEnemy {
 
     @Override
     public void walk() {
-        if (this.getX() + 35 < Dome.getInstance().getX()) {
-            this.changePosition(this.getX() + 2, this.getY());
-        } else if (this.getX() > Dome.getInstance().getX() + 96) {
-            this.changePosition(this.getX() - 2, this.getY());
+        if (this.getEnemyImage().getX() + 35 < Dome.getInstance().getDomeImage().getX()) {
+            this.getEnemyImage().changePosition(this.getEnemyImage().getX() + 2, this.getEnemyImage().getY());
+        } else if (this.getEnemyImage().getX() > Dome.getInstance().getDomeImage().getX() + 96) {
+            this.getEnemyImage().changePosition(this.getEnemyImage().getX() - 2, this.getEnemyImage().getY());
         } else {
             super.attack(2);
         }

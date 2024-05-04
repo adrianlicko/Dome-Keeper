@@ -60,8 +60,8 @@ public class GameMap {
                 if (this.blocks[i][j] == null) {
                     continue;
                 }
-                int blockX = this.blocks[i][j].getX();
-                int blockY = this.blocks[i][j].getY();
+                int blockX = this.blocks[i][j].getBlockImage().getX();
+                int blockY = this.blocks[i][j].getBlockImage().getY();
                 if (x >= blockX && x <= blockX + 48 && y >= blockY && y <= blockY + 48) {
                     return Optional.of(this.blocks[i][j]);
                 }
@@ -77,7 +77,7 @@ public class GameMap {
                     continue;
                 }
                 if (this.blocks[i][j] == block) {
-                    this.blocks[i][j].makeInvisible();
+                    this.blocks[i][j].getBlockImage().makeInvisible();
                     this.blocks[i][j] = null;
                 }
             }

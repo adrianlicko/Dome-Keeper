@@ -3,13 +3,14 @@ package sk.uniza.fri.map;
 import fri.shapesge.Image;
 import sk.uniza.fri.ImageObject;
 
-public class Block extends ImageObject {
+public class Block {
+    private ImageObject blockImage;
     private BlockType blockType;
     private int health;
 
     public Block(BlockType block, int x, int y) {
-        super(block.getImagePath(), x, y);
-        super.makeVisible();
+        this.blockImage = new ImageObject(block.getImagePath(), x, y);
+        this.blockImage.makeVisible();
         this.blockType = block;
         this.health = block.getHealth();
     }
@@ -21,5 +22,9 @@ public class Block extends ImageObject {
 
     public BlockType getType() {
         return this.blockType;
+    }
+
+    public ImageObject getBlockImage() {
+        return this.blockImage;
     }
 }

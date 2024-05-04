@@ -44,7 +44,7 @@ public class Game {
     }
 
     public static void removeEnemy(Enemy enemy) {
-        enemy.makeInvisible();
+        enemy.getEnemyImage().makeInvisible();
         manager.stopManagingObject(enemy);
         enemies.remove(enemy);
     }

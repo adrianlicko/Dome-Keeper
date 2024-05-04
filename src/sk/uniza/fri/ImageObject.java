@@ -2,7 +2,7 @@ package sk.uniza.fri;
 
 import fri.shapesge.Image;
 
-public abstract class ImageObject extends Image {
+public class ImageObject extends Image {
     private int x;
     private int y;
 
@@ -57,25 +57,5 @@ public abstract class ImageObject extends Image {
 
     public void addY(int y) {
         this.y += y;
-    }
-
-    @Override
-    public void moveRight() {
-
-    }
-
-    @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveUp() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
     }
 }

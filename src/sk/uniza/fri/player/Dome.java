@@ -7,7 +7,8 @@ import sk.uniza.fri.weapons.player.Shotgun;
 
 import java.util.HashMap;
 
-public class Dome extends ImageObject {
+public class Dome {
+    private ImageObject domeImage;
     private static Dome instance;
     private double initialHealth;
     private double health;
@@ -19,8 +20,8 @@ public class Dome extends ImageObject {
     private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
     private Dome() {
-        super("assets/Nadzemie/Dome small.png", 457, 260);
-        super.makeVisible();
+        this.domeImage = new ImageObject("assets/Nadzemie/Dome small.png", 457, 260);
+        this.domeImage.makeVisible();
 
         this.weaponPosition = new HashMap<>();
         // 70 is the length of the circle diameter
@@ -74,7 +75,7 @@ public class Dome extends ImageObject {
         if (this.weaponSliderX > 0 && this.weaponSliderX <= 70) {
             this.weapon.changeAngle(1, this.weaponSliderX);
             this.weaponSliderX--;
-            this.weapon.changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
+            this.weapon.getWeaponImage().changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
         }
     }
 
@@ -89,7 +90,7 @@ public class Dome extends ImageObject {
         if (this.weaponSliderX >= 0 && this.weaponSliderX < 70) {
             this.weapon.changeAngle(-1, this.weaponSliderX);
             this.weaponSliderX++;
-            this.weapon.changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
+            this.weapon.getWeaponImage().changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
         }
     }
 
@@ -123,5 +124,9 @@ public class Dome extends ImageObject {
             instance = new Dome();
         }
         return instance;
+    }
+
+    public ImageObject getDomeImage() {
+        return this.domeImage;
     }
 }

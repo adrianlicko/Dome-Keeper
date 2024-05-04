@@ -9,15 +9,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class Weapon extends ImageObject {
+public abstract class Weapon {
+    private ImageObject weaponImage;
     private int damage;
     private int weaponAngle;
     private boolean isReversed;
     private List<Bullet> bullets;
 
     public Weapon(WeaponType weaponType, int damage, int x, int y) {
-        super(weaponType.getImagePath(), x, y);
-        super.makeVisible();
+        this.weaponImage = new ImageObject(weaponType.getImagePath(), x, y);
+        this.weaponImage.makeVisible();
         this.damage = damage;
         this.bullets = new ArrayList<>();
     }
@@ -27,7 +28,7 @@ public abstract class Weapon extends ImageObject {
     public void moveBullets() {
         for (int i = 0; i < this.bullets.size(); i++) {
             this.bullets.get(i).move();
-            if (this.bullets.get(i).getX() < -50 || this.bullets.get(i).getX() > 1024 || this.bullets.get(i).getY() < 0) {
+            if (this.bullets.get(i).getBulletImage().getX() < -50 || this.bullets.get(i).getBulletImage().getX() > 1024 || this.bullets.get(i).getBulletImage().getY() < 0) {
                 this.removeBullet(this.bullets.get(i));
                 continue;
             }
@@ -43,14 +44,14 @@ public abstract class Weapon extends ImageObject {
             if (!this.isReversed) {
                 this.weaponAngle += 140;
                 this.isReversed = true;
-                super.changeImage(WeaponType.SHOTGUN.getReverseImagePath());
+                this.weaponImage.changeImage(WeaponType.SHOTGUN.getReverseImagePath());
             } else {
                 this.weaponAngle -= 140;
                 this.isReversed = false;
-                super.changeImage(WeaponType.SHOTGUN.getImagePath());
+                this.weaponImage.changeImage(WeaponType.SHOTGUN.getImagePath());
             }
         }
-        super.changeAngle(this.weaponAngle);
+        this.weaponImage.changeAngle(this.weaponAngle);
     }
 
     public int getAngle() {
@@ -70,7 +71,11 @@ public abstract class Weapon extends ImageObject {
     }
 
     public void removeBullet(Bullet bullet) {
-        bullet.makeInvisible();
+        bullet.getBulletImage().makeInvisible();
         this.bullets.remove(bullet);
+    }
+
+    public ImageObject getWeaponImage() {
+        return this.weaponImage;
     }
 }
