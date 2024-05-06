@@ -5,6 +5,7 @@ import sk.uniza.fri.enemy.Enemy;
 import sk.uniza.fri.enemy.basic.BasicEnemy;
 import sk.uniza.fri.enemy.basic.Flyer;
 import sk.uniza.fri.enemy.basic.Walker;
+import sk.uniza.fri.enemy.special.Worm;
 import sk.uniza.fri.map.GameMap;
 import sk.uniza.fri.player.Astronaut;
 import sk.uniza.fri.player.Dome;
@@ -28,13 +29,12 @@ public class Game {
 
 //        enemies.add(new Walker(40, 5, 0, 250));
 //        enemies.add(new Walker(50, 10, 1030, 250));
-        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
-        enemies.add(new Flyer(100, 7, 900, 10));
+//        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
+//        enemies.add(new Flyer(100, 7, 900, 10));
+        enemies.add(new Worm(100, 7, 50, 240));
 
         for (var enemy : enemies) {
-            if (enemy instanceof BasicEnemy movingEnemy) {
-                manager.manageObject(movingEnemy);
-            }
+            manager.manageObject(enemy);
         }
     }
 

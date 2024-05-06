@@ -4,14 +4,14 @@ import java.io.File;
 import java.util.HashMap;
 
 public class ImageLoader {
+    private String actualDirectoryPath;
     private HashMap<Integer, String> imagePaths;
     private int currentIndex;
-    private int directoriesChanged;
 
     public ImageLoader(String directoryPath) {
+        this.actualDirectoryPath = directoryPath;
         this.imagePaths = new HashMap<>();
         this.currentIndex = 0;
-        this.directoriesChanged = 0;
         this.loadImages(directoryPath);
     }
 
@@ -33,13 +33,26 @@ public class ImageLoader {
         return imagePath;
     }
 
+    public String getNextImageWithoutLoop() {
+        if (this.imagePaths.isEmpty()) {
+            return null;
+        }
+        String imagePath = this.imagePaths.get(this.currentIndex);
+        this.currentIndex = (this.currentIndex + 1) % this.imagePaths.size();
+        if (this.currentIndex == 0) {
+            return null;
+        }
+
+        return imagePath;
+    }
+
     public void changeDirectory(String directoryPath) {
-        if (this.directoriesChanged != 0) {
+        if (this.actualDirectoryPath.equals(directoryPath)) {
             return;
         }
+        this.actualDirectoryPath = directoryPath;
         this.imagePaths.clear();
         this.currentIndex = 0;
-        this.directoriesChanged++;
         this.loadImages(directoryPath);
     }
 }

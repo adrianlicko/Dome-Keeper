@@ -20,7 +20,7 @@ public class Dome {
     private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
     private Dome() {
-        this.domeImage = new ImageObject("assets/Nadzemie/Dome small.png", 457, 260);
+        this.domeImage = new ImageObject("assets/Nadzemie/Dome small.png", 457, 260, 96, 95);
         this.domeImage.makeVisible();
 
         this.weaponPosition = new HashMap<>();

@@ -68,6 +68,11 @@ public abstract class Enemy {
     }
 
     public String getSide() {
+        if (this.enemyImage.getX() < (1008 / 2)) {
+            this.side = "/right";
+        } else {
+            this.side = "/left";
+        }
         return this.side;
     }
 }

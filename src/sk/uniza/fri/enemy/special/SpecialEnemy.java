@@ -1,5 +1,8 @@
 package sk.uniza.fri.enemy.special;
 
 public interface SpecialEnemy {
-    void fly();
+    void specialMove();
+    void moveProjectiles();
+    void removeProjectile(EnemyProjectile projectile);
+    int getDamage();
 }
