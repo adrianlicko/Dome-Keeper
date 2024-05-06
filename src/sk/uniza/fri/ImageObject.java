@@ -74,4 +74,12 @@ public class ImageObject extends Image {
     public int getHitY() {
         return this.y + (this.imageHeight / 2);
     }
+
+    public void setWidth(int width) {
+        this.imageWidth = width;
+    }
+
+    public void setHeight(int height) {
+        this.imageHeight = height;
+    }
 }

@@ -2,7 +2,9 @@ package sk.uniza.fri;
 
 import fri.shapesge.Manager;
 import sk.uniza.fri.enemy.Enemy;
-import sk.uniza.fri.enemy.melee.Walker;
+import sk.uniza.fri.enemy.basic.BasicEnemy;
+import sk.uniza.fri.enemy.basic.Flyer;
+import sk.uniza.fri.enemy.basic.Walker;
 import sk.uniza.fri.map.GameMap;
 import sk.uniza.fri.player.Astronaut;
 import sk.uniza.fri.player.Dome;
@@ -24,12 +26,14 @@ public class Game {
         manager.manageObject(Dome.getInstance());
         HUD.getInstance();
 
-        enemies.add(new Walker(40, 5, 0, 250));
-        enemies.add(new Walker(50, 10, 980, 265));
+//        enemies.add(new Walker(40, 5, 0, 250));
+//        enemies.add(new Walker(50, 10, 1030, 250));
+        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
+        enemies.add(new Flyer(100, 7, 900, 10));
 
         for (var enemy : enemies) {
-            if (enemy instanceof Walker walkingEnemy) {
-                manager.manageObject(walkingEnemy);
+            if (enemy instanceof BasicEnemy movingEnemy) {
+                manager.manageObject(movingEnemy);
             }
         }
     }

@@ -1,16 +1,16 @@
-package sk.uniza.fri.enemy.melee;
+package sk.uniza.fri.enemy.basic;
 
 import sk.uniza.fri.enemy.Enemy;
 import sk.uniza.fri.player.Dome;
 
-public class Walker extends Enemy implements MeleeEnemy {
+public class Walker extends Enemy implements BasicEnemy {
 
     public Walker(int health, int damage, int x, int y) {
-        super(health, damage, x, y, "assets/enemies/walker/walk", 124, 65);
+        super(health, damage, x, y, "assets/enemies/walker/move", 124, 65);
     }
 
     @Override
-    public void walk() {
+    public void move() {
         if (this.getEnemyImage().getX() + 100 < Dome.getInstance().getDomeImage().getX()) {
             this.getEnemyImage().changePosition(this.getEnemyImage().getX() + 2, this.getEnemyImage().getY());
         } else if (this.getEnemyImage().getX() + 20 > Dome.getInstance().getDomeImage().getX() + 96) {
