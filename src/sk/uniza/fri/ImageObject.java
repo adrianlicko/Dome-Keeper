@@ -5,6 +5,8 @@ import fri.shapesge.Image;
 public class ImageObject extends Image {
     private int x;
     private int y;
+    private int imageWidth;
+    private int imageHeight;
 
     public ImageObject(String imagePath) {
         super(imagePath);
@@ -14,6 +16,12 @@ public class ImageObject extends Image {
         super(imagePath, x, y);
         this.x = x;
         this.y = y;
+    }
+
+    public ImageObject(String imagePath, int x, int y, int imageWidth, int imageHeight) {
+        this(imagePath, x, y);
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
     }
 
     @Override
@@ -47,6 +55,10 @@ public class ImageObject extends Image {
         this.x += x;
     }
 
+    public int getHitX() {
+        return this.x + (this.imageWidth / 2);
+    }
+
     public int getY() {
         return this.y;
     }
@@ -57,5 +69,9 @@ public class ImageObject extends Image {
 
     public void addY(int y) {
         this.y += y;
+    }
+
+    public int getHitY() {
+        return this.y + (this.imageHeight / 2);
     }
 }

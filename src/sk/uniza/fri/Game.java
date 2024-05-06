@@ -20,12 +20,12 @@ public class Game {
         GameMap.getInstance().createBlocks();
 
         manager.manageObject(Astronaut.getInstance());
-        Dome.getInstance().setHealth(20);
+        Dome.getInstance().setHealth(60);
         manager.manageObject(Dome.getInstance());
         HUD.getInstance();
 
-        enemies.add(new Walker(40, 5, 0, 265));
-        //enemies.add(new Walker(100, 10, 980, 265));
+        enemies.add(new Walker(40, 5, 0, 250));
+        enemies.add(new Walker(50, 10, 980, 265));
 
         for (var enemy : enemies) {
             if (enemy instanceof Walker walkingEnemy) {

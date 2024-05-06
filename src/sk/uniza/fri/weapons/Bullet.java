@@ -10,7 +10,7 @@ public class Bullet {
     private double angle;
 
     public Bullet(Weapon weapon, int x, int y, int speed) {
-        this.bulletImage = new ImageObject("assets/weapons/Pistol bullet small.png", x, y);
+        this.bulletImage = new ImageObject("assets/weapons/Pistol bullet small.png", x, y, 20, 20);
         this.bulletImage.makeVisible();
         this.weapon = weapon;
         this.speed = speed;

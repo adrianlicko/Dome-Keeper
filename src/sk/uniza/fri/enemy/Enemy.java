@@ -1,6 +1,7 @@
 package sk.uniza.fri.enemy;
 
 import fri.shapesge.Image;
+import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.action.enemy.ActionAttackDome;
 
@@ -11,11 +12,19 @@ public abstract class Enemy {
     private ImageObject enemyImage;
     private int health;
     private int damage;
+    private ImageLoader imageLoader;
+    private String side;
     private Timer timer;
     private boolean isAttacking;
 
-    public Enemy(int health, int damage, int x, int y, String enemyImagePath) {
-        this.enemyImage = new ImageObject(enemyImagePath, x, y);
+    public Enemy(int health, int damage, int x, int y, String enemyImageDirectory, int imageWidth, int imageHeight) {
+        if (x < (1008 / 2)) {
+            this.side = "/right";
+        } else {
+            this.side = "/left";
+        }
+        this.imageLoader = new ImageLoader(enemyImageDirectory + this.side);
+        this.enemyImage = new ImageObject(this.imageLoader.getNextImage(), x, y, imageWidth, imageHeight);
         this.enemyImage.makeVisible();
         this.health = health;
         this.damage = damage;
@@ -26,7 +35,7 @@ public abstract class Enemy {
 
     public void attack(int speedInSeconds) {
         if (!this.isAttacking) {
-            System.out.println("Walker is attacking the dome");
+            System.out.println("Enemy is attacking the dome");
             ActionAttackDome.attackDome(this.damage);
             this.isAttacking = true;
             this.timer.schedule(new TimerTask() {
@@ -52,5 +61,13 @@ public abstract class Enemy {
 
     public ImageObject getEnemyImage() {
         return this.enemyImage;
+    }
+
+    public ImageLoader getImageLoader() {
+        return this.imageLoader;
+    }
+
+    public String getSide() {
+        return this.side;
     }
 }
