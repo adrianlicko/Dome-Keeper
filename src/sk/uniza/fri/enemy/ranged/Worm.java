@@ -1,32 +1,22 @@
-package sk.uniza.fri.enemy.special;
+package sk.uniza.fri.enemy.ranged;
 
-import sk.uniza.fri.action.enemy.ActionAttackDome;
-import sk.uniza.fri.enemy.Enemy;
-
-import java.util.ArrayList;
 import java.util.Random;
 
-public class Worm extends Enemy implements SpecialEnemy {
-    private WormState state;
+public class Worm extends RangedEnemy {
+    private State state;
+    private Random random;
     private int idleCount;
     private int timeToIdle;
     private int invisibleCount;
-    private Random random;
-    private ArrayList<EnemyProjectile> bullets;
 
     public Worm(int health, int damage, int x, int y) {
         super(health, damage, x, y, "assets/enemies/worm/appear", 100, 100);
-        this.state = WormState.APPEAR;
-        this.invisibleCount = 0;
-        this.idleCount = 0;
+        this.state = State.APPEAR;
         this.random = new Random();
-        this.bullets = new ArrayList<>();
     }
 
     @Override
-    public void specialMove() {
-        this.moveProjectiles();
-
+    public void charge() {
         switch (this.state) {
             case APPEAR:
                 this.getEnemyImage().makeVisible();
@@ -46,9 +36,9 @@ public class Worm extends Enemy implements SpecialEnemy {
                 } else {
                     this.timeToIdle = 0;
                     this.idleCount = 0;
-                    this.state = WormState.ATTACK;
+                    this.state = State.ATTACK;
+                    return;
                 }
-                break;
             case ATTACK:
                 this.getImageLoader().changeDirectory("assets/enemies/worm/attack" + this.getSide());
                 break;
@@ -66,27 +56,22 @@ public class Worm extends Enemy implements SpecialEnemy {
         } else {
             switch (this.state) {
                 case APPEAR:
-                    this.state = WormState.IDLE;
+                    this.state = State.IDLE;
                     break;
                 case IDLE:
-                    this.state = WormState.ATTACK;
+                    this.state = State.ATTACK;
                     break;
                 case ATTACK:
-                    if (this.getSide().equals("/right")) {
-                        this.bullets.add(new EnemyProjectile(this.getEnemyImage().getX() + 75, this.getEnemyImage().getY() + 25, "/right"));
-                    } else {
-                        this.bullets.add(new EnemyProjectile(this.getEnemyImage().getX(), this.getEnemyImage().getY() + 25, "/left"));
-                    }
-                    this.bullets.get(this.bullets.size() - 1).getBulletImage().makeVisible();
+                    this.addProjectile(0, 75);
 
                     if (this.random.nextInt(3) == 0) {
-                        this.state = WormState.IDLE;
+                        this.state = State.IDLE;
                     } else {
-                        this.state = WormState.DISAPPEAR;
+                        this.state = State.DISAPPEAR;
                     }
                     break;
                 case DISAPPEAR:
-                    this.state = WormState.UNVISIBLE;
+                    this.state = State.UNVISIBLE;
                     this.invisibleCount = this.random.nextInt(1, 8);
                     break;
                 case UNVISIBLE:
@@ -100,48 +85,11 @@ public class Worm extends Enemy implements SpecialEnemy {
                             randomSpawnX = this.random.nextInt(600, 800);
                         }
                         this.getEnemyImage().changePosition(randomSpawnX, this.getEnemyImage().getY());
-                        this.state = WormState.APPEAR;
+                        this.state = State.APPEAR;
                     }
                     break;
             }
         }
     }
 
-    public void moveProjectiles() {
-        for (int i = 0; i < this.bullets.size(); i++) {
-            this.bullets.get(i).move();
-            if (this.bullets.get(i).getBulletImage().getX() < -50 || this.bullets.get(i).getBulletImage().getX() > 1024) {
-                this.bullets.get(i).getBulletImage().makeInvisible();
-                this.bullets.remove(this.bullets.get(i));
-                System.out.println("Removed");
-                continue;
-            }
-            ActionAttackDome.shootDome(this, this.bullets.get(i));
-        }
-    }
-
-    public void removeProjectile(EnemyProjectile projectile) {
-        projectile.getBulletImage().makeInvisible();
-        this.bullets.remove(projectile);
-    }
-
-    @Override
-    public boolean receiveDamage(int damage) {
-        this.decreaseHealth(damage);
-        if (this.getHealth() <= 0) {
-            for (int i = 0; i < this.bullets.size(); i++) {
-                this.bullets.get(i).getBulletImage().makeInvisible();
-                this.bullets.remove(this.bullets.get(i));
-            }
-        }
-        return this.getHealth() > 0;
-    }
-}
-
-enum WormState {
-    APPEAR,
-    IDLE,
-    ATTACK,
-    DISAPPEAR,
-    UNVISIBLE
 }

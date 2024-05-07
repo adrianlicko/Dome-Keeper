@@ -2,10 +2,7 @@ package sk.uniza.fri;
 
 import fri.shapesge.Manager;
 import sk.uniza.fri.enemy.Enemy;
-import sk.uniza.fri.enemy.basic.BasicEnemy;
-import sk.uniza.fri.enemy.basic.Flyer;
-import sk.uniza.fri.enemy.basic.Walker;
-import sk.uniza.fri.enemy.special.Worm;
+import sk.uniza.fri.enemy.ranged.Worm;
 import sk.uniza.fri.map.GameMap;
 import sk.uniza.fri.player.Astronaut;
 import sk.uniza.fri.player.Dome;

@@ -1,8 +1,7 @@
-package sk.uniza.fri.enemy.special;
+package sk.uniza.fri.enemy.ranged;
 
 import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;
-import sk.uniza.fri.enemy.Enemy;
 
 public class EnemyProjectile {
     private ImageObject bulletImage;

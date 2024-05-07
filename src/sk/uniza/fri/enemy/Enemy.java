@@ -1,6 +1,5 @@
 package sk.uniza.fri.enemy;
 
-import fri.shapesge.Image;
 import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.action.enemy.ActionAttackDome;
@@ -31,9 +30,11 @@ public abstract class Enemy {
         this.timer = new Timer();
     }
 
+    public abstract void charge();
+
     public abstract boolean receiveDamage(int damage);
 
-    public void attack(int speedInSeconds) {
+    protected void attack(int speedInSeconds) {
         if (!this.isAttacking) {
             System.out.println("Enemy is attacking the dome");
             ActionAttackDome.attackDome(this.damage);
