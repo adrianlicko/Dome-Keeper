@@ -16,15 +16,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
-    private static ArrayList<Enemy> enemies = new ArrayList<>();
-    private static Manager manager = new Manager();
+    private static Game instance;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private Manager manager = new Manager();
+    private boolean isManagingObjects;
 
-    public static void startGame() {
+    private Game() {
+        this.startGame();
+    }
+
+    public void startGame() {
         GameMap.getInstance().createBlocks();
 
-        manager.manageObject(Astronaut.getInstance());
+        Astronaut.getInstance();
         Dome.getInstance().setHealth(60);
-        manager.manageObject(Dome.getInstance());
         HUD.getInstance();
 
 //        enemies.add(new Walker(40, 5, 0, 250));
@@ -32,25 +37,60 @@ public class Game {
 //        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
 //        enemies.add(new Flyer(100, 7, 900, 10));
 //        enemies.add(new Worm(100, 7, 50, 240));
-        enemies.add(new Shifter(100, 7, 300, 100));
+        this.enemies.add(new Shifter(100, 7, 300, 100));
 
-        for (var enemy : enemies) {
-            manager.manageObject(enemy);
+        this.manageObjects();
+    }
+
+    public List<Enemy> getEnemies() {
+        return Collections.unmodifiableList(this.enemies);
+    }
+
+    public void removeEnemy(Enemy enemy) {
+        enemy.getEnemyImage().makeInvisible();
+        this.manager.stopManagingObject(enemy);
+        this.enemies.remove(enemy);
+    }
+
+    public void pauseOrUnpauseGame() {
+        if (this.isManagingObjects) {
+            this.stopManagingObjects();
+        } else {
+            this.manageObjects();
         }
     }
 
-    public static void endGame() {
+    private void manageObjects() {
+        this.isManagingObjects = true;
+        this.manager.manageObject(Astronaut.getInstance());
+        this.manager.manageObject(Dome.getInstance());
+        for (var enemy : this.enemies) {
+            this.manager.manageObject(enemy);
+        }
+    }
+
+    private void stopManagingObjects() {
+        this.isManagingObjects = false;
+        this.manager.stopManagingObject(Astronaut.getInstance());
+        this.manager.stopManagingObject(Dome.getInstance());
+        for (var enemy : this.enemies) {
+            this.manager.stopManagingObject(enemy);
+        }
+    }
+
+    public Manager getManager() {
+        return this.manager;
+    }
+
+    public void endGame() {
         System.out.println("Game over");
         System.exit(0);
     }
 
-    public static List<Enemy> getEnemies() {
-        return Collections.unmodifiableList(enemies);
-    }
-
-    public static void removeEnemy(Enemy enemy) {
-        enemy.getEnemyImage().makeInvisible();
-        manager.stopManagingObject(enemy);
-        enemies.remove(enemy);
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
     }
 }

@@ -13,7 +13,7 @@ public class ActionAttackDome {
             HUD.getInstance().updateDomeHealth();
         } else {
             System.out.println("Dome is destroyed");
-            Game.endGame();
+            Game.getInstance().endGame();
         }
     }
 
@@ -25,7 +25,7 @@ public class ActionAttackDome {
                 HUD.getInstance().updateDomeHealth();
             } else {
                 System.out.println("Dome is destroyed");
-                Game.endGame();
+                Game.getInstance().endGame();
             }
         }
     }

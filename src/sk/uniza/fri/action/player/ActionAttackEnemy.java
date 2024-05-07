@@ -8,7 +8,7 @@ import sk.uniza.fri.weapons.Weapon;
 public class ActionAttackEnemy {
     public static void shoot (Weapon weapon, Bullet bullet) {
         Enemy enemyToRemove = null;
-        for (Enemy enemy : Game.getEnemies()) {
+        for (Enemy enemy : Game.getInstance().getEnemies()) {
 
             if (Math.sqrt(Math.pow(bullet.getBulletImage().getHitX() - enemy.getEnemyImage().getHitX(), 2) + Math.pow(bullet.getBulletImage().getHitY() - enemy.getEnemyImage().getHitY(), 2)) <= 15) {
                 weapon.removeBullet(bullet);
@@ -21,7 +21,7 @@ public class ActionAttackEnemy {
         }
 
         if (enemyToRemove != null) {
-            Game.removeEnemy(enemyToRemove);
+            Game.getInstance().removeEnemy(enemyToRemove);
         }
     }
 }
