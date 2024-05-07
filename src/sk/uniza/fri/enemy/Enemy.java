@@ -17,7 +17,8 @@ public abstract class Enemy {
     private boolean isAttacking;
 
     public Enemy(int health, int damage, int x, int y, String enemyImageDirectory, int imageWidth, int imageHeight) {
-        if (x < (1008 / 2)) {
+        // "half" of the map
+        if (x < 450) {
             this.side = "/right";
         } else {
             this.side = "/left";
@@ -69,7 +70,7 @@ public abstract class Enemy {
     }
 
     public String getSide() {
-        if (this.enemyImage.getX() < (1008 / 2)) {
+        if (this.enemyImage.getX() < 450) {
             this.side = "/right";
         } else {
             this.side = "/left";

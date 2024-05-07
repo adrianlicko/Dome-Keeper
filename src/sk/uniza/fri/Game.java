@@ -2,6 +2,9 @@ package sk.uniza.fri;
 
 import fri.shapesge.Manager;
 import sk.uniza.fri.enemy.Enemy;
+import sk.uniza.fri.enemy.melee.Flyer;
+import sk.uniza.fri.enemy.melee.Walker;
+import sk.uniza.fri.enemy.ranged.Shifter;
 import sk.uniza.fri.enemy.ranged.Worm;
 import sk.uniza.fri.map.GameMap;
 import sk.uniza.fri.player.Astronaut;
@@ -28,7 +31,8 @@ public class Game {
 //        enemies.add(new Walker(50, 10, 1030, 250));
 //        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
 //        enemies.add(new Flyer(100, 7, 900, 10));
-        enemies.add(new Worm(100, 7, 50, 240));
+//        enemies.add(new Worm(100, 7, 50, 240));
+        enemies.add(new Shifter(100, 7, 300, 100));
 
         for (var enemy : enemies) {
             manager.manageObject(enemy);
