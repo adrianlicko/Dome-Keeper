@@ -12,25 +12,25 @@ public abstract class Weapon {
     private int damage;
     private int weaponAngle;
     private boolean isReversed;
-    private List<Bullet> bullets;
+    private List<DirectProjectile> directProjectiles;
 
     public Weapon(WeaponType weaponType, int damage, int x, int y) {
         this.weaponImage = new ImageObject(weaponType.getImagePath(), x, y);
         this.weaponImage.makeVisible();
         this.damage = damage;
-        this.bullets = new ArrayList<>();
+        this.directProjectiles = new ArrayList<>();
     }
 
     public abstract void shoot();
 
     public void moveBullets() {
-        for (int i = 0; i < this.bullets.size(); i++) {
-            this.bullets.get(i).move();
-            if (this.bullets.get(i).getBulletImage().getX() < -50 || this.bullets.get(i).getBulletImage().getX() > 1024 || this.bullets.get(i).getBulletImage().getY() < 0) {
-                this.removeBullet(this.bullets.get(i));
+        for (int i = 0; i < this.directProjectiles.size(); i++) {
+            this.directProjectiles.get(i).move();
+            if (this.directProjectiles.get(i).getProjectileImage().getX() < -50 || this.directProjectiles.get(i).getProjectileImage().getX() > 1024 || this.directProjectiles.get(i).getProjectileImage().getY() < 0) {
+                this.removeBullet(this.directProjectiles.get(i));
                 continue;
             }
-            ActionAttackEnemy.shoot(this, this.bullets.get(i));
+            ActionAttackEnemy.shoot(this, this.directProjectiles.get(i));
         }
     }
 
@@ -64,13 +64,13 @@ public abstract class Weapon {
         return this.damage;
     }
 
-    protected void addBullet(Bullet bullet) {
-        this.bullets.add(bullet);
+    protected void addBullet(DirectProjectile directProjectile) {
+        this.directProjectiles.add(directProjectile);
     }
 
-    public void removeBullet(Bullet bullet) {
-        bullet.getBulletImage().makeInvisible();
-        this.bullets.remove(bullet);
+    public void removeBullet(DirectProjectile directProjectile) {
+        directProjectile.getProjectileImage().makeInvisible();
+        this.directProjectiles.remove(directProjectile);
     }
 
     public ImageObject getWeaponImage() {

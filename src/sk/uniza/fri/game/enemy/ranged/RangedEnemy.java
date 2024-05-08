@@ -2,6 +2,8 @@ package sk.uniza.fri.game.enemy.ranged;
 
 import sk.uniza.fri.game.action.enemy.ActionAttackDome;
 import sk.uniza.fri.game.enemy.Enemy;
+import sk.uniza.fri.game.player.Dome;
+import sk.uniza.fri.game.weapons.HomingProjectile;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,7 +14,7 @@ public abstract class RangedEnemy extends Enemy {
     private int idleCount;
     private int timeToIdle;
     private int invisibleCount;
-    private ArrayList<EnemyProjectile> projectiles;
+    private ArrayList<HomingProjectile> projectiles;
 
     public RangedEnemy(int health, int damage, int x, int y, String enemyImageDirectory, int imageWidth, int imageHeight) {
         super(health, damage, x, y, enemyImageDirectory, imageWidth, imageHeight);
@@ -25,11 +27,11 @@ public abstract class RangedEnemy extends Enemy {
 
     public void addProjectile(String directoryPath, int projectilePositionCorrectionFromLeft, int projectilePositionCorrectionFromRight, int elevation) {
         if (this.getSide().equals("/right")) {
-            this.projectiles.add(new EnemyProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromRight, this.getEnemyImage().getY() + elevation, directoryPath));
+            this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromRight, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, Dome.getInstance().getDomeImage()));
         } else {
-            this.projectiles.add(new EnemyProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromLeft, this.getEnemyImage().getY() + elevation, directoryPath));
+            this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromLeft, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, Dome.getInstance().getDomeImage()));
         }
-        this.projectiles.get(this.projectiles.size() - 1).getBulletImage().makeVisible();
+        this.projectiles.get(this.projectiles.size() - 1).getProjectileImage().makeVisible();
     }
 
     /**
@@ -38,8 +40,8 @@ public abstract class RangedEnemy extends Enemy {
     public void moveProjectiles() {
         for (int i = 0; i < this.projectiles.size(); i++) {
             this.projectiles.get(i).move();
-            if (this.projectiles.get(i).getBulletImage().getX() < -100 || this.projectiles.get(i).getBulletImage().getX() > 1050) {
-                this.projectiles.get(i).getBulletImage().makeInvisible();
+            if (this.projectiles.get(i).getProjectileImage().getX() < -100 || this.projectiles.get(i).getProjectileImage().getX() > 1050) {
+                this.projectiles.get(i).getProjectileImage().makeInvisible();
                 this.projectiles.remove(this.projectiles.get(i));
                 System.out.println("Removed");
                 continue;
@@ -48,8 +50,8 @@ public abstract class RangedEnemy extends Enemy {
         }
     }
 
-    public void removeProjectile(EnemyProjectile projectile) {
-        projectile.getBulletImage().makeInvisible();
+    public void removeProjectile(HomingProjectile projectile) {
+        projectile.getProjectileImage().makeInvisible();
         this.projectiles.remove(projectile);
     }
 
@@ -58,7 +60,7 @@ public abstract class RangedEnemy extends Enemy {
         this.decreaseHealth(damage);
         if (this.getHealth() <= 0) {
             for (int i = 0; i < this.projectiles.size(); i++) {
-                this.projectiles.get(i).getBulletImage().makeInvisible();
+                this.projectiles.get(i).getProjectileImage().makeInvisible();
                 this.projectiles.remove(this.projectiles.get(i));
             }
         }

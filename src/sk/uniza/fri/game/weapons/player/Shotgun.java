@@ -1,6 +1,6 @@
 package sk.uniza.fri.game.weapons.player;
 
-import sk.uniza.fri.game.weapons.Bullet;
+import sk.uniza.fri.game.weapons.DirectProjectile;
 import sk.uniza.fri.game.weapons.Weapon;
 
 public class Shotgun extends Weapon {
@@ -11,7 +11,7 @@ public class Shotgun extends Weapon {
 
     @Override
     public void shoot() {
-        Bullet bullet = new Bullet(this, this.getWeaponImage().getX(), this.getWeaponImage().getY(), 8);
-        super.addBullet(bullet);
+        DirectProjectile directProjectile = new DirectProjectile(this.getWeaponImage().getX(), this.getWeaponImage().getY(), 10, "assets/weapons/bullet", this, 5);
+        this.addBullet(directProjectile);
     }
 }

@@ -3,6 +3,8 @@ package sk.uniza.fri.game;
 import fri.shapesge.Manager;
 import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.enemy.Enemy;
+import sk.uniza.fri.game.enemy.melee.Flyer;
+import sk.uniza.fri.game.enemy.melee.Walker;
 import sk.uniza.fri.game.enemy.ranged.Shifter;
 import sk.uniza.fri.game.enemy.ranged.Worm;
 import sk.uniza.fri.game.map.GameMap;
@@ -30,10 +32,10 @@ public class Game {
         Dome.getInstance().setHealth(60);
         HUD.getInstance();
 
-//        enemies.add(new Walker(40, 5, 0, 250));
-//        enemies.add(new Walker(50, 10, 1030, 250));
-//        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
-//        enemies.add(new Flyer(100, 7, 900, 10));
+//        this.enemies.add(new Walker(40, 5, 0, 250));
+//        this.enemies.add(new Walker(50, 10, 1030, 250));
+//        this.enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
+//        this.enemies.add(new Flyer(100, 7, 900, 10));
 //        this.enemies.add(new Worm(100, 7, 50, 240));
         this.enemies.add(new Shifter(100, 7, 300, 100));
     }
