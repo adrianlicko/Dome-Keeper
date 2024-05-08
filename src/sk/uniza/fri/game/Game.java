@@ -1,8 +1,10 @@
 package sk.uniza.fri.game;
 
 import fri.shapesge.Manager;
+import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.enemy.ranged.Shifter;
+import sk.uniza.fri.game.enemy.ranged.Worm;
 import sk.uniza.fri.game.map.GameMap;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;
@@ -16,7 +18,6 @@ public class Game {
     private static Game instance;
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Manager manager = new Manager();
-    private boolean isManagingObjects;
 
     private Game() {
         this.startGame();
@@ -33,10 +34,8 @@ public class Game {
 //        enemies.add(new Walker(50, 10, 1030, 250));
 //        enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
 //        enemies.add(new Flyer(100, 7, 900, 10));
-//        enemies.add(new Worm(100, 7, 50, 240));
+//        this.enemies.add(new Worm(100, 7, 50, 240));
         this.enemies.add(new Shifter(100, 7, 300, 100));
-
-        this.manageObjects();
     }
 
     public List<Enemy> getEnemies() {
@@ -49,16 +48,11 @@ public class Game {
         this.enemies.remove(enemy);
     }
 
-    public void pauseOrUnpauseGame() {
-        if (this.isManagingObjects) {
-            this.stopManagingObjects();
-        } else {
-            this.manageObjects();
-        }
+    public void stopOrStartGame() {
+        Menu.getInstance().openShop();
     }
 
-    private void manageObjects() {
-        this.isManagingObjects = true;
+    public void manageObjects() {
         this.manager.manageObject(Astronaut.getInstance());
         this.manager.manageObject(Dome.getInstance());
         for (var enemy : this.enemies) {
@@ -66,8 +60,7 @@ public class Game {
         }
     }
 
-    private void stopManagingObjects() {
-        this.isManagingObjects = false;
+    public void stopManagingObjects() {
         this.manager.stopManagingObject(Astronaut.getInstance());
         this.manager.stopManagingObject(Dome.getInstance());
         for (var enemy : this.enemies) {
