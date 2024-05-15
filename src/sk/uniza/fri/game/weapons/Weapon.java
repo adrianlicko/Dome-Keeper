@@ -6,6 +6,8 @@ import sk.uniza.fri.game.weapons.player.WeaponType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Weapon {
     private ImageObject weaponImage;
@@ -16,17 +18,39 @@ public abstract class Weapon {
     private int weaponAngle;
     private boolean isReversed;
     private List<DirectProjectile> projectiles;
+    private final Timer timer;
+    private boolean isShooting;
+    private int fireRate;
 
-    public Weapon(WeaponType weaponType, int damage) {
+    public Weapon(WeaponType weaponType, int damage, int fireRate) {
         this.weaponImage = new ImageObject(weaponType.getImagePath());
         this.weaponType = weaponType;
         this.isEquipped = false;
         this.isPurchased = false;
         this.damage = damage;
         this.projectiles = new ArrayList<>();
+        this.timer = new Timer();
+        this.isShooting = false;
+        this.fireRate = fireRate;
     }
 
-    public abstract void shoot();
+    public abstract void fire();
+
+    public void shoot() {
+        if (!this.isShooting) {
+            this.isShooting = true;
+            System.out.println("Shooting");
+
+            this.timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Weapon.this.isShooting = false;
+                }
+            }, this.fireRate * 100L);
+
+            this.fire();
+        }
+    }
 
     public void moveBullets() {
         for (int i = 0; i < this.projectiles.size(); i++) {
