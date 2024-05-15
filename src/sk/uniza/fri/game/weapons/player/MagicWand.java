@@ -11,7 +11,7 @@ public class MagicWand extends Weapon implements Purchasable {
     @Override
     public void fire() {
         super.shoot();
-        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, "assets/weapons/bullet", this, 5);
+        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.MAGIC_WAND.getProjectileImageDirectory(), this, 5);
         this.addBullet(directProjectile);
     }
 

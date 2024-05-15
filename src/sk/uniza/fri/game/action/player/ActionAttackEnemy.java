@@ -3,10 +3,11 @@ package sk.uniza.fri.game.action.player;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.weapons.DirectProjectile;
+import sk.uniza.fri.game.weapons.Projectile;
 import sk.uniza.fri.game.weapons.Weapon;
 
 public class ActionAttackEnemy {
-    public static void shoot (Weapon weapon, DirectProjectile directProjectile) {
+    public static void shoot (Weapon weapon, Projectile directProjectile) {
         Enemy enemyToRemove = null;
         for (Enemy enemy : Game.getInstance().getEnemies()) {
 

@@ -17,7 +17,7 @@ public abstract class Weapon {
     private boolean isPurchased;
     private int weaponAngle;
     private boolean isReversed;
-    private List<DirectProjectile> projectiles;
+    private List<Projectile> projectiles;
     private final Timer timer;
     private boolean isShooting;
     private int fireRate;
@@ -64,7 +64,7 @@ public abstract class Weapon {
     }
 
     public void removeBullets() {
-        ArrayList<DirectProjectile> bulletsToRemove = new ArrayList<>();
+        ArrayList<Projectile> bulletsToRemove = new ArrayList<>();
         for (var projectile : this.projectiles) {
             projectile.getProjectileImage().makeInvisible();
             bulletsToRemove.add(projectile);
@@ -102,13 +102,13 @@ public abstract class Weapon {
         return this.damage;
     }
 
-    protected void addBullet(DirectProjectile directProjectile) {
-        this.projectiles.add(directProjectile);
+    protected void addBullet(Projectile projectile) {
+        this.projectiles.add(projectile);
     }
 
-    public void removeBullet(DirectProjectile directProjectile) {
-        directProjectile.getProjectileImage().makeInvisible();
-        this.projectiles.remove(directProjectile);
+    public void removeBullet(Projectile projectile) {
+        projectile.getProjectileImage().makeInvisible();
+        this.projectiles.remove(projectile);
     }
 
     public boolean isEquipped() {
