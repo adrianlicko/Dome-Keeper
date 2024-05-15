@@ -10,7 +10,7 @@ public abstract class Projectile {
 
     public Projectile(int x, int y, int damage, String directoryPath) {
         this.imageLoader = new ImageLoader(directoryPath);
-        this.projectileImage = new ImageObject(this.imageLoader.getNextImage(), x, y, 50, 50);
+        this.projectileImage = new ImageObject(this.imageLoader.getNextImage(), x, y, 20, 20);
         this.projectileImage.makeVisible();
         this.damage = damage;
     }

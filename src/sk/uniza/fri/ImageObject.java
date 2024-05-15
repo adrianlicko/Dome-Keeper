@@ -3,6 +3,7 @@ package sk.uniza.fri;
 import fri.shapesge.Image;
 
 public class ImageObject extends Image {
+    private String imagePath;
     private int x;
     private int y;
     private int imageWidth;
@@ -10,16 +11,19 @@ public class ImageObject extends Image {
 
     public ImageObject(String imagePath) {
         super(imagePath);
+        this.imagePath = imagePath;
     }
 
     public ImageObject(String imagePath, int x, int y) {
         super(imagePath, x, y);
+        this.imagePath = imagePath;
         this.x = x;
         this.y = y;
     }
 
     public ImageObject(String imagePath, int x, int y, int imageWidth, int imageHeight) {
         this(imagePath, x, y);
+        this.imagePath = imagePath;
         this.imageWidth = imageWidth;
         this.imageHeight = imageHeight;
     }
@@ -41,6 +45,10 @@ public class ImageObject extends Image {
         super.changePosition(x, y);
         this.x = x;
         this.y = y;
+    }
+
+    public String getImagePath() {
+        return this.imagePath;
     }
 
     public int getX() {

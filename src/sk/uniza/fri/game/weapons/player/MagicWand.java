@@ -1,12 +1,12 @@
 package sk.uniza.fri.game.weapons.player;
 
+import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.weapons.DirectProjectile;
 import sk.uniza.fri.game.weapons.Weapon;
 
-public class Shotgun extends Weapon implements Purchasable {
-
-    public Shotgun() {
-        super(WeaponType.SHOTGUN, WeaponType.SHOTGUN.getDamage());
+public class MagicWand extends Weapon implements Purchasable {
+    public MagicWand() {
+        super(WeaponType.MAGIC_WAND, WeaponType.MAGIC_WAND.getDamage());
     }
 
     @Override
@@ -17,16 +17,16 @@ public class Shotgun extends Weapon implements Purchasable {
 
     @Override
     public String getName() {
-        return "Shotgun";
+        return "Magic Wand";
     }
 
     @Override
     public String getDescription() {
-        return "Higher damage but slower fire rate";
+        return "Lower damage but faster fire rate";
     }
 
     @Override
     public int getPrice() {
-        return 50;
+        return 20;
     }
 }

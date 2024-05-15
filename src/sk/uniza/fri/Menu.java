@@ -2,7 +2,7 @@ package sk.uniza.fri;
 
 import fri.shapesge.Manager;
 import sk.uniza.fri.game.Game;
-import sk.uniza.fri.shop.StoreGui;
+import sk.uniza.fri.shop.Store;
 
 import javax.swing.JFrame;
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.awt.*;
 public class Menu {
     private static Menu instance;
     private JFrame gameFrame;
-    private StoreGui store;
+    private Store store;
     private boolean alreadyHaveFrame;
     private Manager manager;
 
@@ -42,7 +42,7 @@ public class Menu {
         Game.getInstance().stopManagingObjects();
         this.gameFrame.setVisible(false);
         if (this.store == null) {
-            this.store = new StoreGui();
+            this.store = new Store();
         } else {
             this.store.setVisible(true);
         }

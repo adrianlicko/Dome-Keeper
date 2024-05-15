@@ -2,7 +2,7 @@ package sk.uniza.fri.game.player;
 
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.weapons.Weapon;
-import sk.uniza.fri.game.weapons.player.Shotgun;
+import sk.uniza.fri.game.weapons.player.MagicWand;
 
 import java.util.HashMap;
 
@@ -42,7 +42,21 @@ public class Dome {
         }
 
         // position of the weapon on spawn
-        this.weapon = new Shotgun(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
+        //this.weapon = new Shotgun(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
+        this.equipWeapon(new MagicWand());
+    }
+
+    public void equipWeapon(Weapon weapon) {
+        if (this.weapon != null) {
+            this.weapon.setEquipped(false);
+            this.weapon.getImage().makeInvisible();
+            this.removeBullets();
+        }
+        this.weaponSliderX = 0;
+        this.weapon = weapon;
+        this.weapon.setEquipped(true);
+        this.weapon.getImage().changePosition(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
+        this.weapon.getImage().makeVisible();
     }
 
     /**
@@ -63,6 +77,10 @@ public class Dome {
         this.weapon.moveBullets();
     }
 
+    public void removeBullets() {
+        this.weapon.removeBullets();
+    }
+
     /**
      * Method for moving the weapon right.
      * This method is managed by the manager and can be called by a specific key.
@@ -74,7 +92,7 @@ public class Dome {
         if (this.weaponSliderX > 0 && this.weaponSliderX <= 70) {
             this.weapon.changeAngle(1, this.weaponSliderX);
             this.weaponSliderX--;
-            this.weapon.getWeaponImage().changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
+            this.weapon.getImage().changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
         }
     }
 
@@ -89,7 +107,7 @@ public class Dome {
         if (this.weaponSliderX >= 0 && this.weaponSliderX < 70) {
             this.weapon.changeAngle(-1, this.weaponSliderX);
             this.weaponSliderX++;
-            this.weapon.getWeaponImage().changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
+            this.weapon.getImage().changePosition(448 + 70 - this.weaponSliderX, 251 + this.weaponPosition.get(this.weaponSliderX).get(70 - this.weaponSliderX));
         }
     }
 
