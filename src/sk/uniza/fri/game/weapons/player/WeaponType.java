@@ -1,8 +1,9 @@
 package sk.uniza.fri.game.weapons.player;
 
 public enum WeaponType {
-    SHOTGUN("assets/weapons/Shotgun small.png", "assets/weapons/Shotgun small reversed.png", 10, 15, "assets/weapons/Shotgun projectiles"),
-    MAGIC_WAND("assets/weapons/Magic wand small.png", "assets/weapons/Magic wand small reversed.png", 5, 5, "assets/weapons/MagicWand projectiles");
+    SHOTGUN("assets/weapons/Shotgun small.png", "assets/weapons/Shotgun small reversed.png", 10, 20, "assets/weapons/Shotgun projectiles"),
+    MAGIC_WAND("assets/weapons/Magic wand small.png", "assets/weapons/Magic wand small reversed.png", 3, 5, "assets/weapons/MagicWand projectiles"),
+    AK47("assets/weapons/AK47 small.png", "assets/weapons/AK47 small reversed.png", 2, 4, "assets/weapons/AK47 projectiles");
 
     private String imagePath;
     private String reverseImagePath;

@@ -1,6 +1,7 @@
 package sk.uniza.fri.shop;
 
 import sk.uniza.fri.game.map.BlockType;
+import sk.uniza.fri.game.weapons.player.AK47;
 import sk.uniza.fri.game.weapons.player.MagicWand;
 import sk.uniza.fri.game.weapons.player.Shotgun;
 
@@ -23,6 +24,7 @@ public class Store extends JFrame {
 
         this.storeList.addToStore(new Shotgun(), BlockType.GOLD);
         this.storeList.addToStore(new MagicWand(), BlockType.DIAMOND);
+        this.storeList.addToStore(new AK47(), BlockType.STONE);
 
         this.pack();
         this.setVisible(true);
