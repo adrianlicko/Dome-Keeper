@@ -1,6 +1,7 @@
 package sk.uniza.fri.shop;
 
 import sk.uniza.fri.game.map.BlockType;
+import sk.uniza.fri.game.purchasable.specialItems.HealingRing;
 import sk.uniza.fri.game.purchasable.specialItems.HealthPotion;
 import sk.uniza.fri.game.purchasable.weapons.AK47;
 import sk.uniza.fri.game.purchasable.weapons.MagicWand;
@@ -29,6 +30,7 @@ public class Store extends JFrame {
         this.storeList.addToStore(new AK47(), BlockType.STONE);
         this.storeList.addToStore(new RocketLauncher(), BlockType.STONE);
         this.storeList.addToStore(new HealthPotion(5), BlockType.STONE);
+        this.storeList.addToStore(new HealingRing(1, 20, 5), BlockType.STONE);
 
         this.pack();
         this.setVisible(true);

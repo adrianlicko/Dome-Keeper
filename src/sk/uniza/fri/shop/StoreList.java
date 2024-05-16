@@ -23,7 +23,7 @@ public class StoreList {
 
     public StoreList(JFrame frame) {
         this.frame = frame;
-        this.storePanel.setLayout(new FlowLayout()); // Zmena na FlowLayout
+        this.storePanel.setLayout(new GridLayout(0, 3)); // Zmena na FlowLayout
         this.coinPanel.setLayout(new FlowLayout());
 
         this.frame.add(this.mainPanel);
@@ -111,7 +111,6 @@ public class StoreList {
                     JOptionPane.showMessageDialog(this.frame, "This item is already used.", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else {
                     specialItem.use();
-                    specialItem.setPurchased(true);
                 }
 
             }
