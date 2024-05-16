@@ -1,8 +1,8 @@
 package sk.uniza.fri.game.player;
 
 import sk.uniza.fri.ImageObject;
-import sk.uniza.fri.game.weapons.Weapon;
-import sk.uniza.fri.game.weapons.player.MagicWand;
+import sk.uniza.fri.game.purchasable.weapons.Weapon;
+import sk.uniza.fri.game.purchasable.weapons.MagicWand;
 
 import java.util.HashMap;
 
@@ -126,6 +126,9 @@ public class Dome {
 
     public void increaseHealth(double health) {
         this.health += health;
+        if (this.health > this.initialHealth) {
+            this.health = this.initialHealth;
+        }
     }
 
     public double getInitialHealth() {

@@ -76,6 +76,11 @@ public class HUD {
         this.domeHealthText.changeText((int)Dome.getInstance().getHealth() + "/" + (int)Dome.getInstance().getInitialHealth());
     }
 
+    public void increaseDomeHealth(int amount) {
+        Dome.getInstance().increaseHealth(amount);
+        this.updateDomeHealth();
+    }
+
     public static HUD getInstance() {
         if (instance == null) {
             instance = new HUD();

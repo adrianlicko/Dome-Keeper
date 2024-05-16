@@ -4,6 +4,7 @@ import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;
+import sk.uniza.fri.game.purchasable.specialItems.SpecialItem;
 import sk.uniza.fri.game.purchasable.weapons.Weapon;
 import sk.uniza.fri.game.purchasable.Purchasable;
 
@@ -88,16 +89,31 @@ public class StoreList {
             }
         });
 
-        JButton equipButton = new JButton("Equip");
+        JButton equipButton = new JButton();
+        if (item instanceof Weapon) {
+            equipButton.setText("Equip");
+        } else if (item instanceof SpecialItem) {
+            equipButton.setText("Use");
+        }
+
         equipButton.addActionListener(e -> {
             if (!item.isPurchased()) {
                 JOptionPane.showMessageDialog(this.frame, "You need to buy this item first.", "Warning", JOptionPane.WARNING_MESSAGE);
-            } else if (item.isEquipped()) {
-                JOptionPane.showMessageDialog(this.frame, "This item is already equipped.", "Warning", JOptionPane.WARNING_MESSAGE);
-            } else {
-                if (item instanceof Weapon weaponItem) {
+            } else if (item instanceof Weapon weaponItem) {
+                if (item.isEquipped()) {
+                    JOptionPane.showMessageDialog(this.frame, "This item is already equipped.", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
                     Dome.getInstance().equipWeapon(weaponItem);
                 }
+
+            } else if (item instanceof SpecialItem specialItem) {
+                if (item.isEquipped()) {
+                    JOptionPane.showMessageDialog(this.frame, "This item is already used.", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    specialItem.use();
+                    specialItem.setPurchased(true);
+                }
+
             }
         });
 
