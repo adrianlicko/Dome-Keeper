@@ -1,9 +1,8 @@
-package sk.uniza.fri.game.weapons.player;
+package sk.uniza.fri.game.purchasable.weapons;
 
-import sk.uniza.fri.game.weapons.DirectProjectile;
-import sk.uniza.fri.game.weapons.Weapon;
+import sk.uniza.fri.game.purchasable.weapons.projectiles.DirectProjectile;
 
-public class AK47 extends Weapon implements Purchasable {
+public class AK47 extends Weapon {
     public AK47() {
         super(WeaponType.AK47, WeaponType.AK47.getDamage(), WeaponType.AK47.getFireRate());
     }

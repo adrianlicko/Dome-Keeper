@@ -1,8 +1,9 @@
-package sk.uniza.fri.game.weapons;
+package sk.uniza.fri.game.purchasable.weapons.projectiles;
 
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.enemy.Enemy;
+import sk.uniza.fri.game.purchasable.weapons.Weapon;
 
 public class HomingProjectile extends Projectile {
     private Weapon weapon;

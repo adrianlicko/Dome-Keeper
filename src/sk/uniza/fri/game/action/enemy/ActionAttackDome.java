@@ -4,7 +4,7 @@ import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.enemy.ranged.RangedEnemy;
 import sk.uniza.fri.game.player.Dome;
 import sk.uniza.fri.game.player.HUD;
-import sk.uniza.fri.game.weapons.HomingProjectile;
+import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
 public class ActionAttackDome {
     public static void attackDome(int damage) {

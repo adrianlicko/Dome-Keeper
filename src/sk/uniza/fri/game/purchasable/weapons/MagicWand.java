@@ -1,10 +1,9 @@
-package sk.uniza.fri.game.weapons.player;
+package sk.uniza.fri.game.purchasable.weapons;
 
-import sk.uniza.fri.game.weapons.DirectProjectile;
-import sk.uniza.fri.game.weapons.HomingProjectile;
-import sk.uniza.fri.game.weapons.Weapon;
+import sk.uniza.fri.game.purchasable.Purchasable;
+import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
-public class MagicWand extends Weapon implements Purchasable {
+public class MagicWand extends Weapon {
     public MagicWand() {
         super(WeaponType.MAGIC_WAND, WeaponType.MAGIC_WAND.getDamage(), WeaponType.MAGIC_WAND.getFireRate());
     }

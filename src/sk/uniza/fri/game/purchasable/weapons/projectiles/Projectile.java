@@ -1,4 +1,4 @@
-package sk.uniza.fri.game.weapons;
+package sk.uniza.fri.game.purchasable.weapons.projectiles;
 
 import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;

@@ -2,9 +2,8 @@ package sk.uniza.fri.game.action.player;
 
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.enemy.Enemy;
-import sk.uniza.fri.game.weapons.DirectProjectile;
-import sk.uniza.fri.game.weapons.Projectile;
-import sk.uniza.fri.game.weapons.Weapon;
+import sk.uniza.fri.game.purchasable.weapons.projectiles.Projectile;
+import sk.uniza.fri.game.purchasable.weapons.Weapon;
 
 public class ActionAttackEnemy {
     public static void shoot (Weapon weapon, Projectile directProjectile) {

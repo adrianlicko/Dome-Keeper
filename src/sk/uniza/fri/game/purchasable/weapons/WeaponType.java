@@ -1,4 +1,4 @@
-package sk.uniza.fri.game.weapons.player;
+package sk.uniza.fri.game.purchasable.weapons;
 
 public enum WeaponType {
     SHOTGUN("assets/weapons/Shotgun small.png", "assets/weapons/Shotgun small reversed.png", 10, 20, "assets/weapons/Shotgun projectiles", 5),

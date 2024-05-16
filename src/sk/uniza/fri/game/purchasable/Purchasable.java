@@ -1,4 +1,4 @@
-package sk.uniza.fri.game.weapons.player;
+package sk.uniza.fri.game.purchasable;
 
 import sk.uniza.fri.ImageObject;
 

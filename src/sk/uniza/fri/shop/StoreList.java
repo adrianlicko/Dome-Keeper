@@ -4,8 +4,8 @@ import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;
-import sk.uniza.fri.game.weapons.Weapon;
-import sk.uniza.fri.game.weapons.player.Purchasable;
+import sk.uniza.fri.game.purchasable.weapons.Weapon;
+import sk.uniza.fri.game.purchasable.Purchasable;
 
 import javax.swing.*;
 import java.awt.*;

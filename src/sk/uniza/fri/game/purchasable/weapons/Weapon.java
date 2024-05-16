@@ -1,20 +1,19 @@
-package sk.uniza.fri.game.weapons;
+package sk.uniza.fri.game.purchasable.weapons;
 
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.action.player.ActionAttackEnemy;
-import sk.uniza.fri.game.weapons.player.WeaponType;
+import sk.uniza.fri.game.purchasable.Item;
+import sk.uniza.fri.game.purchasable.weapons.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class Weapon {
+public abstract class Weapon extends Item {
     private ImageObject weaponImage;
     private WeaponType weaponType;
     private int damage;
-    private boolean isEquipped;
-    private boolean isPurchased;
     private int weaponAngle;
     private boolean isReversed;
     private List<Projectile> projectiles;
@@ -25,8 +24,6 @@ public abstract class Weapon {
     public Weapon(WeaponType weaponType, int damage, int fireRate) {
         this.weaponImage = new ImageObject(weaponType.getImagePath());
         this.weaponType = weaponType;
-        this.isEquipped = false;
-        this.isPurchased = false;
         this.damage = damage;
         this.projectiles = new ArrayList<>();
         this.timer = new Timer();
@@ -109,22 +106,6 @@ public abstract class Weapon {
     public void removeBullet(Projectile projectile) {
         projectile.getProjectileImage().makeInvisible();
         this.projectiles.remove(projectile);
-    }
-
-    public boolean isEquipped() {
-        return this.isEquipped;
-    }
-
-    public void setEquipped(boolean equipped) {
-        this.isEquipped = equipped;
-    }
-
-    public boolean isPurchased() {
-        return this.isPurchased;
-    }
-
-    public void setPurchased(boolean purchased) {
-        this.isPurchased = purchased;
     }
 
     public ImageObject getImage() {

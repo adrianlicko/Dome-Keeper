@@ -3,7 +3,7 @@ package sk.uniza.fri.game.enemy.ranged;
 import sk.uniza.fri.game.action.enemy.ActionAttackDome;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.player.Dome;
-import sk.uniza.fri.game.weapons.HomingProjectile;
+import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
 import java.util.ArrayList;
 import java.util.Random;
