@@ -147,8 +147,12 @@ public class Astronaut {
         return Collections.unmodifiableMap(this.inventory);
     }
 
-    public void addToInventory(BlockType blockType) {
+    public void addCoinToInventory(BlockType blockType) {
         this.inventory.replace(blockType, this.inventory.get(blockType) + blockType.getCoinValue());
+    }
+
+    public void removeCoinFromInventory(BlockType blockType, int amount) {
+        this.inventory.replace(blockType, this.inventory.get(blockType) - amount);
     }
 
     public boolean isInDome() {

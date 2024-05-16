@@ -1,5 +1,6 @@
 package sk.uniza.fri.shop;
 
+import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.weapons.player.MagicWand;
 import sk.uniza.fri.game.weapons.player.Shotgun;
 
@@ -12,12 +13,22 @@ public class Store extends JFrame {
         super("Dome Keeper Store");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
         this.storeList = new StoreList(this);
 
-        this.storeList.addToStore(new Shotgun());
-        this.storeList.addToStore(new MagicWand());
+        this.storeList.addToStore(new Shotgun(), BlockType.GOLD);
+        this.storeList.addToStore(new MagicWand(), BlockType.DIAMOND);
 
-        this.setVisible(true);
         this.pack();
+        this.setVisible(true);
+    }
+
+    public void updateCoinPanel() {
+        this.storeList.updateCoinPanel();
     }
 }

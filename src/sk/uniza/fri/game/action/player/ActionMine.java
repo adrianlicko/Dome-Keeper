@@ -9,7 +9,7 @@ public class ActionMine {
     public void mine(Block minedBlock, int damage) {
         if (!minedBlock.receiveDamage(damage)) {
             GameMap.getInstance().breakBlock(minedBlock);
-            Astronaut.getInstance().addToInventory(minedBlock.getType());
+            Astronaut.getInstance().addCoinToInventory(minedBlock.getType());
             HUD.getInstance().updateHudOfPlayersCoin(minedBlock.getType());
         }
     }

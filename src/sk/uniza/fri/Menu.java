@@ -2,6 +2,7 @@ package sk.uniza.fri;
 
 import fri.shapesge.Manager;
 import sk.uniza.fri.game.Game;
+import sk.uniza.fri.game.player.HUD;
 import sk.uniza.fri.shop.Store;
 
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ public class Menu {
         }
 
         Game.getInstance().manageObjects();
+        HUD.getInstance().refreshHudOfPlayersCoin();
 
         if (!this.alreadyHaveFrame) {
             for (Window window : Window.getWindows()) {
@@ -46,6 +48,7 @@ public class Menu {
         } else {
             this.store.setVisible(true);
         }
+        this.store.updateCoinPanel();
     }
 
     public void closeShop() {

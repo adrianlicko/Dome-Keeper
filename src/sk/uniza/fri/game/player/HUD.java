@@ -62,6 +62,12 @@ public class HUD {
         this.coinText.get(blockType).changeText("" + (Astronaut.getInstance().getInventory().get(blockType)));
     }
 
+    public void refreshHudOfPlayersCoin() {
+        for (BlockType blockType : BlockType.values()) {
+            this.coinText.get(blockType).changeText("" + (Astronaut.getInstance().getInventory().get(blockType)));
+        }
+    }
+
     /**
      * This method updates the dome health indicator.
      */
