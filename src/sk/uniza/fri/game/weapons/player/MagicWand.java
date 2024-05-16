@@ -12,7 +12,7 @@ public class MagicWand extends Weapon implements Purchasable {
     @Override
     public void fire() {
         super.shoot();
-        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.MAGIC_WAND.getProjectileImageDirectory(), this, 5);
+        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.MAGIC_WAND.getProjectileImageDirectory(), this, WeaponType.MAGIC_WAND.getProjectileSpeed());
         this.addBullet(homingProjectile);
     }
 

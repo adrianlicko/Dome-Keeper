@@ -11,7 +11,7 @@ public class AK47 extends Weapon implements Purchasable {
     @Override
     public void fire() {
         super.shoot();
-        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.AK47.getProjectileImageDirectory(), this, 7);
+        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.AK47.getProjectileImageDirectory(), this, WeaponType.AK47.getProjectileSpeed());
         this.addBullet(directProjectile);
     }
 
