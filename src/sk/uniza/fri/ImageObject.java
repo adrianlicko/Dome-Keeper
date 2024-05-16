@@ -83,11 +83,11 @@ public class ImageObject extends Image {
         return this.y + (this.imageHeight / 2);
     }
 
-    public void setWidth(int width) {
-        this.imageWidth = width;
+    public int getImageWidth() {
+        return this.imageWidth;
     }
 
-    public void setHeight(int height) {
-        this.imageHeight = height;
+    public int getImageHeight() {
+        return this.imageHeight;
     }
 }

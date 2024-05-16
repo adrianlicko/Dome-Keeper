@@ -1,32 +1,48 @@
 package sk.uniza.fri.game.player;
 
+import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.action.player.ActionMine;
 import sk.uniza.fri.game.map.Block;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.map.GameMap;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class Astronaut {
+    private ImageLoader imageLoader;
     private ImageObject astronautImage;
     private static Astronaut instance;
     private HashMap<BlockType, Integer> inventory;
     private ActionMine mining;
     private boolean isAbleToEnterDome;
     private boolean isInDome;
+    private Timer idleTimer;
 
     private Astronaut() {
-        this.astronautImage = new ImageObject("assets/Astronaut/Astronaut dole 3.png", 486, 325);
+        this.imageLoader = new ImageLoader("assets/Astronaut/idle");
+        this.astronautImage = new ImageObject(this.imageLoader.getNextImage(), 486, 325, 40, 49);
         this.astronautImage.makeVisible();
         this.mining = new ActionMine();
         this.inventory = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
             this.inventory.put(blockType, 0);
         }
+        this.idleTimer = new Timer();
+    }
+
+    private void changeImageDirectory(String direction) {
+        if (this.idleTimer != null) {
+            this.idleTimer.cancel();
+        }
+        this.idleTimer = new Timer();
+        this.imageLoader = new ImageLoader("assets/Astronaut/" + direction);
+        this.idleTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Astronaut.this.imageLoader = new ImageLoader("assets/Astronaut/idle");
+            }
+        }, 500L);
     }
 
     /**
@@ -62,7 +78,8 @@ public class Astronaut {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX(), this.astronautImage.getY());
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() - (this.astronautImage.getImageHeight() / 2) + 5);
+        this.changeImageDirectory("up");
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
@@ -80,11 +97,12 @@ public class Astronaut {
         }
         this.isAbleToEnterDome = false;
         // this.y + 35 >= 702, this is for lower part of the map
-        if (this.astronautImage.getY() + 35 >= 702) {
+        if (this.astronautImage.getY() + this.astronautImage.getImageHeight() - 5 >= 702) {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX(), this.astronautImage.getY() + 35);
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() + (this.astronautImage.getImageHeight() / 2) - 5);
+        this.changeImageDirectory("down");
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), 2);
         } else {
@@ -109,10 +127,12 @@ public class Astronaut {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX(), this.astronautImage.getY());
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX() - (this.astronautImage.getImageWidth() / 2), this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
+            this.changeImageDirectory("drillLeft");
             this.mining.mine(minedBlock.get(), 2);
         } else {
+            this.changeImageDirectory("left");
             this.astronautImage.moveHorizontal(-2);
         }
     }
@@ -128,19 +148,25 @@ public class Astronaut {
         this.isAbleToEnterDome = false;
         // this.x + 35 >= 960, this is for right part of the map
         // this.y < 369 && this.x >= 480, this is for upper part of the map in the middle block
-        if (this.astronautImage.getX() + 35 >= 960) {
+        if (this.astronautImage.getX() + this.astronautImage.getImageWidth() - 5 >= 960) {
             return;
         } else if (this.astronautImage.getY() < 369 && this.astronautImage.getX() >= 480) {
             return;
 
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getX() + 35, this.astronautImage.getY());
+        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX() + (this.astronautImage.getImageWidth() / 2) - 5, this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
+            this.changeImageDirectory("drillRight");
             this.mining.mine(minedBlock.get(), 2);
         } else {
+            this.changeImageDirectory("right");
             this.astronautImage.moveHorizontal(2);
         }
+    }
+
+    public void loopAstronautImages() {
+        this.astronautImage.changeImage(this.imageLoader.getNextImage());
     }
 
     public Map<BlockType, Integer> getInventory() {
