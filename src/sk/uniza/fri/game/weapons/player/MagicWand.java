@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.weapons.player;
 
 import sk.uniza.fri.game.weapons.DirectProjectile;
+import sk.uniza.fri.game.weapons.HomingProjectile;
 import sk.uniza.fri.game.weapons.Weapon;
 
 public class MagicWand extends Weapon implements Purchasable {
@@ -11,8 +12,8 @@ public class MagicWand extends Weapon implements Purchasable {
     @Override
     public void fire() {
         super.shoot();
-        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.MAGIC_WAND.getProjectileImageDirectory(), this, 5);
-        this.addBullet(directProjectile);
+        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.MAGIC_WAND.getProjectileImageDirectory(), this, 5);
+        this.addBullet(homingProjectile);
     }
 
     @Override

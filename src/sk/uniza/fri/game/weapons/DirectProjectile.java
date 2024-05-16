@@ -1,5 +1,9 @@
 package sk.uniza.fri.game.weapons;
 
+import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
+import sk.uniza.fri.game.enemy.Enemy;
+
 public class DirectProjectile extends Projectile {
     private Weapon weapon;
     private int speed;
@@ -25,3 +29,4 @@ public class DirectProjectile extends Projectile {
         this.getProjectileImage().changePosition(this.getProjectileImage().getX(), this.getProjectileImage().getY());
     }
 }
+

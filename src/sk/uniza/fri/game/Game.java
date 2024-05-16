@@ -37,7 +37,7 @@ public class Game {
 //        this.enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
 //        this.enemies.add(new Flyer(100, 7, 900, 10));
 //        this.enemies.add(new Worm(100, 7, 50, 240));
-        this.enemies.add(new Shifter(100, 7, 300, 100));
+        this.enemies.add(new Shifter(20, 7, 300, 100));
     }
 
     public List<Enemy> getEnemies() {
