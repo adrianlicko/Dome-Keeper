@@ -15,6 +15,7 @@ public class Astronaut {
     private static Astronaut instance;
     private HashMap<BlockType, Integer> inventory;
     private ActionMine mining;
+    private int damage;
     private boolean isAbleToEnterDome;
     private boolean isInDome;
     private Timer idleTimer;
@@ -81,7 +82,7 @@ public class Astronaut {
         Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() - (this.astronautImage.getImageHeight() / 2) + 5);
         this.changeImageDirectory("up");
         if (minedBlock.isPresent()) {
-            this.mining.mine(minedBlock.get(), 2);
+            this.mining.mine(minedBlock.get(), this.damage);
         } else {
             this.astronautImage.moveVertical(-2);
         }
@@ -104,7 +105,7 @@ public class Astronaut {
         Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() + (this.astronautImage.getImageHeight() / 2) - 5);
         this.changeImageDirectory("down");
         if (minedBlock.isPresent()) {
-            this.mining.mine(minedBlock.get(), 2);
+            this.mining.mine(minedBlock.get(), this.damage);
         } else {
             this.astronautImage.moveVertical(2);
         }
@@ -130,7 +131,7 @@ public class Astronaut {
         Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX() - (this.astronautImage.getImageWidth() / 2), this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
             this.changeImageDirectory("drillLeft");
-            this.mining.mine(minedBlock.get(), 2);
+            this.mining.mine(minedBlock.get(), this.damage);
         } else {
             this.changeImageDirectory("left");
             this.astronautImage.moveHorizontal(-2);
@@ -158,11 +159,15 @@ public class Astronaut {
         Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX() + (this.astronautImage.getImageWidth() / 2) - 5, this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
             this.changeImageDirectory("drillRight");
-            this.mining.mine(minedBlock.get(), 2);
+            this.mining.mine(minedBlock.get(), this.damage);
         } else {
             this.changeImageDirectory("right");
             this.astronautImage.moveHorizontal(2);
         }
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public void loopAstronautImages() {

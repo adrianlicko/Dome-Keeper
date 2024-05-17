@@ -28,7 +28,7 @@ public class Game {
     public void startGame() {
         GameMap.getInstance().createBlocks();
 
-        Astronaut.getInstance();
+        Astronaut.getInstance().setDamage(1);
         Dome.getInstance().setHealth(60);
         HUD.getInstance();
 
