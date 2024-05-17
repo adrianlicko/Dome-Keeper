@@ -53,7 +53,7 @@ public class Shifter extends RangedEnemy {
                     this.setState(State.ATTACK);
                     break;
                 case ATTACK:
-                    this.addProjectile("assets/enemies/shifter/bullet", -40, 30, 5);
+                    this.addProjectile("assets/enemies/shifter/bullet", -40, 30, 5, 106, 100);
 
                     if (this.getRandom().nextInt(3) == 0) {
                         this.setState(State.IDLE);

@@ -53,7 +53,7 @@ public class Worm extends RangedEnemy {
                     this.setState(State.ATTACK);
                     break;
                 case ATTACK:
-                    this.addProjectile("assets/enemies/worm/bullet", 0, 75, 25);
+                    this.addProjectile("assets/enemies/worm/bullet", 0, 75, 25, 50, 50);
 
                     if (this.getRandom().nextInt(3) == 0) {
                         this.setState(State.IDLE);

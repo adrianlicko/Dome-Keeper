@@ -7,8 +7,8 @@ public class DirectProjectile extends Projectile {
     private int speed;
     private double angle;
 
-    public DirectProjectile(int x, int y, int damage, String directoryPath, Weapon weapon, int speed) {
-        super(x, y, damage, directoryPath);
+    public DirectProjectile(int x, int y, int damage, String directoryPath, int projectileWidth, int projectileHeight, Weapon weapon, int speed) {
+        super(x, y, damage, directoryPath, projectileWidth, projectileHeight);
         this.weapon = weapon;
         this.speed = speed;
         if (this.weapon.isReversed()) {

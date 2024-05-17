@@ -8,9 +8,9 @@ public abstract class Projectile {
     private ImageObject projectileImage;
     private int damage;
 
-    public Projectile(int x, int y, int damage, String directoryPath) {
+    public Projectile(int x, int y, int damage, String directoryPath, int projectileWidth, int projectileHeight) {
         this.imageLoader = new ImageLoader(directoryPath);
-        this.projectileImage = new ImageObject(this.imageLoader.getNextImage(), x + 10, y + 10, 20, 20);
+        this.projectileImage = new ImageObject(this.imageLoader.getNextImage(), x + 10, y + 10, projectileWidth, projectileHeight);
         this.projectileImage.makeVisible();
         this.damage = damage;
     }

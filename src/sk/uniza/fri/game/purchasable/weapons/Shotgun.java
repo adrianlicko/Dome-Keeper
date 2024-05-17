@@ -12,7 +12,7 @@ public class Shotgun extends Weapon {
     @Override
     public void fire() {
         super.shoot();
-        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.SHOTGUN.getProjectileImageDirectory(), this, WeaponType.MAGIC_WAND.getProjectileSpeed());
+        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.SHOTGUN.getProjectileImageDirectory(), WeaponType.AK47.getProjectileWidth(), WeaponType.AK47.getProjectileHeight(), this, WeaponType.MAGIC_WAND.getProjectileSpeed());
         this.addBullet(directProjectile);
     }
 
