@@ -16,6 +16,7 @@ public class Astronaut {
     private HashMap<BlockType, Integer> inventory;
     private ActionMine mining;
     private int damage;
+    private int movementSpeed;
     private boolean isAbleToEnterDome;
     private boolean isInDome;
     private Timer idleTimer;
@@ -84,7 +85,7 @@ public class Astronaut {
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), this.damage);
         } else {
-            this.astronautImage.moveVertical(-2);
+            this.astronautImage.moveVertical(-this.movementSpeed);
         }
     }
 
@@ -107,7 +108,7 @@ public class Astronaut {
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), this.damage);
         } else {
-            this.astronautImage.moveVertical(2);
+            this.astronautImage.moveVertical(this.movementSpeed);
         }
     }
 
@@ -134,7 +135,7 @@ public class Astronaut {
             this.mining.mine(minedBlock.get(), this.damage);
         } else {
             this.changeImageDirectory("left");
-            this.astronautImage.moveHorizontal(-2);
+            this.astronautImage.moveHorizontal(-this.movementSpeed);
         }
     }
 
@@ -162,12 +163,16 @@ public class Astronaut {
             this.mining.mine(minedBlock.get(), this.damage);
         } else {
             this.changeImageDirectory("right");
-            this.astronautImage.moveHorizontal(2);
+            this.astronautImage.moveHorizontal(this.movementSpeed);
         }
     }
 
     public void setDamage(int damage) {
         this.damage = damage;
+    }
+
+    public void setMovementSpeed(int movementSpeed) {
+        this.movementSpeed = movementSpeed;
     }
 
     public void loopAstronautImages() {

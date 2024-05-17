@@ -29,6 +29,7 @@ public class Game {
         GameMap.getInstance().createBlocks();
 
         Astronaut.getInstance().setDamage(1);
+        Astronaut.getInstance().setMovementSpeed(2);
         Dome.getInstance().setHealth(60);
         HUD.getInstance();
 
