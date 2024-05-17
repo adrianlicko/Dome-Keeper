@@ -4,9 +4,9 @@ import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;
+import sk.uniza.fri.game.purchasable.Purchasable;
 import sk.uniza.fri.game.purchasable.specialItems.SpecialItem;
 import sk.uniza.fri.game.purchasable.weapons.Weapon;
-import sk.uniza.fri.game.purchasable.Purchasable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,6 +54,7 @@ public class StoreList {
             itemPanel.add(coinImageLabel);
 
             JLabel coinCountLabel = new JLabel(String.valueOf(entry.getValue()));
+            coinCountLabel.setFont(new Font(coinCountLabel.getFont().getName(), Font.BOLD, coinCountLabel.getFont().getSize()));
             itemPanel.add(coinCountLabel);
 
             this.coinPanel.add(itemPanel);
@@ -67,11 +68,27 @@ public class StoreList {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
 
+
+
+        
+
         JLabel imageLabel = new JLabel(new ImageIcon(item.getImage().getImagePath()));
+        imageLabel.setFont(new Font(imageLabel.getFont().getName(), Font.BOLD, imageLabel.getFont().getSize()));
+
         JLabel nameLabel = new JLabel(item.getName());
+        nameLabel.setFont(new Font(nameLabel.getFont().getName(), Font.BOLD, nameLabel.getFont().getSize()));
+
         JLabel descriptionLabel = new JLabel(item.getDescription());
+        descriptionLabel.setFont(new Font(descriptionLabel.getFont().getName(), Font.BOLD, descriptionLabel.getFont().getSize()));
+
         JLabel damageLabel = new JLabel("Damage: " + item.getDamage()); // for weapons
+        damageLabel.setFont(new Font(damageLabel.getFont().getName(), Font.BOLD, damageLabel.getFont().getSize()));
+
         JLabel priceLabel = new JLabel("Price: " + item.getPrice());
+        priceLabel.setFont(new Font(priceLabel.getFont().getName(), Font.BOLD, priceLabel.getFont().getSize()));
+
+
+
 
         ImageIcon buyIcon = new ImageIcon(blockType.getCoinImagePath());
         JLabel buyIconLabel = new JLabel(buyIcon);
