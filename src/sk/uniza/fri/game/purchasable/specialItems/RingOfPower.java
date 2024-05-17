@@ -1,8 +1,8 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.player.Astronaut;
 
 public class RingOfPower extends SpecialItem {
 
@@ -12,7 +12,7 @@ public class RingOfPower extends SpecialItem {
 
     @Override
     public void use() {
-        Astronaut.getInstance().setDamage(this.getAmount());
+        Game.getInstance().getAstronaut().setDamage(this.getAmount());
         this.setEquipped(true);
     }
 

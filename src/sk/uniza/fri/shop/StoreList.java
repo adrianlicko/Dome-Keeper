@@ -1,9 +1,8 @@
 package sk.uniza.fri.shop;
 
 import sk.uniza.fri.Menu;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.player.Astronaut;
-import sk.uniza.fri.game.player.Dome;
 import sk.uniza.fri.game.purchasable.Purchasable;
 import sk.uniza.fri.game.purchasable.specialItems.SpecialItem;
 import sk.uniza.fri.game.purchasable.weapons.Weapon;
@@ -44,7 +43,7 @@ public class StoreList {
     public void updateCoinPanel() {
         this.coinPanel.removeAll(); // remove all existing panels
 
-        Map<BlockType, Integer> inventory = Astronaut.getInstance().getInventory();
+        Map<BlockType, Integer> inventory = Game.getInstance().getAstronaut().getInventory();
         for (Map.Entry<BlockType, Integer> entry : inventory.entrySet()) {
             JPanel itemPanel = new JPanel();
             itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.X_AXIS));
@@ -97,11 +96,11 @@ public class StoreList {
         buyButton.addActionListener(e -> {
             if (item.isPurchased()) {
                 JOptionPane.showMessageDialog(this.frame, "This item is already bought.", "Warning", JOptionPane.WARNING_MESSAGE);
-            } else if (Astronaut.getInstance().getInventory().get(item.getBlockType()) < item.getPrice()) {
+            } else if (Game.getInstance().getAstronaut().getInventory().get(item.getBlockType()) < item.getPrice()) {
                 JOptionPane.showMessageDialog(this.frame, "You don't have enough coins.", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
                 item.setPurchased(true);
-                Astronaut.getInstance().removeCoinFromInventory(item.getBlockType(), item.getPrice());
+                Game.getInstance().getAstronaut().removeCoinFromInventory(item.getBlockType(), item.getPrice());
                 this.updateCoinPanel();
             }
         });
@@ -120,7 +119,7 @@ public class StoreList {
                 if (item.isEquipped()) {
                     JOptionPane.showMessageDialog(this.frame, "This item is already equipped.", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    Dome.getInstance().equipWeapon(weaponItem);
+                    Game.getInstance().getDome().equipWeapon(weaponItem);
                 }
 
             } else if (item instanceof SpecialItem specialItem) {

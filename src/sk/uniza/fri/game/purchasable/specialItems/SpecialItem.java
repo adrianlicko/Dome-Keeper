@@ -1,7 +1,6 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.game.purchasable.Item;
-import sk.uniza.fri.game.purchasable.Purchasable;
 
 public abstract class SpecialItem extends Item {
     private int amount;

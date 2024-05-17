@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.player;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.purchasable.weapons.Weapon;
 import sk.uniza.fri.game.purchasable.weapons.MagicWand;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
 
 public class Dome {
     private ImageObject domeImage;
-    private static Dome instance;
+    private Astronaut astronaut;
     private double initialHealth;
     private double health;
     private int weaponSliderX;
@@ -18,9 +19,11 @@ public class Dome {
     // second hashmap has the key of position x and value of position y
     private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
-    private Dome() {
+    public Dome(Astronaut astronaut) {
         this.domeImage = new ImageObject("assets/Nadzemie/Dome small.png", 457, 260, 96, 95);
         this.domeImage.makeVisible();
+
+        this.astronaut = astronaut;
 
         this.weaponPosition = new HashMap<>();
         // 70 is the length of the circle diameter
@@ -64,7 +67,7 @@ public class Dome {
      * This method is managed by the manager and can be called by a specific key.
      */
     public void shoot() {
-        if (Astronaut.getInstance().isInDome()) {
+        if (this.astronaut.isInDome()) {
             this.weapon.shoot();
         }
     }
@@ -86,7 +89,7 @@ public class Dome {
      * This method is managed by the manager and can be called by a specific key.
      */
     public void moveWeaponRight() {
-        if (!Astronaut.getInstance().isInDome()) {
+        if (!this.astronaut.isInDome()) {
             return;
         }
         if (this.weaponSliderX > 0 && this.weaponSliderX <= 70) {
@@ -101,7 +104,7 @@ public class Dome {
      * This method is managed by the manager and can be called by a specific key.
      */
     public void moveWeaponLeft() {
-        if (!Astronaut.getInstance().isInDome()) {
+        if (!this.astronaut.isInDome()) {
             return;
         }
         if (this.weaponSliderX >= 0 && this.weaponSliderX < 70) {
@@ -137,13 +140,6 @@ public class Dome {
 
     public double getHealth() {
         return this.health;
-    }
-
-    public static Dome getInstance() {
-        if (instance == null) {
-            instance = new Dome();
-        }
-        return instance;
     }
 
     public ImageObject getDomeImage() {

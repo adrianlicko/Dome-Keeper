@@ -6,14 +6,13 @@ import java.util.Optional;
 import java.util.Random;
 
 public class GameMap {
-    private static GameMap instance;
     private int blocksWidth;
     private int blocksHeight;
     private Block[][] blocks;
     private Image upperMapBackground;
     private Image lowerMapBackground;
 
-    private GameMap() {
+    public GameMap() {
         this.blocksWidth = 21;
         this.blocksHeight = 9;
         this.blocks = new Block[this.blocksHeight][this.blocksWidth];
@@ -82,12 +81,5 @@ public class GameMap {
                 }
             }
         }
-    }
-
-    public static GameMap getInstance() {
-        if (instance == null) {
-            instance = new GameMap();
-        }
-        return instance;
     }
 }

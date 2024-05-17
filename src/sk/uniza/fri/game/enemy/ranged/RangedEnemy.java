@@ -1,5 +1,6 @@
 package sk.uniza.fri.game.enemy.ranged;
 
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.action.enemy.ActionAttackDome;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.player.Dome;
@@ -27,9 +28,9 @@ public abstract class RangedEnemy extends Enemy {
 
     public void addProjectile(String directoryPath, int projectilePositionCorrectionFromLeft, int projectilePositionCorrectionFromRight, int elevation) {
         if (this.getSide().equals("/right")) {
-            this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromRight, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, Dome.getInstance().getDomeImage(), 2));
+            this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromRight, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, Game.getInstance().getDome().getDomeImage(), 2));
         } else {
-            this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromLeft, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, Dome.getInstance().getDomeImage(), 2));
+            this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromLeft, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, Game.getInstance().getDome().getDomeImage(), 2));
         }
         this.projectiles.get(this.projectiles.size() - 1).getProjectileImage().makeVisible();
     }

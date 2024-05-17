@@ -1,8 +1,8 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.player.HUD;
 
 public class HealthPotion extends SpecialItem {
     public HealthPotion(int amount) {
@@ -11,7 +11,7 @@ public class HealthPotion extends SpecialItem {
 
     @Override
     public void use() {
-        HUD.getInstance().increaseDomeHealth(this.getAmount());
+        Game.getInstance().getHUD().increaseDomeHealth(this.getAmount());
         this.setEquipped(true);
     }
 

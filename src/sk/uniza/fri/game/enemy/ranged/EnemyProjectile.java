@@ -2,7 +2,6 @@ package sk.uniza.fri.game.enemy.ranged;
 
 import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;
-import sk.uniza.fri.game.player.Dome;
 
 public class EnemyProjectile {
     private ImageObject bulletImage;

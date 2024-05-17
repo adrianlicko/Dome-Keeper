@@ -1,8 +1,8 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.player.HUD;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,7 +29,7 @@ public class HealingRing extends SpecialItem {
             @Override
             public void run() {
                 if (this.timesRun < HealingRing.this.totalAmount) {
-                    HUD.getInstance().increaseDomeHealth(HealingRing.this.getAmount());
+                    Game.getInstance().getHUD().increaseDomeHealth(HealingRing.this.getAmount());
                     this.timesRun++;
                 } else {
                     HealingRing.this.timer.cancel(); // stop the timer when it has run healingTime times

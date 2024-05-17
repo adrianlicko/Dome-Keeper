@@ -1,16 +1,14 @@
 package sk.uniza.fri.game.action.player;
 
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.Block;
-import sk.uniza.fri.game.map.GameMap;
-import sk.uniza.fri.game.player.Astronaut;
-import sk.uniza.fri.game.player.HUD;
 
 public class ActionMine {
-    public void mine(Block minedBlock, int damage) {
+    public static void mine(Block minedBlock, int damage) {
         if (!minedBlock.receiveDamage(damage)) {
-            GameMap.getInstance().breakBlock(minedBlock);
-            Astronaut.getInstance().addCoinToInventory(minedBlock.getType());
-            HUD.getInstance().updateHudOfPlayersCoin(minedBlock.getType());
+            Game.getInstance().getGameMap().breakBlock(minedBlock);
+            Game.getInstance().getAstronaut().addCoinToInventory(minedBlock.getType());
+            Game.getInstance().getHUD().updateHudOfPlayersCoin(minedBlock.getType());
         }
     }
 }

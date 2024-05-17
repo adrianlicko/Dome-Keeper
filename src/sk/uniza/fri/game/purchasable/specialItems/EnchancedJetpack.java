@@ -1,8 +1,8 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.player.Astronaut;
 
 public class EnchancedJetpack extends SpecialItem {
 
@@ -12,7 +12,7 @@ public class EnchancedJetpack extends SpecialItem {
 
     @Override
     public void use() {
-        Astronaut.getInstance().setMovementSpeed(this.getAmount());
+        Game.getInstance().getAstronaut().setMovementSpeed(this.getAmount());
         this.setEquipped(true);
     }
 

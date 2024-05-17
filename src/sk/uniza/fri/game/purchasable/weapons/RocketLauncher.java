@@ -1,7 +1,6 @@
 package sk.uniza.fri.game.purchasable.weapons;
 
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.purchasable.Purchasable;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
 public class RocketLauncher extends Weapon {

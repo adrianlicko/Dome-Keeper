@@ -2,6 +2,7 @@ package sk.uniza.fri.game.player;
 
 import sk.uniza.fri.ImageLoader;
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.action.player.ActionMine;
 import sk.uniza.fri.game.map.Block;
 import sk.uniza.fri.game.map.BlockType;
@@ -12,7 +13,7 @@ import java.util.*;
 public class Astronaut {
     private ImageLoader imageLoader;
     private ImageObject astronautImage;
-    private static Astronaut instance;
+    private GameMap gameMap;
     private HashMap<BlockType, Integer> inventory;
     private ActionMine mining;
     private int damage;
@@ -21,9 +22,10 @@ public class Astronaut {
     private boolean isInDome;
     private Timer idleTimer;
 
-    private Astronaut() {
+    public Astronaut(GameMap gameMap) {
         this.imageLoader = new ImageLoader("assets/Astronaut/idle");
         this.astronautImage = new ImageObject(this.imageLoader.getNextImage(), 486, 325, 40, 49);
+        this.gameMap = gameMap;
         this.astronautImage.makeVisible();
         this.mining = new ActionMine();
         this.inventory = new HashMap<>();
@@ -80,7 +82,7 @@ public class Astronaut {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() - (this.astronautImage.getImageHeight() / 2) + 5);
+        Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() - (this.astronautImage.getImageHeight() / 2) + 5);
         this.changeImageDirectory("up");
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), this.damage);
@@ -103,7 +105,7 @@ public class Astronaut {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() + (this.astronautImage.getImageHeight() / 2) - 5);
+        Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() + (this.astronautImage.getImageHeight() / 2) - 5);
         this.changeImageDirectory("down");
         if (minedBlock.isPresent()) {
             this.mining.mine(minedBlock.get(), this.damage);
@@ -129,7 +131,7 @@ public class Astronaut {
             return;
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX() - (this.astronautImage.getImageWidth() / 2), this.astronautImage.getHitY());
+        Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX() - (this.astronautImage.getImageWidth() / 2), this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
             this.changeImageDirectory("drillLeft");
             this.mining.mine(minedBlock.get(), this.damage);
@@ -157,7 +159,7 @@ public class Astronaut {
 
         }
 
-        Optional<Block> minedBlock = GameMap.getInstance().isInBlock(this.astronautImage.getHitX() + (this.astronautImage.getImageWidth() / 2) - 5, this.astronautImage.getHitY());
+        Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX() + (this.astronautImage.getImageWidth() / 2) - 5, this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
             this.changeImageDirectory("drillRight");
             this.mining.mine(minedBlock.get(), this.damage);
@@ -193,12 +195,5 @@ public class Astronaut {
 
     public boolean isInDome() {
         return this.isInDome;
-    }
-
-    public static Astronaut getInstance() {
-        if (instance == null) {
-            instance = new Astronaut();
-        }
-        return instance;
     }
 }

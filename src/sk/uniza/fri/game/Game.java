@@ -3,10 +3,7 @@ package sk.uniza.fri.game;
 import fri.shapesge.Manager;
 import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.enemy.Enemy;
-import sk.uniza.fri.game.enemy.melee.Flyer;
-import sk.uniza.fri.game.enemy.melee.Walker;
 import sk.uniza.fri.game.enemy.ranged.Shifter;
-import sk.uniza.fri.game.enemy.ranged.Worm;
 import sk.uniza.fri.game.map.GameMap;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;
@@ -18,21 +15,29 @@ import java.util.List;
 
 public class Game {
     private static Game instance;
+    private GameMap gameMap;
+    private Astronaut astronaut;
+    private Dome dome;
+    private HUD hud;
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Manager manager = new Manager();
 
     private Game() {
+        this.gameMap = new GameMap();
+        this.gameMap.createBlocks();
+
+        this.astronaut = new Astronaut(this.gameMap);
+        this.astronaut.setDamage(1);
+        this.astronaut.setMovementSpeed(2);
+
+        this.dome = new Dome(this.astronaut);
+        this.dome.setHealth(60);
+
+        this.hud = new HUD(this.astronaut, this.dome);
         this.startGame();
     }
 
     public void startGame() {
-        GameMap.getInstance().createBlocks();
-
-        Astronaut.getInstance().setDamage(1);
-        Astronaut.getInstance().setMovementSpeed(2);
-        Dome.getInstance().setHealth(60);
-        HUD.getInstance();
-
 //        this.enemies.add(new Walker(40, 5, 0, 250));
 //        this.enemies.add(new Walker(50, 10, 1030, 250));
 //        this.enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
@@ -56,16 +61,16 @@ public class Game {
     }
 
     public void manageObjects() {
-        this.manager.manageObject(Astronaut.getInstance());
-        this.manager.manageObject(Dome.getInstance());
+        this.manager.manageObject(this.astronaut);
+        this.manager.manageObject(this.dome);
         for (var enemy : this.enemies) {
             this.manager.manageObject(enemy);
         }
     }
 
     public void stopManagingObjects() {
-        this.manager.stopManagingObject(Astronaut.getInstance());
-        this.manager.stopManagingObject(Dome.getInstance());
+        this.manager.stopManagingObject(this.astronaut);
+        this.manager.stopManagingObject(this.dome);
         for (var enemy : this.enemies) {
             this.manager.stopManagingObject(enemy);
         }
@@ -78,6 +83,22 @@ public class Game {
     public void endGame() {
         System.out.println("Game over");
         System.exit(0);
+    }
+
+    public GameMap getGameMap() {
+        return this.gameMap;
+    }
+
+    public Astronaut getAstronaut() {
+        return this.astronaut;
+    }
+
+    public Dome getDome() {
+        return this.dome;
+    }
+
+    public HUD getHUD() {
+        return this.hud;
     }
 
     public static Game getInstance() {
