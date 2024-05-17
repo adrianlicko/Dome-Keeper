@@ -27,14 +27,14 @@ public class Store extends JFrame {
 
         this.storeList = new StoreList(this);
 
-        this.storeList.addToStore(new Shotgun(), BlockType.GOLD);
-        this.storeList.addToStore(new MagicWand(), BlockType.DIAMOND);
-        this.storeList.addToStore(new AK47(), BlockType.STONE);
-        this.storeList.addToStore(new RocketLauncher(), BlockType.STONE);
-        this.storeList.addToStore(new HealthPotion(5), BlockType.STONE);
-        this.storeList.addToStore(new HealingRing(1, 20, 5), BlockType.STONE);
-        this.storeList.addToStore(new RingOfPower(10), BlockType.STONE);
-        this.storeList.addToStore(new EnchancedJetpack(4), BlockType.STONE);
+        this.storeList.addToStore(new Shotgun());
+        this.storeList.addToStore(new MagicWand());
+        this.storeList.addToStore(new AK47());
+        this.storeList.addToStore(new RocketLauncher());
+        this.storeList.addToStore(new HealthPotion(5));
+        this.storeList.addToStore(new HealingRing(1, 20, 5));
+        this.storeList.addToStore(new RingOfPower(10));
+        this.storeList.addToStore(new EnchancedJetpack(4));
 
         this.pack();
         this.setVisible(true);

@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.player.Astronaut;
 
 public class RingOfPower extends SpecialItem {
@@ -38,5 +39,10 @@ public class RingOfPower extends SpecialItem {
     @Override
     public int getPrice() {
         return 10;
+    }
+
+    @Override
+    public BlockType getBlockType() {
+        return BlockType.GOLD;
     }
 }

@@ -1,5 +1,6 @@
 package sk.uniza.fri.game.purchasable.weapons;
 
+import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.purchasable.Purchasable;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
@@ -28,5 +29,10 @@ public class RocketLauncher extends Weapon {
     @Override
     public int getPrice() {
         return 10;
+    }
+
+    @Override
+    public BlockType getBlockType() {
+        return BlockType.GOLD;
     }
 }

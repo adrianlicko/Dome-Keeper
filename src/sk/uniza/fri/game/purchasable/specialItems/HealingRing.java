@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.player.HUD;
 
 import java.util.Timer;
@@ -63,5 +64,10 @@ public class HealingRing extends SpecialItem {
     @Override
     public int getPrice() {
         return this.getAmount() * (this.delay * this.totalAmount / 5);
+    }
+
+    @Override
+    public BlockType getBlockType() {
+        return BlockType.GOLD;
     }
 }

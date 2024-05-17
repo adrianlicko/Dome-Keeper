@@ -64,7 +64,7 @@ public class StoreList {
         this.coinPanel.revalidate();
     }
 
-    public void addToStore(Purchasable item, BlockType blockType) {
+    public void addToStore(Purchasable item) {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
 
@@ -90,18 +90,18 @@ public class StoreList {
 
 
 
-        ImageIcon buyIcon = new ImageIcon(blockType.getCoinImagePath());
+        ImageIcon buyIcon = new ImageIcon(item.getBlockType().getCoinImagePath());
         JLabel buyIconLabel = new JLabel(buyIcon);
 
         JButton buyButton = new JButton("Buy");
         buyButton.addActionListener(e -> {
             if (item.isPurchased()) {
                 JOptionPane.showMessageDialog(this.frame, "This item is already bought.", "Warning", JOptionPane.WARNING_MESSAGE);
-            } else if (Astronaut.getInstance().getInventory().get(blockType) < item.getPrice()) {
+            } else if (Astronaut.getInstance().getInventory().get(item.getBlockType()) < item.getPrice()) {
                 JOptionPane.showMessageDialog(this.frame, "You don't have enough coins.", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
                 item.setPurchased(true);
-                Astronaut.getInstance().removeCoinFromInventory(blockType, item.getPrice());
+                Astronaut.getInstance().removeCoinFromInventory(item.getBlockType(), item.getPrice());
                 this.updateCoinPanel();
             }
         });

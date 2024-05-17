@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.purchasable.specialItems;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.player.HUD;
 
 public class HealthPotion extends SpecialItem {
@@ -37,5 +38,10 @@ public class HealthPotion extends SpecialItem {
     @Override
     public int getPrice() {
         return 5 * this.getAmount();
+    }
+
+    @Override
+    public BlockType getBlockType() {
+        return BlockType.STONE;
     }
 }

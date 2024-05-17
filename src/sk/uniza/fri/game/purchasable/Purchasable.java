@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.purchasable;
 
 import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.map.BlockType;
 
 public interface Purchasable {
     ImageObject getImage();
@@ -11,4 +12,5 @@ public interface Purchasable {
     boolean isEquipped();
     boolean isPurchased();
     void setPurchased(boolean purchased);
+    BlockType getBlockType();
 }
