@@ -5,8 +5,8 @@ import sk.uniza.fri.game.enemy.Enemy;
 
 public abstract class MeleeEnemy extends Enemy {
 
-    public MeleeEnemy(int health, int damage, int x, int y, String enemyImageDirectory, int imageWidth, int imageHeight) {
-        super(health, damage, x, y, enemyImageDirectory, imageWidth, imageHeight);
+    public MeleeEnemy(int health, int damage, String enemyImageDirectory, int imageWidth, int imageHeight) {
+        super(health, damage, enemyImageDirectory, imageWidth, imageHeight);
     }
 
     protected void charge(int enemyPositionCorrectionFromLeft, int enemyPositionCorrectionFromRight, int enemyPositionCorrectionFromTop, int attackSpeed, String attackImageDirectory) {

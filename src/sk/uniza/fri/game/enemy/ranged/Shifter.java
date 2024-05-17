@@ -1,9 +1,11 @@
 package sk.uniza.fri.game.enemy.ranged;
 
+import java.util.Random;
+
 public class Shifter extends RangedEnemy {
 
-    public Shifter(int health, int damage, int x, int y) {
-        super(health, damage, x, y, "assets/enemies/shifter/appear", 96, 80);
+    public Shifter(int health, int damage) {
+        super(health, damage, "assets/enemies/shifter/appear", 96, 80);
     }
 
     @Override
@@ -83,6 +85,16 @@ public class Shifter extends RangedEnemy {
                     }
                     break;
             }
+        }
+    }
+
+    @Override
+    public void randomSpawn() {
+        var random = new Random();
+        if (random.nextBoolean()) {
+            this.getEnemyImage().changePosition(random.nextInt(150, 425), random.nextInt(100, 150));
+        } else {
+            this.getEnemyImage().changePosition(random.nextInt(490, 770), random.nextInt(100, 150));
         }
     }
 }

@@ -16,16 +16,18 @@ public abstract class Enemy {
     private Timer timer;
     private boolean isAttacking;
 
-    public Enemy(int health, int damage, int x, int y, String enemyImageDirectory, int imageWidth, int imageHeight) {
-        // "half" of the map
-        if (x < 450) {
+    public Enemy(int health, int damage, String enemyImageDirectory, int imageWidth, int imageHeight) {
+        this.imageLoader = new ImageLoader(enemyImageDirectory + "/right");
+        this.enemyImage = new ImageObject(this.imageLoader.getNextImage(), imageWidth, imageHeight);
+        this.randomSpawn();
+        if (this.getEnemyImage().getX() < 450) {
             this.side = "/right";
         } else {
             this.side = "/left";
         }
-        this.imageLoader = new ImageLoader(enemyImageDirectory + this.side);
-        this.enemyImage = new ImageObject(this.imageLoader.getNextImage(), x, y, imageWidth, imageHeight);
+        this.imageLoader.changeDirectory(enemyImageDirectory + this.side);
         this.enemyImage.makeVisible();
+
         this.health = health;
         this.damage = damage;
         this.timer = new Timer();
@@ -48,6 +50,8 @@ public abstract class Enemy {
             }, speedInSeconds * 1000L);
         }
     }
+
+    public abstract void randomSpawn();
 
     public int getDamage() {
         return this.damage;

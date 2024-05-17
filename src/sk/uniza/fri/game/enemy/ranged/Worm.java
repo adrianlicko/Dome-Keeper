@@ -1,9 +1,11 @@
 package sk.uniza.fri.game.enemy.ranged;
 
+import java.util.Random;
+
 public class Worm extends RangedEnemy {
 
-    public Worm(int health, int damage, int x, int y) {
-        super(health, damage, x, y, "assets/enemies/worm/appear", 132, 100);
+    public Worm(int health, int damage) {
+        super(health, damage, "assets/enemies/worm/appear", 132, 100);
     }
 
     @Override
@@ -83,4 +85,13 @@ public class Worm extends RangedEnemy {
         }
     }
 
+    @Override
+    public void randomSpawn() {
+        var random = new Random();
+        if (random.nextBoolean()) {
+            this.getEnemyImage().changePosition(random.nextInt(0, 330), 235);
+        } else {
+            this.getEnemyImage().changePosition(random.nextInt(540, 870), 235);
+        }
+    }
 }

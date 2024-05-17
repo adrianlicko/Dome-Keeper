@@ -16,8 +16,8 @@ public abstract class RangedEnemy extends Enemy {
     private int invisibleCount;
     private ArrayList<HomingProjectile> projectiles;
 
-    public RangedEnemy(int health, int damage, int x, int y, String enemyImageDirectory, int imageWidth, int imageHeight) {
-        super(health, damage, x, y, enemyImageDirectory, imageWidth, imageHeight);
+    public RangedEnemy(int health, int damage, String enemyImageDirectory, int imageWidth, int imageHeight) {
+        super(health, damage, enemyImageDirectory, imageWidth, imageHeight);
         this.state = State.APPEAR;
         this.random = new Random();
         this.projectiles = new ArrayList<>();

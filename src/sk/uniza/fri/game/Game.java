@@ -3,7 +3,10 @@ package sk.uniza.fri.game;
 import fri.shapesge.Manager;
 import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.enemy.Enemy;
+import sk.uniza.fri.game.enemy.melee.Flyer;
+import sk.uniza.fri.game.enemy.melee.Walker;
 import sk.uniza.fri.game.enemy.ranged.Shifter;
+import sk.uniza.fri.game.enemy.ranged.Worm;
 import sk.uniza.fri.game.map.GameMap;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;
@@ -19,6 +22,7 @@ public class Game {
     private Astronaut astronaut;
     private Dome dome;
     private HUD hud;
+    //private EnemyWaveGenerator enemyWaveGenerator;
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Manager manager = new Manager();
 
@@ -34,16 +38,19 @@ public class Game {
         this.dome.setHealth(60);
 
         this.hud = new HUD(this.astronaut, this.dome);
+
+
+
         this.startGame();
     }
 
     public void startGame() {
-//        this.enemies.add(new Walker(40, 5, 0, 250));
-//        this.enemies.add(new Walker(50, 10, 1030, 250));
-//        this.enemies.add(new Flyer(100, 7, 100, 10)); // y: range from -whatever to 150
-//        this.enemies.add(new Flyer(100, 7, 900, 10));
-//        this.enemies.add(new Worm(100, 7, 50, 240));
-        this.enemies.add(new Shifter(20, 7, 300, 100));
+//        this.enemies.add(new Walker(40, 5));
+//        this.enemies.add(new Walker(50, 10));
+//        this.enemies.add(new Flyer(100, 7)); // y: range from -whatever to 150
+//        this.enemies.add(new Flyer(100, 7));
+//        this.enemies.add(new Worm(100, 7));
+        this.enemies.add(new Shifter(20, 7));
     }
 
     public List<Enemy> getEnemies() {
