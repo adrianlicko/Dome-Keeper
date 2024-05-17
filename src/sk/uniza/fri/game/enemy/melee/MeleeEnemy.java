@@ -33,6 +33,7 @@ public abstract class MeleeEnemy extends Enemy {
 
     @Override
     public boolean receiveDamage(int damage) {
-        return false;
+        this.decreaseHealth(damage);
+        return this.getHealth() > 0;
     }
 }

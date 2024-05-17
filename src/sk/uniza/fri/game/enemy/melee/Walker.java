@@ -10,10 +10,4 @@ public class Walker extends MeleeEnemy {
     public void charge() {
         super.charge(100, 20, 0, 4, "assets/enemies/walker/attack");
     }
-
-    @Override
-    public boolean receiveDamage(int damage) {
-        this.decreaseHealth(damage);
-        return this.getHealth() > 0;
-    }
 }

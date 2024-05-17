@@ -10,10 +10,4 @@ public class Flyer extends MeleeEnemy {
     public void charge() {
         super.charge(80, 40, 150, 4, "assets/enemies/flyer/attack");
     }
-
-    @Override
-    public boolean receiveDamage(int damage) {
-        this.decreaseHealth(damage);
-        return this.getHealth() > 0;
-    }
 }
