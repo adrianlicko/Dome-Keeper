@@ -6,6 +6,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class EnemyWaveGenerator {
     private List<Class<? extends Enemy>> enemyClasses = new ArrayList<>();
@@ -43,18 +44,20 @@ public class EnemyWaveGenerator {
         System.out.println("Found " + this.enemyClasses.size() + " enemy classes");
     }
 
-    public Enemy getEnemy(int index, int health, int damage) {
+    public Enemy getRandomEnemy(int health, int damage) {
+        var random = new Random();
         try {
-            if (index >= 0 && index < this.enemyClasses.size()) {
-                Class<? extends Enemy> enemyClass = this.enemyClasses.get(index);
-                // Get the constructor that takes two integers as parameters
-                java.lang.reflect.Constructor<? extends Enemy> constructor = enemyClass.getDeclaredConstructor(int.class, int.class);
-                // Create a new instance using the constructor
-                return constructor.newInstance(health, damage);
-            }
+            Class<? extends Enemy> enemyClass = this.enemyClasses.get(random.nextInt(0, this.enemyClasses.size()));
+            // Get the constructor that takes two integers as parameters
+            java.lang.reflect.Constructor<? extends Enemy> constructor = enemyClass.getDeclaredConstructor(int.class, int.class);
+            // Create a new instance using the constructor
+            return constructor.newInstance(health, damage);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
+
+
 }

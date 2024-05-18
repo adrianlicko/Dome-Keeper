@@ -16,6 +16,7 @@ import sk.uniza.fri.game.player.HUD;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     private static Game instance;
@@ -27,8 +28,14 @@ public class Game {
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Manager manager = new Manager();
     private int wave;
+    private boolean canSpawnEnemy;
+    private Random random;
 
     private Game() {
+        this.wave = 0;
+        this.random = new Random();
+        this.canSpawnEnemy = true;
+
         this.gameMap = new GameMap();
         this.gameMap.createBlocks();
 
@@ -43,8 +50,6 @@ public class Game {
 
         this.enemyWaveGenerator = new EnemyWaveGenerator();
 
-        this.wave = 0;
-
         this.startGame();
     }
 
@@ -56,13 +61,32 @@ public class Game {
 //        this.enemies.add(new Worm(100, 7));
 //        this.enemies.add(new Shifter(20, 7));
 
-        this.enemies.add(this.enemyWaveGenerator.getEnemy(3, 5, 3));
+//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy( 5, 3));
+//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy( 5, 3));
+//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy( 5, 3));
+//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy(this.random.nextInt(1, 5) * 10, this.random.nextInt(1, 5) * 3));
     }
 
     public void startNewWave() {
-        this.wave++;
+        this.canSpawnEnemy = false;
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        Game.this.canSpawnEnemy = true;
+                        Game.this.wave++;
+                    }
+                },
+                20000 // delay in milliseconds
+        );
     }
 
+    public void randomlySpawnEnemy() {
+        if (this.canSpawnEnemy) {
+            this.enemies.add(this.enemyWaveGenerator.getRandomEnemy((this.wave * 2) + this.random.nextInt(1, 5) * 10, (this.wave * 2) + this.random.nextInt(1, 5) * 3));
+            this.manager.manageObject(this.enemies.get(this.enemies.size() - 1));
+        }
+    }
 
 
 
@@ -123,6 +147,10 @@ public class Game {
 
     public HUD getHUD() {
         return this.hud;
+    }
+
+    public int getWave() {
+        return this.wave;
     }
 
     public static Game getInstance() {
