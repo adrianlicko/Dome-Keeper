@@ -1,6 +1,7 @@
 package sk.uniza.fri.game;
 
 import fri.shapesge.Manager;
+import sk.uniza.fri.EnemyWaveGenerator;
 import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.enemy.melee.Flyer;
@@ -22,9 +23,10 @@ public class Game {
     private Astronaut astronaut;
     private Dome dome;
     private HUD hud;
-    //private EnemyWaveGenerator enemyWaveGenerator;
+    private EnemyWaveGenerator enemyWaveGenerator;
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Manager manager = new Manager();
+    private int wave;
 
     private Game() {
         this.gameMap = new GameMap();
@@ -39,7 +41,9 @@ public class Game {
 
         this.hud = new HUD(this.astronaut, this.dome);
 
+        this.enemyWaveGenerator = new EnemyWaveGenerator();
 
+        this.wave = 0;
 
         this.startGame();
     }
@@ -50,21 +54,34 @@ public class Game {
 //        this.enemies.add(new Flyer(100, 7)); // y: range from -whatever to 150
 //        this.enemies.add(new Flyer(100, 7));
 //        this.enemies.add(new Worm(100, 7));
-        this.enemies.add(new Shifter(20, 7));
+//        this.enemies.add(new Shifter(20, 7));
+
+        this.enemies.add(this.enemyWaveGenerator.getEnemy(3, 5, 3));
     }
 
-    public List<Enemy> getEnemies() {
-        return Collections.unmodifiableList(this.enemies);
+    public void startNewWave() {
+        this.wave++;
+    }
+
+
+
+
+
+    public void stopOrStartGame() {
+        Menu.getInstance().openShop();
     }
 
     public void removeEnemy(Enemy enemy) {
         enemy.getEnemyImage().makeInvisible();
         this.manager.stopManagingObject(enemy);
         this.enemies.remove(enemy);
+        if (this.enemies.isEmpty()) {
+            this.startNewWave();
+        }
     }
 
-    public void stopOrStartGame() {
-        Menu.getInstance().openShop();
+    public List<Enemy> getEnemies() {
+        return Collections.unmodifiableList(this.enemies);
     }
 
     public void manageObjects() {
