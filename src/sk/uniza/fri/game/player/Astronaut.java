@@ -193,6 +193,10 @@ public class Astronaut {
         this.inventory.replace(blockType, this.inventory.get(blockType) - amount);
     }
 
+    public void spawnAtSpawnpoint() {
+        this.astronautImage.changePosition(486, 325);
+    }
+
     public boolean isInDome() {
         return this.isInDome;
     }

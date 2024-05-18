@@ -28,15 +28,20 @@ public class GameMap {
      * Create blocks for the game map.
      */
     public void createBlocks() {
+        Random random = new Random();
         int positionYFirstBlock = 318; // (height of the map) - ((size of block) * (number of blocks in height)), 750 - 432
 
         for (int i = 1; i < this.blocksHeight - 1; i++) {
             positionYFirstBlock = positionYFirstBlock + 48;
             int positionXFirstBlock = 0;
+
             for (int j = 1; j < this.blocksWidth - 1; j++) {
                 positionXFirstBlock = positionXFirstBlock + 48;
 
-                Random random = new Random();
+                if (this.blocks[i][j] != null) {
+                    continue;
+                }
+
                 int randomInt = random.nextInt(12);
                 if (randomInt == 0 || randomInt == 1) {
                     this.blocks[i][j] = new Block(BlockType.GOLD, positionXFirstBlock, positionYFirstBlock);

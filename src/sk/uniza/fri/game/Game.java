@@ -29,6 +29,7 @@ public class Game {
     private Manager manager = new Manager();
     private int wave;
     private boolean canSpawnEnemy;
+    private boolean isManagingObjects;
     private Random random;
 
     private Game() {
@@ -82,7 +83,7 @@ public class Game {
     }
 
     public void randomlySpawnEnemy() {
-        if (this.canSpawnEnemy) {
+        if (this.canSpawnEnemy && this.isManagingObjects) {
             this.enemies.add(this.enemyWaveGenerator.getRandomEnemy((this.wave * 2) + this.random.nextInt(1, 5) * 10, (this.wave * 2) + this.random.nextInt(1, 5) * 3));
             this.manager.manageObject(this.enemies.get(this.enemies.size() - 1));
         }
@@ -109,6 +110,7 @@ public class Game {
     }
 
     public void manageObjects() {
+        this.isManagingObjects = true;
         this.manager.manageObject(this.astronaut);
         this.manager.manageObject(this.dome);
         for (var enemy : this.enemies) {
@@ -117,6 +119,7 @@ public class Game {
     }
 
     public void stopManagingObjects() {
+        this.isManagingObjects = false;
         this.manager.stopManagingObject(this.astronaut);
         this.manager.stopManagingObject(this.dome);
         for (var enemy : this.enemies) {
