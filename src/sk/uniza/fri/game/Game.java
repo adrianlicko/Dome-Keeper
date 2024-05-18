@@ -6,6 +6,7 @@ import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.enemy.melee.Flyer;
 import sk.uniza.fri.game.enemy.melee.Walker;
+import sk.uniza.fri.game.enemy.ranged.RangedEnemy;
 import sk.uniza.fri.game.enemy.ranged.Shifter;
 import sk.uniza.fri.game.enemy.ranged.Worm;
 import sk.uniza.fri.game.map.GameMap;
@@ -98,6 +99,9 @@ public class Game {
 
     public void removeEnemy(Enemy enemy) {
         enemy.getEnemyImage().makeInvisible();
+        if (enemy instanceof RangedEnemy rangedEnemy) {
+            rangedEnemy.removeAllProjectiles();
+        }
         this.manager.stopManagingObject(enemy);
         this.enemies.remove(enemy);
         if (this.enemies.isEmpty()) {
