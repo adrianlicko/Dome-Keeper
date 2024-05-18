@@ -5,7 +5,7 @@ import java.util.Random;
 public class Flyer extends MeleeEnemy {
 
     public Flyer(int health, int damage) {
-        super(health, damage, "assets/enemies/flyer/move", 110, 105);
+        super(health, damage, "assets/enemies/flyer/move", 110, 150);
     }
 
     @Override

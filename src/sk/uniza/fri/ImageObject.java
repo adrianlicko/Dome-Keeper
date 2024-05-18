@@ -10,7 +10,7 @@ public class ImageObject extends Image {
     private int imageHeight;
 
     public ImageObject(String imagePath) {
-        super(imagePath);
+        super(imagePath, 0, 0);
         this.imagePath = imagePath;
     }
 
@@ -23,7 +23,6 @@ public class ImageObject extends Image {
 
     public ImageObject(String imagePath, int x, int y, int imageWidth, int imageHeight) {
         this(imagePath, x, y);
-        this.imagePath = imagePath;
         this.imageWidth = imageWidth;
         this.imageHeight = imageHeight;
     }

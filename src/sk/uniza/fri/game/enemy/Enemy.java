@@ -18,7 +18,7 @@ public abstract class Enemy {
 
     public Enemy(int health, int damage, String enemyImageDirectory, int imageWidth, int imageHeight) {
         this.imageLoader = new ImageLoader(enemyImageDirectory + "/right");
-        this.enemyImage = new ImageObject(this.imageLoader.getNextImage(), imageWidth, imageHeight);
+        this.enemyImage = new ImageObject(this.imageLoader.getNextImage(), 0, 0, imageWidth, imageHeight);
         this.randomSpawn();
         if (this.getEnemyImage().getX() < 450) {
             this.side = "/right";
