@@ -11,6 +11,13 @@ import java.util.Random;
  */
 public class Worm extends RangedEnemy {
 
+    /**
+     * Constructor for the Worm class.
+     * The instance of this class is created by EnemyWaveGenerator
+     *
+     * @param health - Integer value representing the health of the enemy.
+     * @param damage - Integer value representing the damage that enemy deals.
+     */
     public Worm(int health, int damage) {
         super(health, damage, "assets/enemies/worm/appear", 132, 100);
     }
@@ -37,13 +44,12 @@ public class Worm extends RangedEnemy {
                     this.getImageLoader().changeDirectory("assets/enemies/worm/idle" + this.getSide());
                     this.getEnemyImage().changeImage(this.getImageLoader().getNextImage());
                     this.setIdleCount(this.getIdleCount() + 1);
-                    return;
                 } else {
                     this.setTimeToIdle(0);
                     this.setIdleCount(0);
                     this.setState(State.ATTACK);
-                    return;
                 }
+                return;
             case ATTACK:
                 this.getImageLoader().changeDirectory("assets/enemies/worm/attack" + this.getSide());
                 break;

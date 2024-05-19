@@ -10,7 +10,7 @@ import fri.shapesge.Image;
  * @since 1.0
  */
 public class ImageObject extends Image {
-    private String imagePath;
+    private final String imagePath;
     private int x;
     private int y;
     private int imageWidth;
@@ -82,10 +82,6 @@ public class ImageObject extends Image {
         return this.x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public void addX(int x) {
         this.x += x;
     }
@@ -100,10 +96,6 @@ public class ImageObject extends Image {
 
     public int getY() {
         return this.y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public void addY(int y) {

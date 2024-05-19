@@ -10,7 +10,7 @@ import sk.uniza.fri.game.purchasables.Item;
  * @since 1.0
  */
 public abstract class SpecialItem extends Item {
-    private int amount;
+    private final int amount;
 
     public SpecialItem(int amount) {
         this.amount = amount;

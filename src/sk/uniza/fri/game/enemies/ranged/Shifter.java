@@ -11,6 +11,13 @@ import java.util.Random;
  */
 public class Shifter extends RangedEnemy {
 
+    /**
+     * Constructor for the Shifter class.
+     * The instance of this class is created by EnemyWaveGenerator
+     *
+     * @param health - Integer value representing the health of the enemy.
+     * @param damage - Integer value representing the damage that enemy deals.
+     */
     public Shifter(int health, int damage) {
         super(health, damage, "assets/enemies/shifter/appear", 96, 80);
     }
@@ -37,13 +44,12 @@ public class Shifter extends RangedEnemy {
                     this.getImageLoader().changeDirectory("assets/enemies/shifter/idle" + this.getSide());
                     this.getEnemyImage().changeImage(this.getImageLoader().getNextImage());
                     this.setIdleCount(this.getIdleCount() + 1);
-                    return;
                 } else {
                     this.setTimeToIdle(0);
                     this.setIdleCount(0);
                     this.setState(State.ATTACK);
-                    return;
                 }
+                return;
             case ATTACK:
                 this.getImageLoader().changeDirectory("assets/enemies/shifter/attack" + this.getSide());
                 break;

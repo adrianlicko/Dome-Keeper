@@ -11,6 +11,13 @@ import java.util.Random;
  */
 public class Flyer extends MeleeEnemy {
 
+    /**
+     * Constructor for the Flyer class.
+     * The instance of this class is created by EnemyWaveGenerator
+     *
+     * @param health - Integer value representing the health of the enemy.
+     * @param damage - Integer value representing the damage that enemy deals.
+     */
     public Flyer(int health, int damage) {
         super(health, damage, "assets/enemies/flyer/move", 110, 150);
     }

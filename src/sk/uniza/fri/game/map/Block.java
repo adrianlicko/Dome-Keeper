@@ -14,12 +14,12 @@ import java.util.TimerTask;
  * @since 1.0
  */
 public class Block {
-    private ImageObject blockImage;
-    private BlockType blockType;
+    private final ImageObject blockImage;
+    private final BlockType blockType;
     private int health;
-    private ImageLoader imageLoader;
+    private final ImageLoader imageLoader;
     private ImageObject miningImage;
-    private Timer timer;
+    private final Timer timer;
     private TimerTask currentTask;
 
     /**

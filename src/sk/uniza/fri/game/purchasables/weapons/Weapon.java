@@ -18,15 +18,15 @@ import java.util.TimerTask;
  * @since 1.0
  */
 public abstract class Weapon extends Item {
-    private ImageObject weaponImage;
-    private WeaponType weaponType;
-    private int damage;
+    private final ImageObject weaponImage;
+    private final WeaponType weaponType;
+    private final int damage;
     private int weaponAngle;
     private boolean isReversed;
-    private List<Projectile> projectiles;
+    private final List<Projectile> projectiles;
     private final Timer timer;
     private boolean isShooting;
-    private int fireRate;
+    private final int fireRate;
 
     /**
      * Constructor for the Weapon class.

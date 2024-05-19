@@ -2,6 +2,7 @@ package sk.uniza.fri.game;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Represents an image loader that loads images from a directory.
@@ -12,7 +13,7 @@ import java.util.HashMap;
  */
 public class ImageLoader {
     private String actualDirectoryPath;
-    private HashMap<Integer, String> imagePaths;
+    private final HashMap<Integer, String> imagePaths;
     private int currentIndex;
 
     /**
@@ -33,7 +34,7 @@ public class ImageLoader {
      */
     private void loadImages(String directoryPath) {
         File directory = new File(directoryPath);
-        for (File file : directory.listFiles()) {
+        for (File file : Objects.requireNonNull(directory.listFiles())) {
             if (file.getName().contains(".png")) {
                 this.imagePaths.put(Integer.parseInt(file.getName().replace(".png", "").split(" ")[2]), file.getPath());
             }

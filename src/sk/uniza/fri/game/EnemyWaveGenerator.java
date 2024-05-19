@@ -16,13 +16,15 @@ import java.util.Random;
  * @since 1.0
  */
 public class EnemyWaveGenerator {
-    private List<Class<? extends Enemy>> enemyClasses = new ArrayList<>();
+    private final List<Class<? extends Enemy>> enemyClasses;
 
     /**
      * Constructor for the EnemyWaveGenerator class.
      * Finds all enemy classes in the specified packages and stores them in a list.
      */
     public EnemyWaveGenerator() {
+        this.enemyClasses = new ArrayList<>();
+
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             List<String> packageNames = Arrays.asList("sk.uniza.fri.game.enemies.melee", "sk.uniza.fri.game.enemies.ranged");
@@ -32,25 +34,30 @@ public class EnemyWaveGenerator {
                 while (resources.hasMoreElements()) {
                     java.net.URL resource = resources.nextElement();
                     java.nio.file.Path directoryPath = java.nio.file.Paths.get(resource.toURI());
-                    java.nio.file.Files.walk(directoryPath)
-                            .filter(java.nio.file.Files::isRegularFile)
-                            .filter(file -> file.toString().endsWith(".class"))
-                            .filter(file -> !file.toString().contains("$")) // Exclude inner classes
-                            .forEach(file -> {
-                                String className = finalPackageName.replace("/", ".") + '.' + file.getFileName().toString().replace(".class", "");
-                                try {
-                                    Class<? extends Enemy> enemyClass = (Class<? extends Enemy>) Class.forName(className);
-                                    if (!Modifier.isAbstract(enemyClass.getModifiers()) && !enemyClass.isEnum() && !this.enemyClasses.contains(enemyClass)) {
-                                        this.enemyClasses.add(enemyClass);
+                    try (java.util.stream.Stream<java.nio.file.Path> stream = java.nio.file.Files.walk(directoryPath)) {
+                        stream
+                                .filter(java.nio.file.Files::isRegularFile)
+                                .filter(file -> file.toString().endsWith(".class"))
+                                .filter(file -> !file.toString().contains("$")) // Exclude inner classes
+                                .forEach(file -> {
+                                    String className = finalPackageName.replace("/", ".") + '.' + file.getFileName().toString().replace(".class", "");
+                                    try {
+                                        Class<?> clazz = Class.forName(className);
+                                        if (Enemy.class.isAssignableFrom(clazz)) {
+                                            Class<? extends Enemy> enemyClass = clazz.asSubclass(Enemy.class);
+                                            if (!Modifier.isAbstract(enemyClass.getModifiers()) && !enemyClass.isEnum() && !this.enemyClasses.contains(enemyClass)) {
+                                                this.enemyClasses.add(enemyClass);
+                                            }
+                                        }
+                                    } catch (ClassNotFoundException e) {
+                                        System.err.println("Class not found");
                                     }
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                            });
+                                });
+                    }
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error while loading enemy classes");
         }
         System.out.println("Found " + this.enemyClasses.size() + " enemy classes");
     }
@@ -58,8 +65,8 @@ public class EnemyWaveGenerator {
     /**
      * Returns a random enemy with the specified health and damage.
      *
-     * @param health - the health of the enemy
-     * @param damage - the damage of the enemy
+     * @param health - the health of the enemy.
+     * @param damage - the damage that the enemy deals.
      * @return - a random enemy
      */
     public Enemy getRandomEnemy(int health, int damage) {
@@ -71,7 +78,7 @@ public class EnemyWaveGenerator {
             // Create a new instance using the constructor
             return constructor.newInstance(health, damage);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error while creating enemy");
         }
         return null;
     }

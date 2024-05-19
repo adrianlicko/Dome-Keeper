@@ -23,23 +23,25 @@ import java.util.Random;
  */
 public class Game {
     private static Game instance;
-    private GameMap gameMap;
-    private Astronaut astronaut;
-    private Dome dome;
-    private HUD hud;
-    private EnemyWaveGenerator enemyWaveGenerator;
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private Manager manager = new Manager();
+    private final GameMap gameMap;
+    private final Astronaut astronaut;
+    private final Dome dome;
+    private final HUD hud;
+    private final EnemyWaveGenerator enemyWaveGenerator;
+    private final ArrayList<Enemy> enemies;
+    private final Manager manager;
     private int wave;
     private boolean canSpawnEnemy;
     private boolean isManagingObjects;
-    private Random random;
+    private final Random random;
 
     /**
      * Constructor for the Game class.
      * Creates a new game with the default values.
      */
     private Game() {
+        this.enemies = new ArrayList<>();
+        this.manager = new Manager();
         this.wave = 0;
         this.random = new Random();
         this.canSpawnEnemy = true;
@@ -84,13 +86,13 @@ public class Game {
     public void randomlySpawnEnemy() {
         if (this.canSpawnEnemy && this.isManagingObjects) {
             this.enemies.add(this.enemyWaveGenerator.getRandomEnemy((this.wave * 2) + this.random.nextInt(1, 5) * 10, (this.wave * 2) + this.random.nextInt(1, 5) * 3));
-            this.manager.manageObject(this.enemies.get(this.enemies.size() - 1));
+            this.manager.manageObject(this.enemies.getLast());
         }
     }
 
     /**
      * Stops or starts the game.
-     * This method is called by a key P in sbge.ini config file and it opens the shop.
+     * This method is called by a key P in sbge.ini config file, and it opens the shop.
      */
     public void stopOrStartGame() {
         Menu.getInstance().openShop();

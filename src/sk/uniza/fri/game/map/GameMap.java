@@ -13,22 +13,20 @@ import java.util.Random;
  * @since 1.0
  */
 public class GameMap {
-    private int blocksWidth;
-    private int blocksHeight;
-    private Block[][] blocks;
-    private Image upperMapBackground;
-    private Image lowerMapBackground;
+    private final int blocksWidth;
+    private final int blocksHeight;
+    private final Block[][] blocks;
 
     public GameMap() {
         this.blocksWidth = 21;
         this.blocksHeight = 9;
         this.blocks = new Block[this.blocksHeight][this.blocksWidth];
 
-        this.upperMapBackground = new Image("assets/Podzemie/abyss background.png", 0, -100);
-        this.upperMapBackground.makeVisible();
+        Image upperMapBackground = new Image("assets/Podzemie/abyss background.png", 0, -100);
+        upperMapBackground.makeVisible();
 
-        this.lowerMapBackground = new Image("assets/Podzemie/Underground background.png", 0, 318);
-        this.lowerMapBackground.makeVisible();
+        Image lowerMapBackground = new Image("assets/Podzemie/Underground background.png", 0, 318);
+        lowerMapBackground.makeVisible();
     }
 
     /**

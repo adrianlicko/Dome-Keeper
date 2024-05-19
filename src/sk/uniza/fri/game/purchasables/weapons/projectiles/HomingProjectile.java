@@ -13,11 +13,10 @@ import sk.uniza.fri.game.purchasables.weapons.Weapon;
  * @since 1.0
  */
 public class HomingProjectile extends Projectile {
-    private Weapon weapon;
-    private int speed;
+    private final int speed;
     private double angle;
     private ImageObject target;
-    private boolean isFiredByDome;
+    private final boolean isFiredByDome;
     private int initialMoves;
     private double dirX;
     private double dirY;
@@ -29,7 +28,7 @@ public class HomingProjectile extends Projectile {
      *
      * @param x - Integer value representing the x coordinate of the projectile.
      * @param y - Integer value representing the y coordinate of the projectile.
-     * @param damage - Integer value representing the damage of the projectile.
+     * @param damage - Integer value representing the damage that the projectile deals.
      * @param directoryPath - String value representing the directory path of the projectile images.
      * @param projectileWidth - Integer value representing the width of the projectile image.
      * @param projectileHeight - Integer value representing the height of the projectile image.
@@ -49,7 +48,7 @@ public class HomingProjectile extends Projectile {
      *
      * @param x - Integer value representing the x coordinate of the projectile.
      * @param y - Integer value representing the y coordinate of the projectile.
-     * @param damage - Integer value representing the damage of the projectile.
+     * @param damage - Integer value representing the damage that the projectile deals.
      * @param directoryPath - String value representing the directory path of the projectile images.
      * @param projectileWidth - Integer value representing the width of the projectile image.
      * @param projectileHeight - Integer value representing the height of the projectile image.
@@ -58,12 +57,11 @@ public class HomingProjectile extends Projectile {
      */
     public HomingProjectile(int x, int y, int damage, String directoryPath, int projectileWidth, int projectileHeight, Weapon weapon, int speed) {
         super(x, y, damage, directoryPath, projectileWidth, projectileHeight);
-        this.weapon = weapon;
         this.speed = speed;
-        if (this.weapon.isReversed()) {
-            this.angle = Math.toRadians(180) + Math.toRadians(this.weapon.getAngle());
+        if (weapon.isReversed()) {
+            this.angle = Math.toRadians(180) + Math.toRadians(weapon.getAngle());
         } else {
-            this.angle = Math.toRadians(this.weapon.getAngle());
+            this.angle = Math.toRadians(weapon.getAngle());
         }
         this.isFiredByDome = true;
         this.initialMoves = 5;
@@ -97,7 +95,6 @@ public class HomingProjectile extends Projectile {
      * If the projectile is fired by the Dome, it moves like a DirectProjectile for the first 5 moves. After that, it moves like a HomingProjectile.
      * If the projectile is fired by the Enemy, it moves like a HomingProjectile.
      * If the projectile is fired by the Dome and there are no enemies alive, it moves like a DirectProjectile.
-     *
      * Written with the help of copilot.
      */
     @Override

@@ -15,9 +15,9 @@ import java.util.TimerTask;
  * @since 1.0
  */
 public class HealingRing extends SpecialItem {
-    private int totalAmount;
-    private Timer timer;
-    private int delay;
+    private final int totalAmount;
+    private final Timer timer;
+    private final int delay;
 
     /**
      * Constructor for the HealingRing class.

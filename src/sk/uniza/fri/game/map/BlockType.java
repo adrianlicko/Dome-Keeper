@@ -12,10 +12,10 @@ public enum BlockType {
     GOLD("assets/Podzemie/Gold block.png", 100, "assets/Podzemie/Gold nugget icon.png", 2),
     DIAMOND("assets/Podzemie/Diamond block.png", 200, "assets/Podzemie/Diamond nugget icon.png", 2);
 
-    private String imagePath;
-    private int health;
-    private String coinImagePath;
-    private int coinValue;
+    private final String imagePath;
+    private final int health;
+    private final String coinImagePath;
+    private final int coinValue;
 
     /**
      * Constructor for the BlockType enum.

@@ -17,14 +17,11 @@ import java.util.Map;
  * @since 1.0
  */
 public class HUD {
-    private Astronaut astronaut;
-    private Dome dome;
-    private Rectangle hudBackground;
-    private Map<BlockType, Image> coinImages;
-    private Map<BlockType, TextBlock> coinText;
-    private Rectangle domeHealthIndicatorBackground;
-    private Rectangle domeHealthIndicator;
-    private TextBlock domeHealthText;
+    private final Astronaut astronaut;
+    private final Dome dome;
+    private final Map<BlockType, TextBlock> coinText;
+    private final Rectangle domeHealthIndicator;
+    private final TextBlock domeHealthText;
 
     /**
      * Constructor for the HUD class.
@@ -38,29 +35,29 @@ public class HUD {
         this.dome = dome;
 
         // HUD background
-        this.hudBackground = new Rectangle(0, 715);
-        this.hudBackground.changeSize(1008, 35);
-        this.hudBackground.changeColor("black");
-        this.hudBackground.makeVisible();
+        Rectangle hudBackground = new Rectangle(0, 715);
+        hudBackground.changeSize(1008, 35);
+        hudBackground.changeColor("black");
+        hudBackground.makeVisible();
 
         // Astronaut inventory
         this.coinText = new HashMap<>();
-        this.coinImages = new HashMap<>();
+        Map<BlockType, Image> coinImages = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
             this.coinText.put(blockType, new TextBlock("" + this.astronaut.getInventory().get(blockType), 950 - (blockType.ordinal() * 100), 742));
             this.coinText.get(blockType).changeFont("Arial", FontStyle.BOLD, 30);
             this.coinText.get(blockType).changeColor("white");
             this.coinText.get(blockType).makeVisible();
 
-            this.coinImages.put(blockType, new Image(blockType.getCoinImagePath(), 920 - (blockType.ordinal() * 100), 712));
-            this.coinImages.get(blockType).makeVisible();
+            coinImages.put(blockType, new Image(blockType.getCoinImagePath(), 920 - (blockType.ordinal() * 100), 712));
+            coinImages.get(blockType).makeVisible();
         }
 
         // Dome health indicator
-        this.domeHealthIndicatorBackground = new Rectangle(15, 721);
-        this.domeHealthIndicatorBackground.changeSize(100, 22);
-        this.domeHealthIndicatorBackground.changeColor("white");
-        this.domeHealthIndicatorBackground.makeVisible();
+        Rectangle domeHealthIndicatorBackground = new Rectangle(15, 721);
+        domeHealthIndicatorBackground.changeSize(100, 22);
+        domeHealthIndicatorBackground.changeColor("white");
+        domeHealthIndicatorBackground.makeVisible();
 
         this.domeHealthIndicator = new Rectangle(19, 724);
         this.domeHealthIndicator.changeSize(92, 16);

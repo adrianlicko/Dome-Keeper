@@ -15,19 +15,19 @@ import java.util.TimerTask;
  * @since 1.0
  */
 public abstract class Enemy {
-    private ImageObject enemyImage;
+    private final ImageObject enemyImage;
     private int health;
-    private int damage;
-    private ImageLoader imageLoader;
+    private final int damage;
+    private final ImageLoader imageLoader;
     private String side;
-    private Timer timer;
+    private final Timer timer;
     private boolean isAttacking;
 
     /**
      * Constructor for the Enemy class.
      *
      * @param health - Integer value representing the health of the enemy.
-     * @param damage - Integer value representing the damage of the enemy.
+     * @param damage - Integer value representing the damage that enemy deals.
      * @param enemyImageDirectory - String value representing the directory of the enemy images.
      * @param imageWidth - Integer value representing the width of the enemy image.
      * @param imageHeight - Integer value representing the height of the enemy image.
@@ -51,6 +51,7 @@ public abstract class Enemy {
 
     /**
      * Abstract method that is responsible for enemy moving and attacking the Dome.
+     * This method is managed by manager, so it's called constantly.
      */
     public abstract void charge();
 

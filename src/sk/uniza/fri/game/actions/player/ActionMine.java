@@ -15,8 +15,8 @@ public class ActionMine {
     /**
      * Method mine provides mining of blocks and adding coins to the inventory of the player.
      *
-     * @param minedBlock
-     * @param damage
+     * @param minedBlock - block to be mined
+     * @param damage - damage to be dealt to the block
      */
     public static void mine(Block minedBlock, int damage) {
         if (!minedBlock.receiveDamage(damage)) {

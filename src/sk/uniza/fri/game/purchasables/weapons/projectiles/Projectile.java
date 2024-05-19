@@ -11,16 +11,16 @@ import sk.uniza.fri.game.ImageObject;
  * @since 1.0
  */
 public abstract class Projectile {
-    private ImageLoader imageLoader;
-    private ImageObject projectileImage;
-    private int damage;
+    private final ImageLoader imageLoader;
+    private final ImageObject projectileImage;
+    private final int damage;
 
     /**
      * Constructor for the Projectile class.
      *
      * @param x - Integer value representing the x coordinate of the projectile.
      * @param y - Integer value representing the y coordinate of the projectile.
-     * @param damage - Integer value representing the damage of the projectile.
+     * @param damage - Integer value representing the damage that the projectile deals.
      * @param directoryPath - String value representing the directory path of the projectile images.
      * @param projectileWidth - Integer value representing the width of the projectile image.
      * @param projectileHeight - Integer value representing the height of the projectile image.

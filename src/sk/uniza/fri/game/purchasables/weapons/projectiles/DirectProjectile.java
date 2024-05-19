@@ -10,16 +10,15 @@ import sk.uniza.fri.game.purchasables.weapons.Weapon;
  * @since 1.0
  */
 public class DirectProjectile extends Projectile {
-    private Weapon weapon;
-    private int speed;
-    private double angle;
+    private final int speed;
+    private final double angle;
 
     /**
      * Constructor for the DirectProjectile class.
      *
      * @param x - Integer value representing the x coordinate of the projectile.
      * @param y - Integer value representing the y coordinate of the projectile.
-     * @param damage - Integer value representing the damage of the projectile.
+     * @param damage - Integer value representing the damage that the projectile deals.
      * @param directoryPath - String value representing the directory path of the projectile images.
      * @param projectileWidth - Integer value representing the width of the projectile image.
      * @param projectileHeight - Integer value representing the height of the projectile image.
@@ -28,12 +27,11 @@ public class DirectProjectile extends Projectile {
      */
     public DirectProjectile(int x, int y, int damage, String directoryPath, int projectileWidth, int projectileHeight, Weapon weapon, int speed) {
         super(x, y, damage, directoryPath, projectileWidth, projectileHeight);
-        this.weapon = weapon;
         this.speed = speed;
-        if (this.weapon.isReversed()) {
-            this.angle = Math.toRadians(180) + Math.toRadians(this.weapon.getAngle());
+        if (weapon.isReversed()) {
+            this.angle = Math.toRadians(180) + Math.toRadians(weapon.getAngle());
         } else {
-            this.angle = Math.toRadians(this.weapon.getAngle());
+            this.angle = Math.toRadians(weapon.getAngle());
         }
     }
 

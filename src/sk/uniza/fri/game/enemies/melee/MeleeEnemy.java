@@ -16,7 +16,7 @@ public abstract class MeleeEnemy extends Enemy {
      * Constructor for the MeleeEnemy class.
      *
      * @param health - Integer value representing the health of the enemy.
-     * @param damage - Integer value representing the damage of the enemy.
+     * @param damage - Integer value representing the damage that enemy deals.
      * @param enemyImageDirectory - String value representing the directory of the enemy image.
      * @param imageWidth - Integer value representing the width of the enemy image.
      * @param imageHeight - Integer value representing the height of the enemy image.

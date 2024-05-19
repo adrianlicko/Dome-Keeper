@@ -1,12 +1,20 @@
 package sk.uniza.fri.shop;
 
-import sk.uniza.fri.game.purchasables.specialItems.*;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
+
 import sk.uniza.fri.game.purchasables.weapons.AK47;
 import sk.uniza.fri.game.purchasables.weapons.MagicWand;
 import sk.uniza.fri.game.purchasables.weapons.RocketLauncher;
 import sk.uniza.fri.game.purchasables.weapons.Shotgun;
+import sk.uniza.fri.game.purchasables.specialItems.BlockReviver;
+import sk.uniza.fri.game.purchasables.specialItems.EnchancedJetpack;
+import sk.uniza.fri.game.purchasables.specialItems.HealthPotion;
+import sk.uniza.fri.game.purchasables.specialItems.HealingRing;
+import sk.uniza.fri.game.purchasables.specialItems.RingOfPower;
 
-import javax.swing.*;
 
 /**
  * Represents the store where the player can buy items.
@@ -17,7 +25,7 @@ import javax.swing.*;
  * @since 1.0
  */
 public class Store extends JFrame {
-    private StoreList storeList;
+    private final StoreList storeList;
 
     /**
      * Creates a new store window and initializes the store list.
@@ -29,7 +37,7 @@ public class Store extends JFrame {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
+            System.err.println("Error setting the look and feel of the store window.");
         }
 
         this.storeList = new StoreList(this);

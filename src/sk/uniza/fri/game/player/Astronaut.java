@@ -7,7 +7,12 @@ import sk.uniza.fri.game.map.Block;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.map.GameMap;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Class that represents the astronaut which the player controls.
@@ -18,10 +23,9 @@ import java.util.*;
  */
 public class Astronaut {
     private ImageLoader imageLoader;
-    private ImageObject astronautImage;
-    private GameMap gameMap;
-    private HashMap<BlockType, Integer> inventory;
-    private ActionMine mining;
+    private final ImageObject astronautImage;
+    private final GameMap gameMap;
+    private final HashMap<BlockType, Integer> inventory;
     private int damage;
     private int movementSpeed;
     private boolean isAbleToEnterDome;
@@ -38,7 +42,6 @@ public class Astronaut {
         this.astronautImage = new ImageObject(this.imageLoader.getNextImage(), 486, 325, 40, 49);
         this.gameMap = gameMap;
         this.astronautImage.makeVisible();
-        this.mining = new ActionMine();
         this.inventory = new HashMap<>();
         for (BlockType blockType : BlockType.values()) {
             this.inventory.put(blockType, 0);
@@ -101,7 +104,7 @@ public class Astronaut {
         Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() - (this.astronautImage.getImageHeight() / 2) + 5);
         this.changeImageDirectory("up");
         if (minedBlock.isPresent()) {
-            this.mining.mine(minedBlock.get(), this.damage);
+            ActionMine.mine(minedBlock.get(), this.damage);
         } else {
             this.astronautImage.moveVertical(-this.movementSpeed);
         }
@@ -124,7 +127,7 @@ public class Astronaut {
         Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX(), this.astronautImage.getHitY() + (this.astronautImage.getImageHeight() / 2) - 5);
         this.changeImageDirectory("down");
         if (minedBlock.isPresent()) {
-            this.mining.mine(minedBlock.get(), this.damage);
+            ActionMine.mine(minedBlock.get(), this.damage);
         } else {
             this.astronautImage.moveVertical(this.movementSpeed);
         }
@@ -150,7 +153,7 @@ public class Astronaut {
         Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX() - (this.astronautImage.getImageWidth() / 2), this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
             this.changeImageDirectory("drillLeft");
-            this.mining.mine(minedBlock.get(), this.damage);
+            ActionMine.mine(minedBlock.get(), this.damage);
         } else {
             this.changeImageDirectory("left");
             this.astronautImage.moveHorizontal(-this.movementSpeed);
@@ -178,7 +181,7 @@ public class Astronaut {
         Optional<Block> minedBlock = this.gameMap.isInBlock(this.astronautImage.getHitX() + (this.astronautImage.getImageWidth() / 2) - 5, this.astronautImage.getHitY());
         if (minedBlock.isPresent()) {
             this.changeImageDirectory("drillRight");
-            this.mining.mine(minedBlock.get(), this.damage);
+            ActionMine.mine(minedBlock.get(), this.damage);
         } else {
             this.changeImageDirectory("right");
             this.astronautImage.moveHorizontal(this.movementSpeed);
@@ -186,9 +189,9 @@ public class Astronaut {
     }
 
     /**
-     * Method for setting the damage of the astronaut.
+     * Method for setting the damage that the astronaut deals to the blocks.
      *
-     * @param damage - Integer value representing the damage of the astronaut.
+     * @param damage - Integer value representing the damage that the astronaut deals to the blocks.
      */
     public void setDamage(int damage) {
         this.damage = damage;
@@ -205,6 +208,7 @@ public class Astronaut {
 
     /**
      * Method for looping the astronaut images.
+     * This method is managed by the manager and is constantly called.
      */
     public void loopAstronautImages() {
         this.astronautImage.changeImage(this.imageLoader.getNextImage());

@@ -14,8 +14,8 @@ import java.util.HashMap;
  * @since 1.0
  */
 public class Dome {
-    private ImageObject domeImage;
-    private Astronaut astronaut;
+    private final ImageObject domeImage;
+    private final Astronaut astronaut;
     private double initialHealth;
     private double health;
     private int weaponSliderX;
@@ -23,7 +23,7 @@ public class Dome {
     // 70 is the length of the circle diameter
     // this 70 integer numbers are all possible positions that weapon can be in
     // second hashmap has the key of position x and value of position y
-    private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
+    private final HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
     /**
      * Constructor for the Dome class.
@@ -97,7 +97,7 @@ public class Dome {
 
     /**
      * Method for moving the weapon right.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by a key RIGHT ARROW.
      */
     public void moveWeaponRight() {
         if (!this.astronaut.isInDome()) {
@@ -112,7 +112,7 @@ public class Dome {
 
     /**
      * Method for moving the weapon left.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by a key LEFT ARROW.
      */
     public void moveWeaponLeft() {
         if (!this.astronaut.isInDome()) {

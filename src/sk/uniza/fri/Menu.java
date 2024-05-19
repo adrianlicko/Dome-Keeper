@@ -5,7 +5,7 @@ import sk.uniza.fri.game.Game;
 import sk.uniza.fri.shop.Store;
 
 import javax.swing.JFrame;
-import java.awt.*;
+import java.awt.Window;
 
 public class Menu {
     private static Menu instance;

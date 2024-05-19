@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public abstract class RangedEnemy extends Enemy {
     private State state;
-    private Random random;
+    private final Random random;
     private int idleCount;
     private int timeToIdle;
     private int invisibleCount;
@@ -27,7 +27,7 @@ public abstract class RangedEnemy extends Enemy {
      * Constructor for the RangedEnemy class.
      *
      * @param health - Integer value representing the health of the enemy.
-     * @param damage - Integer value representing the damage of the enemy.
+     * @param damage - Integer value representing the damage that the enemy deals.
      * @param enemyImageDirectory - String value representing the directory of the enemy images.
      * @param imageWidth - Integer value representing the width of the enemy image.
      * @param imageHeight - Integer value representing the height of the enemy image.
@@ -55,7 +55,7 @@ public abstract class RangedEnemy extends Enemy {
         } else {
             this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromLeft, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, projectileWidth, projectileHeight, Game.getInstance().getDome().getDomeImage(), 2));
         }
-        this.projectiles.get(this.projectiles.size() - 1).getProjectileImage().makeVisible();
+        this.projectiles.getLast().getProjectileImage().makeVisible();
     }
 
     /**
@@ -81,8 +81,8 @@ public abstract class RangedEnemy extends Enemy {
     }
 
     public void removeAllProjectiles() {
-        for (int i = 0; i < this.projectiles.size(); i++) {
-            this.projectiles.get(i).getProjectileImage().makeInvisible();
+        for (HomingProjectile projectile : this.projectiles) {
+            projectile.getProjectileImage().makeInvisible();
         }
         this.projectiles = new ArrayList<>();
     }

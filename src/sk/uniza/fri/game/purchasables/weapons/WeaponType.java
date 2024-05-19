@@ -13,21 +13,21 @@ public enum WeaponType {
     AK47("assets/weapons/AK47 small.png", "assets/weapons/AK47 small reversed.png", 2, 4, "assets/weapons/AK47 projectiles", 20, 20, 7),
     ROCKET_LAUNCHER("assets/weapons/RocketLauncher small.png", "assets/weapons/RocketLauncher small reversed.png", 50, 40, "assets/weapons/RocketLauncher projectiles", 20, 20, 3);
 
-    private String imagePath;
-    private String reverseImagePath;
-    private int damage;
-    private int fireRate;
-    private String projectileImageDirectory;
-    private int projectileSpeed;
-    private int projectileWidth;
-    private int projectileHeight;
+    private final String imagePath;
+    private final String reverseImagePath;
+    private final int damage;
+    private final int fireRate;
+    private final String projectileImageDirectory;
+    private final int projectileSpeed;
+    private final int projectileWidth;
+    private final int projectileHeight;
 
     /**
      * Constructor for the WeaponType enum.
      *
      * @param imagePath - String value representing the path to the image of the weapon.
      * @param reverseImagePath - String value representing the path to the image of the weapon when it is reversed.
-     * @param damage - Integer value representing the damage of the weapon.
+     * @param damage - Integer value representing the damage that the weapon deals.
      * @param fireRate - Integer value representing the fire rate of the weapon.
      * @param projectileImageDirectory - String value representing the directory path of the projectile images.
      * @param projectileWidth - Integer value representing the width of the projectile image.

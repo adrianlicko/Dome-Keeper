@@ -7,10 +7,17 @@ import sk.uniza.fri.game.purchasables.Purchasable;
 import sk.uniza.fri.game.purchasables.specialItems.SpecialItem;
 import sk.uniza.fri.game.purchasables.weapons.Weapon;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.util.Map;
 
 /**
@@ -21,7 +28,7 @@ import java.util.Map;
  * @since 1.0
  */
 public class StoreList {
-    private JFrame frame;
+    private final JFrame frame;
     private JButton backToTheGameButton;
     private JPanel mainPanel;
     private JPanel storePanel;
@@ -42,12 +49,7 @@ public class StoreList {
         this.backToTheGameButton.setBackground(new Color(93, 95, 87));
         this.backToTheGameButton.setForeground(new Color(255, 255, 255));
         this.backToTheGameButton.setFont(new Font("Sans-serif", Font.BOLD, 12));
-        this.backToTheGameButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Menu.getInstance().closeShop();
-            }
-        });
+        this.backToTheGameButton.addActionListener(e -> Menu.getInstance().closeShop());
 
         this.updateCoinPanel();
     }
