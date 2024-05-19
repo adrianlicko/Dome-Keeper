@@ -91,7 +91,7 @@ public class Astronaut {
         // this.x < 480 || this.x > 494, this is for upper part of the map excluding the middle part
         // this.y <= 369, if this would not be there, the astronaut would never move up
         // this.y <= 321, this is for upper part of the map in the middle block
-        if ((this.astronautImage.getX() < 480 || this.astronautImage.getX() > 494) && this.astronautImage.getY() <= 369) { // for correct dimensions this.x >= 480 && this.x <= 494
+        if ((this.astronautImage.getX() < 480 || this.astronautImage.getX() > 494) && this.astronautImage.getY() <= 369) {
             return;
         } else if (this.astronautImage.getY() <= 321) {
             this.isAbleToEnterDome = true;

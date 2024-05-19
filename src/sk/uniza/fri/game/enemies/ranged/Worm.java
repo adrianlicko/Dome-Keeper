@@ -21,6 +21,7 @@ public class Worm extends RangedEnemy {
      */
     @Override
     public void charge() {
+        // Switch statement that changes the image directory based on the state of the enemy.
         switch (this.getState()) {
             case APPEAR:
                 this.getEnemyImage().makeVisible();
@@ -54,10 +55,12 @@ public class Worm extends RangedEnemy {
                 break;
         }
 
+        // Changes the image of the enemy based on the state of the enemy.
         String imagePath = this.getImageLoader().getNextImageWithoutLoop();
         if (imagePath != null) {
             this.getEnemyImage().changeImage(imagePath);
         } else {
+            // Switch statement that changes the state of the enemy based on the current state.
             switch (this.getState()) {
                 case APPEAR:
                     this.setState(State.IDLE);

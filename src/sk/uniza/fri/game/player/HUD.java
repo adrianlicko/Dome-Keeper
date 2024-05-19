@@ -37,6 +37,7 @@ public class HUD {
         this.astronaut = astronaut;
         this.dome = dome;
 
+        // HUD background
         this.hudBackground = new Rectangle(0, 715);
         this.hudBackground.changeSize(1008, 35);
         this.hudBackground.changeColor("black");

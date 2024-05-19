@@ -5,7 +5,7 @@ import sk.uniza.fri.game.purchasables.weapons.Weapon;
 /**
  * Represents a direct projectile that moves in a straight line.
  *
- * @author Adrian Licko
+ * @author Adrian Licko, Copilot (small part of the code)
  * @version 1.0
  * @since 1.0
  */
@@ -39,6 +39,7 @@ public class DirectProjectile extends Projectile {
 
     /**
      * Moves the projectile in the direction of the angle.
+     * Written with the help of copilot.
      */
     public void move() {
         this.getProjectileImage().addX((int)(this.speed * Math.cos(this.angle)));

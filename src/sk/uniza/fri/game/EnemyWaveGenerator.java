@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Class that generates random enemies from the enemy classes.
  *
- * @author Adrian Licko
+ * @author Copilot
  * @version 1.0
  * @since 1.0
  */

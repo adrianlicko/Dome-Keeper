@@ -40,11 +40,6 @@ public abstract class RangedEnemy extends Enemy {
     }
 
     /**
-     * Abstract method that is responsible for moving and attacking the Dome.
-     */
-    public abstract void charge();
-
-    /**
      * Method that is responsible for spawning projectiles.
      *
      * @param directoryPath - String value representing the directory of the projectile images.

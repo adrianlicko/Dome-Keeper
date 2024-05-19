@@ -3,7 +3,7 @@ package sk.uniza.fri.game.purchasables.weapons;
 /**
  * Enum that represents the type of weapon.
  *
- * @author
+ * @author Adrian Licko
  * @version 1.0
  * @since 1.0
  */

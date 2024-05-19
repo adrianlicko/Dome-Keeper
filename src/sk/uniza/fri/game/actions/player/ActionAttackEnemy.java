@@ -19,8 +19,8 @@ public class ActionAttackEnemy {
      * Provides shooting at enemies.
      * Calculates the distance between the projectile and the enemy and if it's in range, it deals damage to the enemy.
      *
-     * @param weapon
-     * @param directProjectile
+     * @param weapon - Weapon object representing the weapon that the projectile is shot from.
+     * @param directProjectile - Projectile object representing the projectile that is shot from the weapon.
      */
     public static void shoot (Weapon weapon, Projectile directProjectile) {
         Enemy enemyToRemove = null;

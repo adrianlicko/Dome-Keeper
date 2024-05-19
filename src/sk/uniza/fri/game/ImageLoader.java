@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Represents an image loader that loads images from a directory.
  *
- * @author Adrian Licko
+ * @author Adrian Licko, Copilot (small part of the code)
  * @version 1.0
  * @since 1.0
  */

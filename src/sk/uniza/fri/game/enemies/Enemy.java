@@ -93,7 +93,7 @@ public abstract class Enemy {
         return this.health;
     }
 
-    public void decreaseHealth(int health) {
+    protected void decreaseHealth(int health) {
         this.health -= health;
     }
 
@@ -101,7 +101,7 @@ public abstract class Enemy {
         return this.enemyImage;
     }
 
-    public ImageLoader getImageLoader() {
+    protected ImageLoader getImageLoader() {
         return this.imageLoader;
     }
 
@@ -110,7 +110,7 @@ public abstract class Enemy {
      *
      * @return - String value representing the side of the enemy.
      */
-    public String getSide() {
+    protected String getSide() {
         if (this.enemyImage.getX() < 450) {
             this.side = "/right";
         } else {

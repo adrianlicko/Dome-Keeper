@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Represents the store list where the player can buy items.
  *
- * @author Adrian Licko
+ * @author Adrian Licko, Copilot
  * @version 1.0
  * @since 1.0
  */
@@ -80,6 +80,7 @@ public class StoreList {
 
     /**
      * Adds a purchasable item to the store with all necessary information and buttons.
+     * Most of the code is not coded by me but by the Copilot.
      *
      * @param item - the item to be added to the store
      */

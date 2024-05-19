@@ -8,7 +8,7 @@ import sk.uniza.fri.game.purchasables.weapons.Weapon;
 /**
  * Represents a homing projectile that follows the target.
  *
- * @author Adrian Licko
+ * @author Adrian Licko, Copilot
  * @version 1.0
  * @since 1.0
  */
@@ -97,6 +97,8 @@ public class HomingProjectile extends Projectile {
      * If the projectile is fired by the Dome, it moves like a DirectProjectile for the first 5 moves. After that, it moves like a HomingProjectile.
      * If the projectile is fired by the Enemy, it moves like a HomingProjectile.
      * If the projectile is fired by the Dome and there are no enemies alive, it moves like a DirectProjectile.
+     *
+     * Written with the help of copilot.
      */
     @Override
     public void move() {
