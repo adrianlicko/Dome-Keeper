@@ -9,6 +9,7 @@ import sk.uniza.fri.game.purchasables.weapons.AK47;
 import sk.uniza.fri.game.purchasables.weapons.MagicWand;
 import sk.uniza.fri.game.purchasables.weapons.RocketLauncher;
 import sk.uniza.fri.game.purchasables.weapons.Shotgun;
+
 import sk.uniza.fri.game.purchasables.specialItems.BlockReviver;
 import sk.uniza.fri.game.purchasables.specialItems.EnchancedJetpack;
 import sk.uniza.fri.game.purchasables.specialItems.HealthPotion;
@@ -42,15 +43,19 @@ public class Store extends JFrame {
 
         this.storeList = new StoreList(this);
 
+        this.storeList.addToStore(new AK47());
         this.storeList.addToStore(new Shotgun());
         this.storeList.addToStore(new MagicWand());
-        this.storeList.addToStore(new AK47());
         this.storeList.addToStore(new RocketLauncher());
         this.storeList.addToStore(new HealthPotion(5));
+        this.storeList.addToStore(new HealthPotion(10));
         this.storeList.addToStore(new HealingRing(1, 20, 5));
-        this.storeList.addToStore(new RingOfPower(10));
+        this.storeList.addToStore(new HealingRing(2, 12, 4));
+        this.storeList.addToStore(new RingOfPower(2));
+        this.storeList.addToStore(new RingOfPower(3));
         this.storeList.addToStore(new EnchancedJetpack(4));
         this.storeList.addToStore(new BlockReviver(2));
+        this.storeList.addToStore(new BlockReviver(4));
 
         this.pack();
         this.setVisible(true);

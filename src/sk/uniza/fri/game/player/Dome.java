@@ -1,6 +1,7 @@
 package sk.uniza.fri.game.player;
 
 import sk.uniza.fri.game.ImageObject;
+import sk.uniza.fri.game.purchasables.weapons.AK47;
 import sk.uniza.fri.game.purchasables.weapons.Weapon;
 import sk.uniza.fri.game.purchasables.weapons.MagicWand;
 
@@ -55,9 +56,9 @@ public class Dome {
 //            circle.makeVisible();
         }
 
-        // position of the weapon on spawn
-        //this.weapon = new Shotgun(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
-        this.equipWeapon(new MagicWand());
+        this.weapon = new AK47();
+        this.weapon.setPurchased(true);
+        this.equipWeapon(this.weapon);
     }
 
     public void equipWeapon(Weapon weapon) {
@@ -69,6 +70,7 @@ public class Dome {
         this.weaponSliderX = 0;
         this.weapon = weapon;
         this.weapon.setEquipped(true);
+        // position of the weapon on spawn
         this.weapon.getImage().changePosition(448 + 70 - 0, 251 + this.weaponPosition.get(0).get(70 - 0));
         this.weapon.getImage().makeVisible();
     }

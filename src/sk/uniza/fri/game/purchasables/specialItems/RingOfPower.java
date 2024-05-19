@@ -43,12 +43,12 @@ public class RingOfPower extends SpecialItem {
 
     @Override
     public int getDamage() {
-        return 0;
+        return this.getAmount();
     }
 
     @Override
     public int getPrice() {
-        return 10;
+        return this.getAmount() * 2;
     }
 
     @Override

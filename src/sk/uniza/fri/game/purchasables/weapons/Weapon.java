@@ -2,7 +2,7 @@ package sk.uniza.fri.game.purchasables.weapons;
 
 import sk.uniza.fri.game.ImageObject;
 import sk.uniza.fri.game.actions.player.ActionAttackEnemy;
-import sk.uniza.fri.game.purchasables.Item;
+import sk.uniza.fri.game.purchasables.PurchasableItem;
 import sk.uniza.fri.game.purchasables.weapons.projectiles.Projectile;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.TimerTask;
  * @version 1.0
  * @since 1.0
  */
-public abstract class Weapon extends Item {
+public abstract class Weapon implements PurchasableItem {
     private final ImageObject weaponImage;
     private final WeaponType weaponType;
     private final int damage;
@@ -27,12 +27,15 @@ public abstract class Weapon extends Item {
     private final Timer timer;
     private boolean isShooting;
     private final int fireRate;
+    private int previousSliderX;
+    private boolean isEquipped;
+    private boolean isPurchased;
 
     /**
      * Constructor for the Weapon class.
      *
      * @param weaponType - WeaponType object representing the type of the weapon.
-     * @param damage - Integer value representing the damage of the weapon.
+     * @param damage - Integer value representing the damage that the weapon deals.
      * @param fireRate - Integer value representing the fire rate of the weapon.
      */
     public Weapon(WeaponType weaponType, int damage, int fireRate) {
@@ -43,6 +46,9 @@ public abstract class Weapon extends Item {
         this.timer = new Timer();
         this.isShooting = false;
         this.fireRate = fireRate;
+        this.previousSliderX = 0;
+        this.isEquipped = false;
+        this.isPurchased = false;
     }
 
     public abstract void fire();
@@ -103,17 +109,22 @@ public abstract class Weapon extends Item {
         this.weaponAngle += posOrNegNum * 2;
 
         if (sliderX == -70) {
-            if (!this.isReversed) {
-                this.weaponAngle += 140;
-                this.isReversed = true;
-                this.weaponImage.changeImage(this.weaponType.getReverseImagePath());
-            } else {
-                this.weaponAngle -= 140;
-                this.isReversed = false;
-                this.weaponImage.changeImage(this.weaponType.getImagePath());
+            if (this.previousSliderX > sliderX) {
+                if (!this.isReversed) {
+                    this.weaponAngle += 140;
+                    this.isReversed = true;
+                    this.weaponImage.changeImage(this.weaponType.getReverseImagePath());
+                }
+            } else if (this.previousSliderX < sliderX) {
+                if (this.isReversed) {
+                    this.weaponAngle -= 140;
+                    this.isReversed = false;
+                    this.weaponImage.changeImage(this.weaponType.getImagePath());
+                }
             }
         }
         this.weaponImage.changeAngle(this.weaponAngle);
+        this.previousSliderX = sliderX;
     }
 
     public int getAngle() {
@@ -139,5 +150,21 @@ public abstract class Weapon extends Item {
 
     public ImageObject getImage() {
         return this.weaponImage;
+    }
+
+    public boolean isEquipped() {
+        return this.isEquipped;
+    }
+
+    public void setEquipped(boolean equipped) {
+        this.isEquipped = equipped;
+    }
+
+    public boolean isPurchased() {
+        return this.isPurchased;
+    }
+
+    public void setPurchased(boolean purchased) {
+        this.isPurchased = purchased;
     }
 }

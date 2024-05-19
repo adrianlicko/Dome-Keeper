@@ -47,7 +47,7 @@ public class HealthPotion extends SpecialItem {
 
     @Override
     public int getPrice() {
-        return 5 * this.getAmount();
+        return 3 * this.getAmount();
     }
 
     @Override

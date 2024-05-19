@@ -1,9 +1,9 @@
 package sk.uniza.fri.shop;
 
+import sk.uniza.fri.game.purchasables.PurchasableItem;
 import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.purchasables.Purchasable;
 import sk.uniza.fri.game.purchasables.specialItems.SpecialItem;
 import sk.uniza.fri.game.purchasables.weapons.Weapon;
 
@@ -41,7 +41,7 @@ public class StoreList {
      */
     public StoreList(JFrame frame) {
         this.frame = frame;
-        this.storePanel.setLayout(new GridLayout(0, 3)); // Zmena na FlowLayout
+        this.storePanel.setLayout(new GridLayout(0, 4)); // Zmena na FlowLayout
         this.coinPanel.setLayout(new FlowLayout());
 
         this.frame.add(this.mainPanel);
@@ -86,10 +86,9 @@ public class StoreList {
      *
      * @param item - the item to be added to the store
      */
-    public void addToStore(Purchasable item) {
+    public void addToStore(PurchasableItem item) {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
-
 
 
         

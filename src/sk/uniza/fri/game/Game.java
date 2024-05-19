@@ -75,17 +75,17 @@ public class Game {
                         Game.this.wave++;
                     }
                 },
-                20000 // delay in milliseconds
+                25000 // delay in milliseconds
         );
     }
 
     /**
      * Randomly spawns an enemy.
-     * This method is called by manager every 8 seconds in sbge.ini config file.
+     * This method is called by manager every 10 seconds in sbge.ini config file.
      */
     public void randomlySpawnEnemy() {
         if (this.canSpawnEnemy && this.isManagingObjects) {
-            this.enemies.add(this.enemyWaveGenerator.getRandomEnemy((this.wave * 2) + this.random.nextInt(1, 5) * 10, (this.wave * 2) + this.random.nextInt(1, 5) * 3));
+            this.enemies.add(this.enemyWaveGenerator.getRandomEnemy((this.wave * 2) + this.random.nextInt(1, 5) * 10, this.random.nextInt(1, (this.wave + 2)) * 2));
             this.manager.manageObject(this.enemies.getLast());
         }
     }

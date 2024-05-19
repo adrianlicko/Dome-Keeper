@@ -35,7 +35,8 @@ public class Shotgun extends Weapon {
 
     @Override
     public int getPrice() {
-        return 50;
+//        return 20;
+        return 2;
     }
 
     @Override

@@ -79,7 +79,8 @@ public class HealingRing extends SpecialItem {
 
     @Override
     public int getPrice() {
-        return this.getAmount() * (this.delay * this.totalAmount / 5);
+//        return this.getAmount() * (this.delay * this.totalAmount / 5);
+        return this.getAmount() + this.delay + this.totalAmount;
     }
 
     @Override

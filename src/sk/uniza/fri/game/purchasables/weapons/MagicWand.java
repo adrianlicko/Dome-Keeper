@@ -34,7 +34,8 @@ public class MagicWand extends Weapon {
 
     @Override
     public int getPrice() {
-        return 20;
+//        return 8;
+        return 2;
     }
 
     @Override
