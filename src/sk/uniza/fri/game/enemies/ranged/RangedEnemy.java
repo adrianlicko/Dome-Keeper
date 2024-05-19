@@ -69,7 +69,6 @@ public abstract class RangedEnemy extends Enemy {
             if (this.projectiles.get(i).getProjectileImage().getX() < -100 || this.projectiles.get(i).getProjectileImage().getX() > 1050) {
                 this.projectiles.get(i).getProjectileImage().makeInvisible();
                 this.projectiles.remove(this.projectiles.get(i));
-                System.out.println("Removed");
                 continue;
             }
             ActionAttackDome.shootDome(this, this.projectiles.get(i));

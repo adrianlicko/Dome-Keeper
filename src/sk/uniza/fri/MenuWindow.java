@@ -63,6 +63,8 @@ public class MenuWindow {
 
     /**
      * Method that handles the mouse click on the menu window.
+     * This method is handled by the manager.
+     *
      * @param x - x position of the mouse click
      * @param y - y position of the mouse click
      */
