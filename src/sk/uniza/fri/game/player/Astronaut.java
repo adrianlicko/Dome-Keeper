@@ -1,9 +1,8 @@
 package sk.uniza.fri.game.player;
 
-import sk.uniza.fri.ImageLoader;
-import sk.uniza.fri.ImageObject;
-import sk.uniza.fri.game.Game;
-import sk.uniza.fri.game.action.player.ActionMine;
+import sk.uniza.fri.game.ImageLoader;
+import sk.uniza.fri.game.ImageObject;
+import sk.uniza.fri.game.actions.player.ActionMine;
 import sk.uniza.fri.game.map.Block;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.map.GameMap;

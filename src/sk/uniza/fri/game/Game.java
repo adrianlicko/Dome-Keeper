@@ -1,14 +1,9 @@
 package sk.uniza.fri.game;
 
 import fri.shapesge.Manager;
-import sk.uniza.fri.EnemyWaveGenerator;
 import sk.uniza.fri.Menu;
-import sk.uniza.fri.game.enemy.Enemy;
-import sk.uniza.fri.game.enemy.melee.Flyer;
-import sk.uniza.fri.game.enemy.melee.Walker;
-import sk.uniza.fri.game.enemy.ranged.RangedEnemy;
-import sk.uniza.fri.game.enemy.ranged.Shifter;
-import sk.uniza.fri.game.enemy.ranged.Worm;
+import sk.uniza.fri.game.enemies.Enemy;
+import sk.uniza.fri.game.enemies.ranged.RangedEnemy;
 import sk.uniza.fri.game.map.GameMap;
 import sk.uniza.fri.game.player.Astronaut;
 import sk.uniza.fri.game.player.Dome;

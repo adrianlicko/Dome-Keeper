@@ -1,7 +1,7 @@
 package sk.uniza.fri.game.map;
 
-import sk.uniza.fri.ImageLoader;
-import sk.uniza.fri.ImageObject;
+import sk.uniza.fri.game.ImageLoader;
+import sk.uniza.fri.game.ImageObject;
 
 import java.util.Timer;
 import java.util.TimerTask;

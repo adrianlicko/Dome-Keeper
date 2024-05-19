@@ -1,11 +1,10 @@
 package sk.uniza.fri.shop;
 
-import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.purchasable.specialItems.*;
-import sk.uniza.fri.game.purchasable.weapons.AK47;
-import sk.uniza.fri.game.purchasable.weapons.MagicWand;
-import sk.uniza.fri.game.purchasable.weapons.RocketLauncher;
-import sk.uniza.fri.game.purchasable.weapons.Shotgun;
+import sk.uniza.fri.game.purchasables.specialItems.*;
+import sk.uniza.fri.game.purchasables.weapons.AK47;
+import sk.uniza.fri.game.purchasables.weapons.MagicWand;
+import sk.uniza.fri.game.purchasables.weapons.RocketLauncher;
+import sk.uniza.fri.game.purchasables.weapons.Shotgun;
 
 import javax.swing.*;
 

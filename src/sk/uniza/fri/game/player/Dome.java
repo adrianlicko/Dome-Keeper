@@ -1,9 +1,8 @@
 package sk.uniza.fri.game.player;
 
-import sk.uniza.fri.ImageObject;
-import sk.uniza.fri.game.Game;
-import sk.uniza.fri.game.purchasable.weapons.Weapon;
-import sk.uniza.fri.game.purchasable.weapons.MagicWand;
+import sk.uniza.fri.game.ImageObject;
+import sk.uniza.fri.game.purchasables.weapons.Weapon;
+import sk.uniza.fri.game.purchasables.weapons.MagicWand;
 
 import java.util.HashMap;
 

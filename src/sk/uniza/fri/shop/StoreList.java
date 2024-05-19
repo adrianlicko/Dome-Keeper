@@ -3,9 +3,9 @@ package sk.uniza.fri.shop;
 import sk.uniza.fri.Menu;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
-import sk.uniza.fri.game.purchasable.Purchasable;
-import sk.uniza.fri.game.purchasable.specialItems.SpecialItem;
-import sk.uniza.fri.game.purchasable.weapons.Weapon;
+import sk.uniza.fri.game.purchasables.Purchasable;
+import sk.uniza.fri.game.purchasables.specialItems.SpecialItem;
+import sk.uniza.fri.game.purchasables.weapons.Weapon;
 
 import javax.swing.*;
 import java.awt.*;
