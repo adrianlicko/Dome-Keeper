@@ -4,6 +4,7 @@ import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.actions.enemy.ActionAttackDome;
 import sk.uniza.fri.game.enemies.Enemy;
 import sk.uniza.fri.game.purchasables.weapons.projectiles.HomingProjectile;
+import sk.uniza.fri.game.purchasables.weapons.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,7 +22,7 @@ public abstract class RangedEnemy extends Enemy {
     private int idleCount;
     private int timeToIdle;
     private int invisibleCount;
-    private ArrayList<HomingProjectile> projectiles;
+    private ArrayList<Projectile> projectiles;
 
     /**
      * Constructor for the RangedEnemy class.
@@ -75,13 +76,13 @@ public abstract class RangedEnemy extends Enemy {
         }
     }
 
-    public void removeProjectile(HomingProjectile projectile) {
+    public void removeProjectile(Projectile projectile) {
         projectile.getProjectileImage().makeInvisible();
         this.projectiles.remove(projectile);
     }
 
     public void removeAllProjectiles() {
-        for (HomingProjectile projectile : this.projectiles) {
+        for (Projectile projectile : this.projectiles) {
             projectile.getProjectileImage().makeInvisible();
         }
         this.projectiles = new ArrayList<>();

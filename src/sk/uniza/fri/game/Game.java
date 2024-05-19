@@ -40,8 +40,8 @@ public class Game {
      * Creates a new game with the default values.
      */
     private Game() {
-        this.enemies = new ArrayList<>();
         this.manager = new Manager();
+        this.enemies = new ArrayList<>();
         this.wave = 0;
         this.random = new Random();
         this.canSpawnEnemy = true;
@@ -54,6 +54,7 @@ public class Game {
         this.astronaut.setMovementSpeed(2);
 
         this.dome = new Dome(this.astronaut);
+        this.dome.setInitialHealth(60);
         this.dome.setHealth(60);
 
         this.hud = new HUD(this.astronaut, this.dome);
@@ -95,7 +96,8 @@ public class Game {
      * This method is called by a key P in sbge.ini config file, and it opens the shop.
      */
     public void stopOrStartGame() {
-        Menu.getInstance().openShop();
+//        Menu.getInstance().openShop();
+        Menu.getInstance().showMenu();
     }
 
     /**
@@ -174,6 +176,10 @@ public class Game {
 
     public int getWave() {
         return this.wave;
+    }
+
+    public void setWave(int waveNumber) {
+        this.wave = waveNumber;
     }
 
     public static Game getInstance() {

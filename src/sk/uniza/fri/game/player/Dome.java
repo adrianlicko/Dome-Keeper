@@ -3,7 +3,6 @@ package sk.uniza.fri.game.player;
 import sk.uniza.fri.game.ImageObject;
 import sk.uniza.fri.game.purchasables.weapons.AK47;
 import sk.uniza.fri.game.purchasables.weapons.Weapon;
-import sk.uniza.fri.game.purchasables.weapons.MagicWand;
 
 import java.util.HashMap;
 
@@ -133,11 +132,11 @@ public class Dome {
     }
 
     public void setHealth(double health) {
-        if (this.initialHealth > 0) {
-            throw new IllegalStateException("Health can be set only once");
-        }
-        this.initialHealth = health;
         this.health = health;
+    }
+
+    public void setInitialHealth(int initialHealth) {
+        this.initialHealth = initialHealth;
     }
 
     public void increaseHealth(double health) {

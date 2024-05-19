@@ -6,6 +6,7 @@ import sk.uniza.fri.game.actions.player.ActionMine;
 import sk.uniza.fri.game.map.Block;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.map.GameMap;
+import sk.uniza.fri.GameSaveLoader;
 
 import java.util.HashMap;
 import java.util.Collections;
@@ -224,6 +225,19 @@ public class Astronaut {
 
     public void removeCoinFromInventory(BlockType blockType, int amount) {
         this.inventory.replace(blockType, this.inventory.get(blockType) - amount);
+    }
+
+    /**
+     * Method for loading the inventory from the save.
+     *
+     * @param gameSaveLoader - GameSaveLoader object representing the game save loader.
+     */
+    public void loadInventoryFromSave(GameSaveLoader gameSaveLoader) {
+        Map<BlockType, Integer> savedInventory = gameSaveLoader.loadInventory();
+        if (savedInventory != null) {
+            this.inventory.clear();
+            this.inventory.putAll(savedInventory);
+        }
     }
 
     /**

@@ -13,9 +13,18 @@ public class Menu {
     private Store store;
     private boolean alreadyHaveFrame;
     private Manager manager;
+    private final Manager managerForMenuWindow;
+    private final MenuWindow menuWindow;
 
     private Menu() {
+        this.managerForMenuWindow = new Manager();
+        this.menuWindow = new MenuWindow(this.managerForMenuWindow);
+        this.menuWindow.show();
+    }
 
+    public void showMenu() {
+        Game.getInstance().stopManagingObjects();
+        this.menuWindow.show();
     }
 
     public void startGame() {
@@ -40,7 +49,7 @@ public class Menu {
     }
 
     public void openShop() {
-        Game.getInstance().stopManagingObjects();
+//        Game.getInstance().stopManagingObjects();
         this.gameFrame.setVisible(false);
         if (this.store == null) {
             this.store = new Store();

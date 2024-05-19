@@ -22,7 +22,7 @@ public class ActionAttackEnemy {
      * @param weapon - Weapon object representing the weapon that the projectile is shot from.
      * @param projectile - Projectile object representing the projectile that is shot from the weapon.
      */
-    public static void shoot (Weapon weapon, Projectile projectile) {
+    public static void shoot(Weapon weapon, Projectile projectile) {
         Enemy enemyToRemove = null;
         for (Enemy enemy : Game.getInstance().getEnemies()) {
 
