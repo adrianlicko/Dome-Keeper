@@ -22,10 +22,10 @@ public class GameMap {
         this.blocksHeight = 9;
         this.blocks = new Block[this.blocksHeight][this.blocksWidth];
 
-        Image upperMapBackground = new Image("assets/Podzemie/abyss background.png", 0, -100);
+        Image upperMapBackground = new Image("assets/underground/abyss background.png", 0, -100);
         upperMapBackground.makeVisible();
 
-        Image lowerMapBackground = new Image("assets/Podzemie/Underground background.png", 0, 318);
+        Image lowerMapBackground = new Image("assets/underground/Underground background.png", 0, 318);
         lowerMapBackground.makeVisible();
     }
 

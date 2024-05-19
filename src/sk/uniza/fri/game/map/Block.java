@@ -34,7 +34,7 @@ public class Block {
         this.blockImage.makeVisible();
         this.blockType = block;
         this.health = block.getHealth();
-        this.imageLoader = new ImageLoader("assets/Podzemie/Block mining animation");
+        this.imageLoader = new ImageLoader("assets/underground/Block mining animation");
         this.miningImage = new ImageObject(this.imageLoader.getNextImage(), x, y);
         this.timer = new Timer();
     }

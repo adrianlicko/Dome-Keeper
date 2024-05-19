@@ -32,7 +32,7 @@ public class Dome {
      * @param astronaut - Astronaut object representing the player.
      */
     public Dome(Astronaut astronaut) {
-        this.domeImage = new ImageObject("assets/Nadzemie/Dome small.png", 457, 260, 96, 95);
+        this.domeImage = new ImageObject("assets/aboveground/Dome small.png", 457, 260, 96, 95);
         this.domeImage.makeVisible();
 
         this.astronaut = astronaut;
