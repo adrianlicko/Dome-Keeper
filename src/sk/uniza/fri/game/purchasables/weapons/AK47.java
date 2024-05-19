@@ -18,7 +18,7 @@ public class AK47 extends Weapon {
     @Override
     public void fire() {
         super.shoot();
-        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.AK47.getProjectileImageDirectory(), WeaponType.AK47.getProjectileWidth(), WeaponType.AK47.getProjectileHeight(), this, WeaponType.AK47.getProjectileSpeed());
+        DirectProjectile directProjectile = new DirectProjectile(this.getImage().getX(), this.getImage().getY(), WeaponType.AK47.getDamage(), WeaponType.AK47.getProjectileImageDirectory(), WeaponType.AK47.getProjectileWidth(), WeaponType.AK47.getProjectileHeight(), this, WeaponType.AK47.getProjectileSpeed());
         this.addBullet(directProjectile);
     }
 

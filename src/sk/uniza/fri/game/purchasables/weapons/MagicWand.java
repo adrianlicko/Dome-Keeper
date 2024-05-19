@@ -18,7 +18,7 @@ public class MagicWand extends Weapon {
     @Override
     public void fire() {
         super.shoot();
-        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.MAGIC_WAND.getProjectileImageDirectory(), WeaponType.AK47.getProjectileWidth(), WeaponType.AK47.getProjectileHeight(), this, WeaponType.MAGIC_WAND.getProjectileSpeed());
+        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), WeaponType.MAGIC_WAND.getDamage(), WeaponType.MAGIC_WAND.getProjectileImageDirectory(), WeaponType.MAGIC_WAND.getProjectileWidth(), WeaponType.MAGIC_WAND.getProjectileHeight(), this, WeaponType.MAGIC_WAND.getProjectileSpeed());
         this.addBullet(homingProjectile);
     }
 

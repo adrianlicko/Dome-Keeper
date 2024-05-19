@@ -18,7 +18,7 @@ public class RocketLauncher extends Weapon {
     @Override
     public void fire() {
         super.shoot();
-        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), 10, WeaponType.ROCKET_LAUNCHER.getProjectileImageDirectory(), WeaponType.AK47.getProjectileWidth(), WeaponType.AK47.getProjectileHeight(), this, WeaponType.ROCKET_LAUNCHER.getProjectileSpeed());
+        HomingProjectile homingProjectile = new HomingProjectile(this.getImage().getX(), this.getImage().getY(), WeaponType.ROCKET_LAUNCHER.getDamage(), WeaponType.ROCKET_LAUNCHER.getProjectileImageDirectory(), WeaponType.ROCKET_LAUNCHER.getProjectileWidth(), WeaponType.ROCKET_LAUNCHER.getProjectileHeight(), this, WeaponType.ROCKET_LAUNCHER.getProjectileSpeed());
         this.addBullet(homingProjectile);
     }
 
