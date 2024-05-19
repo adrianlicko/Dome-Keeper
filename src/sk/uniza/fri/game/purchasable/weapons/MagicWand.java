@@ -3,6 +3,13 @@ package sk.uniza.fri.game.purchasable.weapons;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
+/**
+ * Represents the Magic Wand weapon.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class MagicWand extends Weapon {
     public MagicWand() {
         super(WeaponType.MAGIC_WAND, WeaponType.MAGIC_WAND.getDamage(), WeaponType.MAGIC_WAND.getFireRate());

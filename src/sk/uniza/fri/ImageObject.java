@@ -2,6 +2,13 @@ package sk.uniza.fri;
 
 import fri.shapesge.Image;
 
+/**
+ * Represents an image object that can be moved and changed.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class ImageObject extends Image {
     private String imagePath;
     private int x;
@@ -9,11 +16,23 @@ public class ImageObject extends Image {
     private int imageWidth;
     private int imageHeight;
 
+    /**
+     * Constructor for the ImageObject class.
+     *
+     * @param imagePath - path to the image
+     */
     public ImageObject(String imagePath) {
         super(imagePath, 0, 0);
         this.imagePath = imagePath;
     }
 
+    /**
+     * Constructor for the ImageObject class.
+     *
+     * @param imagePath - path to the image
+     * @param x - x coordinate
+     * @param y - y coordinate
+     */
     public ImageObject(String imagePath, int x, int y) {
         super(imagePath, x, y);
         this.imagePath = imagePath;
@@ -21,6 +40,15 @@ public class ImageObject extends Image {
         this.y = y;
     }
 
+    /**
+     * Constructor for the ImageObject class.
+     *
+     * @param imagePath - path to the image
+     * @param x - x coordinate
+     * @param y - y coordinate
+     * @param imageWidth - width of the image
+     * @param imageHeight - height of the image
+     */
     public ImageObject(String imagePath, int x, int y, int imageWidth, int imageHeight) {
         this(imagePath, x, y);
         this.imageWidth = imageWidth;
@@ -62,6 +90,10 @@ public class ImageObject extends Image {
         this.x += x;
     }
 
+    /**
+     * Returns the x coordinate of the center of the image.
+     * @return - the x coordinate of the center of the image
+     */
     public int getHitX() {
         return this.x + (this.imageWidth / 2);
     }
@@ -78,6 +110,10 @@ public class ImageObject extends Image {
         this.y += y;
     }
 
+    /**
+     * Returns the y coordinate of the center of the image.
+     * @return - the y coordinate of the center of the image
+     */
     public int getHitY() {
         return this.y + (this.imageHeight / 2);
     }

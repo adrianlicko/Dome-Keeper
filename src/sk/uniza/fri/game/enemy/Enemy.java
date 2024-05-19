@@ -7,6 +7,13 @@ import sk.uniza.fri.game.action.enemy.ActionAttackDome;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Class for creating enemies.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class Enemy {
     private ImageObject enemyImage;
     private int health;
@@ -16,6 +23,15 @@ public abstract class Enemy {
     private Timer timer;
     private boolean isAttacking;
 
+    /**
+     * Constructor for the Enemy class.
+     *
+     * @param health - Integer value representing the health of the enemy.
+     * @param damage - Integer value representing the damage of the enemy.
+     * @param enemyImageDirectory - String value representing the directory of the enemy images.
+     * @param imageWidth - Integer value representing the width of the enemy image.
+     * @param imageHeight - Integer value representing the height of the enemy image.
+     */
     public Enemy(int health, int damage, String enemyImageDirectory, int imageWidth, int imageHeight) {
         this.imageLoader = new ImageLoader(enemyImageDirectory + "/right");
         this.enemyImage = new ImageObject(this.imageLoader.getNextImage(), 0, 0, imageWidth, imageHeight);
@@ -33,10 +49,23 @@ public abstract class Enemy {
         this.timer = new Timer();
     }
 
+    /**
+     * Abstract method that is responsible for enemy moving and attacking the Dome.
+     */
     public abstract void charge();
 
+    /**
+     * Method that is responsible for receiving damage from the player.
+     * @param damage - Integer value representing the damage that the enemy receives.
+     * @return - Boolean value representing if the enemy is still alive.
+     */
     public abstract boolean receiveDamage(int damage);
 
+    /**
+     * Method that is responsible for attacking the Dome.
+     *
+     * @param speedInSeconds - Integer value representing the speed of the attack.
+     */
     protected void attack(int speedInSeconds) {
         if (!this.isAttacking) {
             System.out.println("Enemy is attacking the dome");
@@ -51,6 +80,9 @@ public abstract class Enemy {
         }
     }
 
+    /**
+     * Method that is responsible for random spawn of the enemy.
+     */
     public abstract void randomSpawn();
 
     public int getDamage() {
@@ -73,6 +105,11 @@ public abstract class Enemy {
         return this.imageLoader;
     }
 
+    /**
+     * Method that is responsible for getting the side of the enemy based on the position.
+     *
+     * @return - String value representing the side of the enemy.
+     */
     public String getSide() {
         if (this.enemyImage.getX() < 450) {
             this.side = "/right";

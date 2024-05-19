@@ -10,6 +10,13 @@ import sk.uniza.fri.game.map.GameMap;
 
 import java.util.*;
 
+/**
+ * Class that represents the astronaut which the player controls.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Astronaut {
     private ImageLoader imageLoader;
     private ImageObject astronautImage;
@@ -22,6 +29,11 @@ public class Astronaut {
     private boolean isInDome;
     private Timer idleTimer;
 
+    /**
+     * Constructor for the Astronaut class.
+     *
+     * @param gameMap - GameMap object representing the game map.
+     */
     public Astronaut(GameMap gameMap) {
         this.imageLoader = new ImageLoader("assets/Astronaut/idle");
         this.astronautImage = new ImageObject(this.imageLoader.getNextImage(), 486, 325, 40, 49);
@@ -35,6 +47,11 @@ public class Astronaut {
         this.idleTimer = new Timer();
     }
 
+    /**
+     * Method for changing the image directory of the astronaut.
+     *
+     * @param direction - String value representing the direction of the astronaut.
+     */
     private void changeImageDirectory(String direction) {
         if (this.idleTimer != null) {
             this.idleTimer.cancel();
@@ -51,7 +68,7 @@ public class Astronaut {
 
     /**
      * Method for entering or exiting the dome.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by ENTER key.
      */
     public void enterOrExitDome() {
         if (!this.isInDome && this.isAbleToEnterDome) {
@@ -65,7 +82,7 @@ public class Astronaut {
 
     /**
      * Method for moving the astronaut up.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by UP ARROW key.
      */
     public void moveUp() {
         if (this.isInDome) {
@@ -93,7 +110,7 @@ public class Astronaut {
 
     /**
      * Method for moving the astronaut down.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by DOWN ARROW key.
      */
     public void moveDown() {
         if (this.isInDome) {
@@ -116,7 +133,7 @@ public class Astronaut {
 
     /**
      * Method for moving the astronaut left.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by LEFT ARROW key.
      */
     public void moveLeft() {
         if (this.isInDome) {
@@ -143,7 +160,7 @@ public class Astronaut {
 
     /**
      * Method for moving the astronaut right.
-     * This method is managed by the manager and can be called by a specific key.
+     * This method is managed by the manager and can be called by RIGHT ARROW key.
      */
     public void moveRight() {
         if (this.isInDome) {
@@ -169,14 +186,27 @@ public class Astronaut {
         }
     }
 
+    /**
+     * Method for setting the damage of the astronaut.
+     *
+     * @param damage - Integer value representing the damage of the astronaut.
+     */
     public void setDamage(int damage) {
         this.damage = damage;
     }
 
+    /**
+     * Method for setting the movement speed of the astronaut.
+     *
+     * @param movementSpeed - Integer value representing the movement speed of the astronaut.
+     */
     public void setMovementSpeed(int movementSpeed) {
         this.movementSpeed = movementSpeed;
     }
 
+    /**
+     * Method for looping the astronaut images.
+     */
     public void loopAstronautImages() {
         this.astronautImage.changeImage(this.imageLoader.getNextImage());
     }
@@ -193,6 +223,9 @@ public class Astronaut {
         this.inventory.replace(blockType, this.inventory.get(blockType) - amount);
     }
 
+    /**
+     * Method for spawning the astronaut at the default position.
+     */
     public void spawnAtSpawnpoint() {
         this.astronautImage.changePosition(486, 325);
     }

@@ -5,6 +5,13 @@ import fri.shapesge.Image;
 import java.util.Optional;
 import java.util.Random;
 
+/**
+ * Class that represents the game map created from blocks.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class GameMap {
     private int blocksWidth;
     private int blocksHeight;
@@ -57,6 +64,10 @@ public class GameMap {
 
     /**
      * Checks if the player (given position) is in the block.
+     * If the player is in the block, the block is returned, otherwise the empty optional is returned.
+     *
+     * @param x - Integer value representing the x coordinate of the player.
+     * @param y - Integer value representing the y coordinate of the player.
      */
     public Optional<Block> isInBlock(int x, int y) {
         for (int i = 0; i < this.blocksHeight; i++) {
@@ -74,6 +85,9 @@ public class GameMap {
         return Optional.empty();
     }
 
+    /**
+     * Removes the block from the game map.
+     */
     public void breakBlock(Block block) {
         for (int i = 1; i < this.blocksHeight - 1; i++) {
             for (int j = 1; j < this.blocksWidth - 1; j++) {

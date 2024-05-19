@@ -7,11 +7,24 @@ import sk.uniza.fri.game.map.BlockType;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Represents a special item that heals the player over time.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class HealingRing extends SpecialItem {
     private int totalAmount;
     private Timer timer;
     private int delay;
 
+    /**
+     * Constructor for the HealingRing class.
+     * @param amount - Integer value representing the amount of health that the player receives.
+     * @param totalAmount - Integer value representing of how much times the player will be healed by the amount.
+     * @param delay - Integer value representing the delay between each healing.
+     */
     public HealingRing(int amount, int totalAmount, int delay) {
         super(amount);
         this.totalAmount = totalAmount;
@@ -19,6 +32,9 @@ public class HealingRing extends SpecialItem {
         this.timer = new Timer();
     }
 
+    /**
+     * Method that heals the player over time.
+     */
     @Override
     public void use() {
         this.setEquipped(true);

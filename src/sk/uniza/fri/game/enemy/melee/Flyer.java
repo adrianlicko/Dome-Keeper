@@ -2,6 +2,13 @@ package sk.uniza.fri.game.enemy.melee;
 
 import java.util.Random;
 
+/**
+ * Represents an enemy that flies and attacks the player on close range.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Flyer extends MeleeEnemy {
 
     public Flyer(int health, int damage) {
@@ -13,6 +20,9 @@ public class Flyer extends MeleeEnemy {
         super.charge(80, 40, 150, 4, "assets/enemies/flyer/attack");
     }
 
+    /**
+     * Method that is responsible for random spawn of the enemy.
+     */
     @Override
     public void randomSpawn() {
         var random = new Random();

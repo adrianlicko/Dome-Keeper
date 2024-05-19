@@ -19,6 +19,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class that represents the main class that starts and manages the game.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Game {
     private static Game instance;
     private GameMap gameMap;
@@ -33,6 +40,10 @@ public class Game {
     private boolean isManagingObjects;
     private Random random;
 
+    /**
+     * Constructor for the Game class.
+     * Creates a new game with the default values.
+     */
     private Game() {
         this.wave = 0;
         this.random = new Random();
@@ -51,24 +62,12 @@ public class Game {
         this.hud = new HUD(this.astronaut, this.dome);
 
         this.enemyWaveGenerator = new EnemyWaveGenerator();
-
-        this.startGame();
     }
 
-    public void startGame() {
-//        this.enemies.add(new Walker(40, 5));
-//        this.enemies.add(new Walker(50, 10));
-//        this.enemies.add(new Flyer(100, 7)); // y: range from -whatever to 150
-//        this.enemies.add(new Flyer(100, 7));
-//        this.enemies.add(new Worm(100, 7));
-//        this.enemies.add(new Shifter(20, 7));
-
-//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy( 5, 3));
-//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy( 5, 3));
-//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy( 5, 3));
-//        this.enemies.add(this.enemyWaveGenerator.getRandomEnemy(this.random.nextInt(1, 5) * 10, this.random.nextInt(1, 5) * 3));
-    }
-
+    /**
+     * Starts new wave of enemies.
+     * When this method is called, it sets the canSpawnEnemy variable to false and after 20 seconds it sets it back to true.
+     */
     public void startNewWave() {
         this.canSpawnEnemy = false;
         new java.util.Timer().schedule(
@@ -83,6 +82,10 @@ public class Game {
         );
     }
 
+    /**
+     * Randomly spawns an enemy.
+     * This method is called by manager every 8 seconds in sbge.ini config file.
+     */
     public void randomlySpawnEnemy() {
         if (this.canSpawnEnemy && this.isManagingObjects) {
             this.enemies.add(this.enemyWaveGenerator.getRandomEnemy((this.wave * 2) + this.random.nextInt(1, 5) * 10, (this.wave * 2) + this.random.nextInt(1, 5) * 3));
@@ -90,13 +93,20 @@ public class Game {
         }
     }
 
-
-
-
+    /**
+     * Stops or starts the game.
+     * This method is called by a key P in sbge.ini config file and it opens the shop.
+     */
     public void stopOrStartGame() {
         Menu.getInstance().openShop();
     }
 
+    /**
+     * Removes an enemy from the game.
+     * When there are no enemies left, it starts a new wave.
+     *
+     * @param enemy - Enemy object that is going to be removed.
+     */
     public void removeEnemy(Enemy enemy) {
         enemy.getEnemyImage().makeInvisible();
         if (enemy instanceof RangedEnemy rangedEnemy) {
@@ -113,6 +123,9 @@ public class Game {
         return Collections.unmodifiableList(this.enemies);
     }
 
+    /**
+     * Manages the objects in the game.
+     */
     public void manageObjects() {
         this.isManagingObjects = true;
         this.manager.manageObject(this.astronaut);
@@ -122,6 +135,9 @@ public class Game {
         }
     }
 
+    /**
+     * Stops managing the objects in the game.
+     */
     public void stopManagingObjects() {
         this.isManagingObjects = false;
         this.manager.stopManagingObject(this.astronaut);
@@ -135,6 +151,9 @@ public class Game {
         return this.manager;
     }
 
+    /**
+     * Ends the game.
+     */
     public void endGame() {
         System.out.println("Game over");
         System.exit(0);

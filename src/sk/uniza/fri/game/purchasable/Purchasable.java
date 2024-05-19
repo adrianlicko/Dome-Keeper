@@ -3,6 +3,13 @@ package sk.uniza.fri.game.purchasable;
 import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.map.BlockType;
 
+/**
+ * Represents an item that can be purchased in store.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public interface Purchasable {
     ImageObject getImage();
     String getName();

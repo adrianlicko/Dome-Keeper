@@ -2,6 +2,13 @@ package sk.uniza.fri.game.enemy.melee;
 
 import java.util.Random;
 
+/**
+ * Represents an enemy that walks and attacks the player on close range.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Walker extends MeleeEnemy {
 
     public Walker(int health, int damage) {
@@ -13,6 +20,9 @@ public class Walker extends MeleeEnemy {
         super.charge(100, 20, 0, 4, "assets/enemies/walker/attack");
     }
 
+    /**
+     * Method that is responsible for random spawn of the enemy.
+     */
     @Override
     public void randomSpawn() {
         var random = new Random();

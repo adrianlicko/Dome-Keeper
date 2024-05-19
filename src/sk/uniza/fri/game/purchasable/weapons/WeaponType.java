@@ -1,5 +1,12 @@
 package sk.uniza.fri.game.purchasable.weapons;
 
+/**
+ * Enum that represents the type of weapon.
+ *
+ * @author
+ * @version 1.0
+ * @since 1.0
+ */
 public enum WeaponType {
     SHOTGUN("assets/weapons/Shotgun small.png", "assets/weapons/Shotgun small reversed.png", 10, 20, "assets/weapons/Shotgun projectiles", 20, 20, 5),
     MAGIC_WAND("assets/weapons/Magic wand small.png", "assets/weapons/Magic wand small reversed.png", 3, 5, "assets/weapons/MagicWand projectiles", 20, 20, 5),
@@ -15,6 +22,18 @@ public enum WeaponType {
     private int projectileWidth;
     private int projectileHeight;
 
+    /**
+     * Constructor for the WeaponType enum.
+     *
+     * @param imagePath - String value representing the path to the image of the weapon.
+     * @param reverseImagePath - String value representing the path to the image of the weapon when it is reversed.
+     * @param damage - Integer value representing the damage of the weapon.
+     * @param fireRate - Integer value representing the fire rate of the weapon.
+     * @param projectileImageDirectory - String value representing the directory path of the projectile images.
+     * @param projectileWidth - Integer value representing the width of the projectile image.
+     * @param projectileHeight - Integer value representing the height of the projectile image.
+     * @param projectileSpeed - Integer value representing the speed of the projectile.
+     */
     WeaponType(String imagePath, String reverseImagePath, int damage, int fireRate, String projectileImageDirectory, int projectileWidth, int projectileHeight, int projectileSpeed) {
         this.imagePath = imagePath;
         this.reverseImagePath = reverseImagePath;

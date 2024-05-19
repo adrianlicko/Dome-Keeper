@@ -9,6 +9,13 @@ import sk.uniza.fri.game.map.BlockType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that represents the HUD.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class HUD {
     private Astronaut astronaut;
     private Dome dome;
@@ -19,6 +26,13 @@ public class HUD {
     private Rectangle domeHealthIndicator;
     private TextBlock domeHealthText;
 
+    /**
+     * Constructor for the HUD class.
+     * When the HUD instance is created, it creates the background of the HUD, the inventory of the player and the dome health indicator.
+     *
+     * @param astronaut - Astronaut object representing the player.
+     * @param dome - Dome object representing the dome.
+     */
     public HUD(Astronaut astronaut, Dome dome) {
         this.astronaut = astronaut;
         this.dome = dome;
@@ -60,13 +74,18 @@ public class HUD {
     }
 
     /**
-     * This method updates the HUD of the player with the amount of coins he has.
+     * This method updates the HUD of the player with the amount of coins he has of the specific block type.
+     *
+     * @param blockType - BlockType value representing the type of the block.
      */
-    public void updateHudOfPlayersCoin(BlockType blockType) {
+    public void updateHudOfPlayerCoin(BlockType blockType) {
         this.coinText.get(blockType).changeText("" + (this.astronaut.getInventory().get(blockType)));
     }
 
-    public void refreshHudOfPlayersCoin() {
+    /**
+     * This method updates the HUD of the player with the amount of coins he has of all block types.
+     */
+    public void updateHudOfAllPlayerCoins() {
         for (BlockType blockType : BlockType.values()) {
             this.coinText.get(blockType).changeText("" + (this.astronaut.getInventory().get(blockType)));
         }
@@ -80,6 +99,11 @@ public class HUD {
         this.domeHealthText.changeText((int)this.dome.getHealth() + "/" + (int)this.dome.getInitialHealth());
     }
 
+    /**
+     * This method increases the health of the dome by the amount.
+     *
+     * @param amount - Integer value representing the amount of health that the dome receives.
+     */
     public void increaseDomeHealth(int amount) {
         this.dome.increaseHealth(amount);
         this.updateDomeHealth();

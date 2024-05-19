@@ -8,9 +8,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class that generates random enemies from the enemy classes.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class EnemyWaveGenerator {
     private List<Class<? extends Enemy>> enemyClasses = new ArrayList<>();
 
+    /**
+     * Constructor for the EnemyWaveGenerator class.
+     * Finds all enemy classes in the specified packages and stores them in a list.
+     */
     public EnemyWaveGenerator() {
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -44,6 +55,13 @@ public class EnemyWaveGenerator {
         System.out.println("Found " + this.enemyClasses.size() + " enemy classes");
     }
 
+    /**
+     * Returns a random enemy with the specified health and damage.
+     *
+     * @param health - the health of the enemy
+     * @param damage - the damage of the enemy
+     * @return - a random enemy
+     */
     public Enemy getRandomEnemy(int health, int damage) {
         var random = new Random();
         try {

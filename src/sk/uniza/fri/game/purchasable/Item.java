@@ -1,5 +1,12 @@
 package sk.uniza.fri.game.purchasable;
 
+/**
+ * Represents an item that can be equipped and purchased.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class Item implements Purchasable {
     private boolean isEquipped;
     private boolean isPurchased;

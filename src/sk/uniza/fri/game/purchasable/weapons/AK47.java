@@ -3,6 +3,13 @@ package sk.uniza.fri.game.purchasable.weapons;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.DirectProjectile;
 
+/**
+ * Represents the AK47 weapon.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class AK47 extends Weapon {
     public AK47() {
         super(WeaponType.AK47, WeaponType.AK47.getDamage(), WeaponType.AK47.getFireRate());

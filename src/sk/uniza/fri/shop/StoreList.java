@@ -13,6 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
+/**
+ * Represents the store list where the player can buy items.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class StoreList {
     private JFrame frame;
     private JButton backToTheGameButton;
@@ -20,6 +27,11 @@ public class StoreList {
     private JPanel storePanel;
     private JPanel coinPanel;
 
+    /**
+     * Creates a new store list and initializes the main panel.
+     *
+     * @param frame - the frame where the store list will be displayed
+     */
     public StoreList(JFrame frame) {
         this.frame = frame;
         this.storePanel.setLayout(new GridLayout(0, 3)); // Zmena na FlowLayout
@@ -40,6 +52,9 @@ public class StoreList {
         this.updateCoinPanel();
     }
 
+    /**
+     * Updates the coin panel in the store.
+     */
     public void updateCoinPanel() {
         this.coinPanel.removeAll(); // remove all existing panels
 
@@ -63,6 +78,11 @@ public class StoreList {
         this.coinPanel.revalidate();
     }
 
+    /**
+     * Adds a purchasable item to the store with all necessary information and buttons.
+     *
+     * @param item - the item to be added to the store
+     */
     public void addToStore(Purchasable item) {
         JPanel itemPanel = new JPanel();
         itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
@@ -132,17 +152,16 @@ public class StoreList {
             }
         });
 
-        // Vytvorenie nového panelu pre obrázok a tlačidlo Buy
         JPanel buyPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buyPanel.add(buyButton); // Pridajte tlačidlo Buy ako prvé
-        buyPanel.add(buyIconLabel); // Potom pridajte obrázok
+        buyPanel.add(buyButton);
+        buyPanel.add(buyIconLabel);
 
         itemPanel.add(imageLabel);
         itemPanel.add(nameLabel);
         itemPanel.add(descriptionLabel);
-        itemPanel.add(damageLabel); // for weapons
+        itemPanel.add(damageLabel);
         itemPanel.add(priceLabel);
-        itemPanel.add(buyPanel); // Pridajte panel s tlačidlom Buy a obrázkom
+        itemPanel.add(buyPanel);
         itemPanel.add(equipButton);
 
         this.storePanel.repaint();

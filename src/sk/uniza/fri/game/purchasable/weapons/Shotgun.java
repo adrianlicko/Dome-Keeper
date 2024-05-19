@@ -3,6 +3,13 @@ package sk.uniza.fri.game.purchasable.weapons;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.DirectProjectile;
 
+/**
+ * Represents the Shotgun weapon.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Shotgun extends Weapon {
 
     public Shotgun() {

@@ -7,6 +7,13 @@ import sk.uniza.fri.game.purchasable.weapons.MagicWand;
 
 import java.util.HashMap;
 
+/**
+ * Represents the dome that the player is defending.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Dome {
     private ImageObject domeImage;
     private Astronaut astronaut;
@@ -19,6 +26,11 @@ public class Dome {
     // second hashmap has the key of position x and value of position y
     private HashMap<Integer, HashMap<Integer, Integer>> weaponPosition;
 
+    /**
+     * Constructor for the Dome class.
+     *
+     * @param astronaut - Astronaut object representing the player.
+     */
     public Dome(Astronaut astronaut) {
         this.domeImage = new ImageObject("assets/Nadzemie/Dome small.png", 457, 260, 96, 95);
         this.domeImage.makeVisible();

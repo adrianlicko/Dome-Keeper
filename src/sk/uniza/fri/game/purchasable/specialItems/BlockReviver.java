@@ -4,12 +4,22 @@ import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
 
+/**
+ * Represents a special item that revives all blocks on the map.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class BlockReviver extends SpecialItem {
 
     public BlockReviver(int price) {
         super(price);
     }
 
+    /**
+     * Method that revives all blocks on the map.
+     */
     @Override
     public void use() {
         Game.getInstance().getAstronaut().spawnAtSpawnpoint();

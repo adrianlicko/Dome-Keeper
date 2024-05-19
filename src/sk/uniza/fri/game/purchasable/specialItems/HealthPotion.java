@@ -4,11 +4,21 @@ import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
 
+/**
+ * Represents a special item that heals the player by a certain amount of health.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class HealthPotion extends SpecialItem {
     public HealthPotion(int amount) {
         super(amount);
     }
 
+    /**
+     * Method that heals the player by a certain amount of health.
+     */
     @Override
     public void use() {
         Game.getInstance().getHUD().increaseDomeHealth(this.getAmount());

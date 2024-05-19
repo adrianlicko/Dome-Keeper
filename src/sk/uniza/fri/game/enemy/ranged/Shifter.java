@@ -2,12 +2,23 @@ package sk.uniza.fri.game.enemy.ranged;
 
 import java.util.Random;
 
+/**
+ * Represents an enemy that shifts and attacks the player from a distance.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Shifter extends RangedEnemy {
 
     public Shifter(int health, int damage) {
         super(health, damage, "assets/enemies/shifter/appear", 96, 80);
     }
 
+    /**
+     * Method that is responsible for moving and attacking the Dome.
+     * Also changes the image directory based on the state of the enemy.
+     */
     @Override
     public void charge() {
         switch (this.getState()) {

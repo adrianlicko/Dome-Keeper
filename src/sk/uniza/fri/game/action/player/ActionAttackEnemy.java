@@ -5,7 +5,23 @@ import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.Projectile;
 import sk.uniza.fri.game.purchasable.weapons.Weapon;
 
+/**
+ * Class for attacking enemies.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class ActionAttackEnemy {
+
+    /**
+     * Method shoot.
+     * Provides shooting at enemies.
+     * Calculates the distance between the projectile and the enemy and if it's in range, it deals damage to the enemy.
+     *
+     * @param weapon
+     * @param directProjectile
+     */
     public static void shoot (Weapon weapon, Projectile directProjectile) {
         Enemy enemyToRemove = null;
         for (Enemy enemy : Game.getInstance().getEnemies()) {

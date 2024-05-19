@@ -4,12 +4,22 @@ import sk.uniza.fri.ImageObject;
 import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.map.BlockType;
 
+/**
+ * Represents a special item that gives the player a bigger power over blocks.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class RingOfPower extends SpecialItem {
 
     public RingOfPower(int amount) {
         super(amount);
     }
 
+    /**
+     * Method that gives the player a bigger power over blocks.
+     */
     @Override
     public void use() {
         Game.getInstance().getAstronaut().setDamage(this.getAmount());

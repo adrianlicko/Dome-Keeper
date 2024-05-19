@@ -3,6 +3,13 @@ package sk.uniza.fri.game.purchasable.weapons;
 import sk.uniza.fri.game.map.BlockType;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
 
+/**
+ * Represents the Rocket Launcher weapon.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class RocketLauncher extends Weapon {
     public RocketLauncher() {
         super(WeaponType.ROCKET_LAUNCHER, WeaponType.ROCKET_LAUNCHER.getDamage(), WeaponType.ROCKET_LAUNCHER.getFireRate());

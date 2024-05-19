@@ -4,11 +4,17 @@ import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.action.enemy.ActionAttackDome;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.purchasable.weapons.projectiles.HomingProjectile;
-import sk.uniza.fri.game.purchasable.weapons.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Abstract class for enemies that attacks the dome on long range.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class RangedEnemy extends Enemy {
     private State state;
     private Random random;
@@ -17,6 +23,15 @@ public abstract class RangedEnemy extends Enemy {
     private int invisibleCount;
     private ArrayList<HomingProjectile> projectiles;
 
+    /**
+     * Constructor for the RangedEnemy class.
+     *
+     * @param health - Integer value representing the health of the enemy.
+     * @param damage - Integer value representing the damage of the enemy.
+     * @param enemyImageDirectory - String value representing the directory of the enemy images.
+     * @param imageWidth - Integer value representing the width of the enemy image.
+     * @param imageHeight - Integer value representing the height of the enemy image.
+     */
     public RangedEnemy(int health, int damage, String enemyImageDirectory, int imageWidth, int imageHeight) {
         super(health, damage, enemyImageDirectory, imageWidth, imageHeight);
         this.state = State.APPEAR;
@@ -24,8 +39,21 @@ public abstract class RangedEnemy extends Enemy {
         this.projectiles = new ArrayList<>();
     }
 
+    /**
+     * Abstract method that is responsible for moving and attacking the Dome.
+     */
     public abstract void charge();
 
+    /**
+     * Method that is responsible for spawning projectiles.
+     *
+     * @param directoryPath - String value representing the directory of the projectile images.
+     * @param projectilePositionCorrectionFromLeft - Integer value representing the correction of the projectile position from the left side.
+     * @param projectilePositionCorrectionFromRight - Integer value representing the correction of the projectile position from the right side.
+     * @param elevation - Integer value representing the elevation of the projectile.
+     * @param projectileWidth - Integer value representing the width of the projectile.
+     * @param projectileHeight - Integer value representing the height of the projectile.
+     */
     public void addProjectile(String directoryPath, int projectilePositionCorrectionFromLeft, int projectilePositionCorrectionFromRight, int elevation, int projectileWidth, int projectileHeight) {
         if (this.getSide().equals("/right")) {
             this.projectiles.add(new HomingProjectile(this.getEnemyImage().getX() + projectilePositionCorrectionFromRight, this.getEnemyImage().getY() + elevation, this.getDamage(), directoryPath, projectileWidth, projectileHeight, Game.getInstance().getDome().getDomeImage(), 2));
@@ -36,7 +64,8 @@ public abstract class RangedEnemy extends Enemy {
     }
 
     /**
-     * Managed by manager
+     * Method that is responsible for moving projectiles.
+     * This method is managed by manager, so it's called constantly.
      */
     public void moveProjectiles() {
         for (int i = 0; i < this.projectiles.size(); i++) {
@@ -63,14 +92,17 @@ public abstract class RangedEnemy extends Enemy {
         this.projectiles = new ArrayList<>();
     }
 
+    /**
+     * Method responsible for receiving damage.
+     *
+     * @param damage - Integer value representing the damage that the enemy receives.
+     * @return - Boolean value representing if the enemy is still alive.
+     */
     @Override
     public boolean receiveDamage(int damage) {
         this.decreaseHealth(damage);
         if (this.getHealth() <= 0) {
-            for (int i = 0; i < this.projectiles.size(); i++) {
-                this.projectiles.get(i).getProjectileImage().makeInvisible();
-                this.projectiles.remove(this.projectiles.get(i));
-            }
+            this.removeAllProjectiles();
         }
         return this.getHealth() > 0;
     }

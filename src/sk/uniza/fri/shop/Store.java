@@ -9,9 +9,20 @@ import sk.uniza.fri.game.purchasable.weapons.Shotgun;
 
 import javax.swing.*;
 
+/**
+ * Represents the store where the player can buy items.
+ * The store contains a list of items that can be purchased.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class Store extends JFrame {
     private StoreList storeList;
 
+    /**
+     * Creates a new store window and initializes the store list.
+     */
     public Store() {
         super("Dome Keeper Store");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -38,6 +49,9 @@ public class Store extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Updates the coin panel in the store.
+     */
     public void updateCoinPanel() {
         this.storeList.updateCoinPanel();
     }

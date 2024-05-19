@@ -10,6 +10,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Represents a weapon that can be used by the player.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class Weapon extends Item {
     private ImageObject weaponImage;
     private WeaponType weaponType;
@@ -21,6 +28,13 @@ public abstract class Weapon extends Item {
     private boolean isShooting;
     private int fireRate;
 
+    /**
+     * Constructor for the Weapon class.
+     *
+     * @param weaponType - WeaponType object representing the type of the weapon.
+     * @param damage - Integer value representing the damage of the weapon.
+     * @param fireRate - Integer value representing the fire rate of the weapon.
+     */
     public Weapon(WeaponType weaponType, int damage, int fireRate) {
         this.weaponImage = new ImageObject(weaponType.getImagePath());
         this.weaponType = weaponType;
@@ -33,6 +47,9 @@ public abstract class Weapon extends Item {
 
     public abstract void fire();
 
+    /**
+     * Shoots the weapon with the speed of the fire rate.
+     */
     public void shoot() {
         if (!this.isShooting) {
             this.isShooting = true;
@@ -49,6 +66,9 @@ public abstract class Weapon extends Item {
         }
     }
 
+    /**
+     * Moves the bullets that are currently on the screen.
+     */
     public void moveBullets() {
         for (int i = 0; i < this.projectiles.size(); i++) {
             this.projectiles.get(i).move();
@@ -60,6 +80,9 @@ public abstract class Weapon extends Item {
         }
     }
 
+    /**
+     * Removes all the bullets from the screen.
+     */
     public void removeBullets() {
         ArrayList<Projectile> bulletsToRemove = new ArrayList<>();
         for (var projectile : this.projectiles) {
@@ -69,6 +92,12 @@ public abstract class Weapon extends Item {
         this.projectiles.removeAll(bulletsToRemove);
     }
 
+    /**
+     * Changes the angle of the weapon.
+     *
+     * @param posOrNegNum - Integer value representing the direction of the change.
+     * @param weaponSliderX - Integer value representing the x coordinate of the weapon slider.
+     */
     public void changeAngle(int posOrNegNum, int weaponSliderX) {
         int sliderX = -weaponSliderX * 2;
         this.weaponAngle += posOrNegNum * 2;

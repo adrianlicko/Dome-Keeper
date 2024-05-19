@@ -5,6 +5,13 @@ import sk.uniza.fri.game.Game;
 import sk.uniza.fri.game.enemy.Enemy;
 import sk.uniza.fri.game.purchasable.weapons.Weapon;
 
+/**
+ * Represents a homing projectile that follows the target.
+ *
+ * @author Adrian Licko
+ * @version 1.0
+ * @since 1.0
+ */
 public class HomingProjectile extends Projectile {
     private Weapon weapon;
     private int speed;
@@ -16,6 +23,19 @@ public class HomingProjectile extends Projectile {
     private double dirY;
     private boolean isFiredDuringEnemyWasAlive;
 
+    /**
+     * Constructor for the HomingProjectile class.
+     * Represents a homing projectile that is shot from enemy and follows the target Dome.
+     *
+     * @param x - Integer value representing the x coordinate of the projectile.
+     * @param y - Integer value representing the y coordinate of the projectile.
+     * @param damage - Integer value representing the damage of the projectile.
+     * @param directoryPath - String value representing the directory path of the projectile images.
+     * @param projectileWidth - Integer value representing the width of the projectile image.
+     * @param projectileHeight - Integer value representing the height of the projectile image.
+     * @param target - ImageObject object representing the target that the projectile will follow.
+     * @param speed - Integer value representing the speed of the projectile.
+     */
     public HomingProjectile(int x, int y, int damage, String directoryPath, int projectileWidth, int projectileHeight, ImageObject target, int speed) {
         super(x, y, damage, directoryPath, projectileWidth, projectileHeight);
         this.speed = speed;
@@ -23,6 +43,19 @@ public class HomingProjectile extends Projectile {
         this.isFiredByDome = false;
     }
 
+    /**
+     * Constructor for the HomingProjectile class.
+     * Represents a homing projectile that is shot from the Dome and follows the target Enemy.
+     *
+     * @param x - Integer value representing the x coordinate of the projectile.
+     * @param y - Integer value representing the y coordinate of the projectile.
+     * @param damage - Integer value representing the damage of the projectile.
+     * @param directoryPath - String value representing the directory path of the projectile images.
+     * @param projectileWidth - Integer value representing the width of the projectile image.
+     * @param projectileHeight - Integer value representing the height of the projectile image.
+     * @param weapon - Weapon object representing the weapon that the projectile is shot from. Needed for the angle that the projectile will move in.
+     * @param speed - Integer value representing the speed of the projectile.
+     */
     public HomingProjectile(int x, int y, int damage, String directoryPath, int projectileWidth, int projectileHeight, Weapon weapon, int speed) {
         super(x, y, damage, directoryPath, projectileWidth, projectileHeight);
         this.weapon = weapon;
@@ -36,6 +69,9 @@ public class HomingProjectile extends Projectile {
         this.initialMoves = 5;
     }
 
+    /**
+     * Method that calculates the direction vector from the projectile to the target and normalizes it.
+     */
     private void calculateDirectionVector() {
         // Calculate the direction vector from the projectile to the target
         this.dirX = this.target.getHitX() - this.getProjectileImage().getHitX();
@@ -47,12 +83,21 @@ public class HomingProjectile extends Projectile {
         this.dirY /= length;
     }
 
+    /**
+     * Method that moves the projectile in the direction of the target.
+     */
     private void moveInDirection() {
         // Move the projectile in the direction of the target
         this.getProjectileImage().addX((int)(this.dirX * this.speed));
         this.getProjectileImage().addY((int)(this.dirY * this.speed));
     }
 
+    /**
+     * Method that moves the projectile.
+     * If the projectile is fired by the Dome, it moves like a DirectProjectile for the first 5 moves. After that, it moves like a HomingProjectile.
+     * If the projectile is fired by the Enemy, it moves like a HomingProjectile.
+     * If the projectile is fired by the Dome and there are no enemies alive, it moves like a DirectProjectile.
+     */
     @Override
     public void move() {
         if (this.isFiredByDome) {
@@ -98,6 +143,9 @@ public class HomingProjectile extends Projectile {
         this.updateProjectile();
     }
 
+    /**
+     * Method that updates the image and position of the projectile.
+     */
     private void updateProjectile() {
         // Update the image and position of the projectile
         this.getProjectileImage().changeImage(this.getImageLoader().getNextImage());

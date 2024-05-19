@@ -25,7 +25,7 @@ public class Menu {
         }
 
         Game.getInstance().manageObjects();
-        Game.getInstance().getHUD().refreshHudOfPlayersCoin();
+        Game.getInstance().getHUD().updateHudOfAllPlayerCoins();
 
         if (!this.alreadyHaveFrame) {
             for (Window window : Window.getWindows()) {
