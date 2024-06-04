@@ -34,8 +34,7 @@ public class RocketLauncher extends Weapon {
 
     @Override
     public int getPrice() {
-//        return 10;
-        return 2;
+        return 10;
     }
 
     @Override

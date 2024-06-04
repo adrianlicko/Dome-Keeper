@@ -54,8 +54,8 @@ public class Store extends JFrame {
         this.storeList.addToStore(new RingOfPower(2));
         this.storeList.addToStore(new RingOfPower(3));
         this.storeList.addToStore(new EnchancedJetpack(4));
-        this.storeList.addToStore(new BlockReviver(2));
-        this.storeList.addToStore(new BlockReviver(4));
+        this.storeList.addToStore(new BlockReviver(10));
+        this.storeList.addToStore(new BlockReviver(20));
 
         this.pack();
         this.setVisible(true);

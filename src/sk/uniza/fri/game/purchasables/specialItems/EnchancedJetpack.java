@@ -48,7 +48,7 @@ public class EnchancedJetpack extends SpecialItem {
 
     @Override
     public int getPrice() {
-        return 2;
+        return this.getAmount() * 3;
     }
 
     @Override
