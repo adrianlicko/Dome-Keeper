@@ -154,7 +154,6 @@ public class Game {
      * Ends the game.
      */
     public void endGame() {
-        System.out.println("Game over");
         System.exit(0);
     }
 

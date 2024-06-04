@@ -32,7 +32,6 @@ public class ActionAttackEnemy {
                 if (!enemy.receiveDamage(projectile.getDamage())) {
                     enemyToRemove = enemy;
                 }
-                System.out.println("Enemy hit");
             }
         }
 

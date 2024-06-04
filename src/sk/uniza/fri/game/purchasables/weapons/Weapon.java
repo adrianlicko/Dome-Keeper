@@ -59,7 +59,6 @@ public abstract class Weapon implements PurchasableItem {
     public void shoot() {
         if (!this.isShooting) {
             this.isShooting = true;
-            System.out.println("Shooting");
 
             this.timer.schedule(new TimerTask() {
                 @Override

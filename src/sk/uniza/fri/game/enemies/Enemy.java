@@ -69,7 +69,6 @@ public abstract class Enemy {
      */
     protected void attack(int speedInSeconds) {
         if (!this.isAttacking) {
-            System.out.println("Enemy is attacking the dome");
             ActionAttackDome.attackDome(this.damage);
             this.isAttacking = true;
             this.timer.schedule(new TimerTask() {
